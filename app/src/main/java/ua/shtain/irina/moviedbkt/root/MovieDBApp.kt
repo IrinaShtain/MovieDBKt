@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt
+package ua.shtain.irina.moviedbkt.root
 
 import android.app.Application
 import com.facebook.stetho.Stetho
@@ -11,5 +11,6 @@ class MovieDBApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
+        ObjectGraph.getInstance(this)
     }
 }
