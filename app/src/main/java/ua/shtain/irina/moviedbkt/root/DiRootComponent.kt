@@ -2,6 +2,8 @@ package ua.shtain.irina.moviedbkt.root
 
 import android.content.Context
 import dagger.Component
+import ua.shtain.irina.moviedbkt.root.session.ISessionManager
+import ua.shtain.irina.moviedbkt.root.session.di.DiSessionModule
 import javax.inject.Singleton
 
 /**
@@ -9,7 +11,8 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = arrayOf(DiAppModule::class))
-interface DiRootComponent{
-   fun context(): Context
+@Component(modules = arrayOf(DiAppModule::class, DiSessionModule::class))
+interface DiRootComponent {
+    fun context(): Context
+    fun sharedPrefManager(): ISessionManager
 }

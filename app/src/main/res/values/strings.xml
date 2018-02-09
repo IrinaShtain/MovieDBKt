@@ -1,3 +1,87 @@
 <resources>
     <string name="app_name">MovieDBKt</string>
+
+    /*Authorization*/
+    <string name="authorize_please">Authorize please</string>
+    <string name="email">User name</string>
+    <string name="password">Password</string>
+
+    /*Account details*/
+    <string name="username">Username: %s</string>
+    <string name="name">Name: %s</string>
+    <string name="include_adult">Include adult: %s</string>
+
+    /*Movie details*/
+    <string name="description">Description: %s</string>
+    <string name="type">Type: %s</string>
+    <string name="genre">Genre: %s</string>
+    <string name="title_rating" formatted="true">Movie rating %s</string>
+
+    /*Star details*/
+    <string name="famous_for">Famous for</string>
+
+    /* Toolbar's titles */
+    <string name="title_my_lists">My lists</string>
+    <string name="title_read_about_star">Read about star</string>
+    <string name="title_find_movie">Find movie</string>
+    <string name="title_my_account">My account details</string>
+    <string name="read_about_star">Read about star</string>
+    <string name="title_latest_movies">The latest movies</string>
+    <string name="title_popular_movies">The popular movies</string>
+
+    /*Buttons titles*/
+    <string name="btn_search">Search</string>
+    <string name="btn_retry">Retry</string>
+    <string name="btn_rate">Rate</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_add_to_list">Add to list</string>
+    <string name="btn_add_list">Add list</string>
+    <string name="btn_delete_from_list">Delete from list</string>
+    <string name="answer_cancel">Cancel</string>
+    <string name="answer_yes">Yes</string>
+    <string name="answer_no">No</string>
+    <string name="btn_sign_in">Sign in</string>
+
+    /*Messages/
+    <string name="msg_new_list_created_successfully">New list is successfully created</string>
+    <string name="msg_new_movie_added_successfully">The movie is successfully added</string>
+    <string name="msg_movie_rated_successfully">Thank you for your rating</string>
+    <string name="msg_new_movie_removed_successfully">The movie is successfully removed</string>
+    <string name="msg_no_famous_for_movies">No information about famous movies</string>
+    <string name="question_about_deleting">Do you want to delete movie</string>
+    <string name="question_about_goal">Do you want delete this list?</string>
+    <string name="tos_pp">If you have no account,\nplease <a href="https://www.themoviedb.org/account/signup"><b>Sign Up</b></a> </string>
+    <string name="question_about_adding">Do you want add this movie in the list?</string>
+    <string name="enter_name">Enter title and description for new list</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_input_stars_name">"Input star's name"</string>
+    <string name="input_title">Input movie\'s title</string>
+    <string name="question_about_logout">Do you really want to logout?</string>
+
+    /*Error messages/
+    <string name="err_msg_no_data">No data</string>
+    <string name="error_msg_input_movie_title">Input movie title</string>
+    <string name="error_msg_star_name">Input star name</string>
+    <string name="err_msg_connection_problem">Connection lost</string>
+    <string name="err_msg_user_not_registered">Bad credentials</string>
+    <string name="err_msg_something_goes_wrong">Something went wrong</string>
+    <string name="err_msg_list_was_deleted">List was successfully deleted</string>
+    <string name="error_empty_user_name">Input user name!</string>
+    <string name="error_empty_password">Input password!</string>
+    <string name="error_not_valid_password">Not a valid password!</string>
+    <string name="error_empty_title">Input list\'s title</string>
+    <string name="err_msg_no_lists">You have no created lists</string>
+    <string name="error_msg_no_movies">No movies in this list</string>
+    <string name="error_msg_no_movies_with_such_title">No movies with such title</string>
+    <string name="error_msg_no_star_with_such_name">No star with such name</string>
+    <string name="err_message_input_rating">Set Rating</string>
+
+    /*Menu*/
+    <string name="menu_delete">Delete</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_fab_latest_movies">Find the latest movies</string>
+    <string name="menu_fab_popular_movies">Find the popular movies</string>
+    <string name="menu_fab_find_by_genres">Find a movie by genre</string>
+    <string name="menu_fab_find_by_title">Find a movie by title</string>
 </resources>

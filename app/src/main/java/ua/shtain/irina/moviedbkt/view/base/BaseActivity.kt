@@ -1,19 +1,24 @@
 package ua.shtain.irina.moviedbkt.view.base
 
+import android.content.Context
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.inputmethod.InputMethodManager
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.root.ObjectGraph
 import javax.inject.Inject
+import android.content.Context.INPUT_METHOD_SERVICE
+
+
 
 /**
  * Created by Irina Shtain on 30.01.2018.
  */
-abstract class BaseActivity: AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
     protected abstract fun getToolbar(): Toolbar?
     protected abstract fun init()
     protected lateinit var mObjectGraph: ObjectGraph
@@ -59,5 +64,14 @@ abstract class BaseActivity: AppCompatActivity() {
         } else {
             finish()
         }
+    }
+
+    protected fun hideKeyboard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+
     }
 }

@@ -1,9 +1,11 @@
 package ua.shtain.irina.moviedbkt.view.base.content
 
+import ua.shtain.irina.moviedbkt.view.base.IBaseView
+
 /**
  * Created by Irina Shtain on 30.01.2018.
  */
- interface ContentView {
+ interface ContentView :IBaseView {
     fun showProgressMain()
     fun showProgressPagination()
     fun hideProgress()

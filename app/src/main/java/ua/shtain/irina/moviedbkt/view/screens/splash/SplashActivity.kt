@@ -1,6 +1,7 @@
 package ua.shtain.irina.moviedbkt.view.screens.splash
 
 import android.animation.*
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_splash.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.base.BaseActivity
+import ua.shtain.irina.moviedbkt.view.screens.login.LoginActivity
 import javax.inject.Inject
 
 
@@ -29,7 +31,7 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
         setContentView(R.layout.activity_splash)
         presenter.mView = this
         presenter.subscribe()
-     }
+    }
 
     override fun runSplashAnimation() {
         val fadeLogo = ObjectAnimator.ofFloat(ivLogo, View.ALPHA, 0f, 0.2f, 0.4f, 0.6f, 1f)
@@ -46,8 +48,7 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
         animatorSet.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
-                Toast.makeText(applicationContext, " End", Toast.LENGTH_LONG).show()
-                 presenter.startNextScreen()
+                presenter.startNextScreen()
             }
         })
 
@@ -56,11 +57,15 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
     }
 
     override fun startHomeScreen() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(applicationContext, " startHomeScreen", Toast.LENGTH_LONG).show()
     }
 
     override fun startLoginScreen() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(applicationContext, " startLoginScreen", Toast.LENGTH_LONG).show()
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish()
     }
 
 
@@ -76,6 +81,4 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
         super.onDestroy()
         if (animatorSet.isRunning) animatorSet.cancel()
     }
-
-
 }

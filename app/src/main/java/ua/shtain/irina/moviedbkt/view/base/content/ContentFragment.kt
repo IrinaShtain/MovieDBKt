@@ -6,8 +6,8 @@ import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 /**
  * Created by Irina Shtain on 30.01.2018.
  */
-abstract class ContentFragment : Fragment(){
+abstract class ContentFragment : Fragment(), ContentView{
     protected abstract fun getLayoutRes(): Int
 
-    protected abstract fun getPresenter(): IBasePresenter?
+    protected abstract fun getPresenter(): IBasePresenter<ContentView>?
 }

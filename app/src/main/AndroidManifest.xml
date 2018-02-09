@@ -10,8 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.screens.splash.SplashActivity"
-                  android:noHistory="true">
+        <activity
+            android:name=".view.screens.splash.SplashActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -19,7 +20,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"/>
+        <activity
+            android:name=".view.screens.login.LoginActivity"
+            android:noHistory="true"/>
+
+        <activity android:name=".view.screens.home.MainActivity"/>
     </application>
 
 </manifest>

@@ -1,8 +1,9 @@
-package ua.shtain.irina.moviedbkt
+package ua.shtain.irina.moviedbkt.view.screens.home
 
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import kotlinx.android.synthetic.main.activity_main.*
+import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.base.BaseActivity
 
 class MainActivity : BaseActivity() {
