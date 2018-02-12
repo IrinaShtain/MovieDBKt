@@ -1,6 +1,8 @@
 package ua.shtain.irina.moviedbkt.view.screens.login
 
 import io.reactivex.Observable
+import ua.shtain.irina.moviedbkt.model.LoginSession
+import ua.shtain.irina.moviedbkt.model.LoginToken
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.IBaseView
 
@@ -24,8 +26,7 @@ interface LoginContract {
     }
 
     interface LoginModel {
-//        fun getToken: Observable<LoginToken>
-//        fun getSessionID(validatedToken: String): Observable<LoginSession>
- //       fun getValidatedToken(username: String, password: String, request_token: String): Observable<LoginToken>
+        fun getToken(): Observable<LoginToken>
+        fun getSessionID(username: String, password: String, request_token: String): Observable<LoginSession>
     }
 }

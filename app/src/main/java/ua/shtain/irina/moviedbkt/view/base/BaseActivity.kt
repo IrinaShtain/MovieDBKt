@@ -32,11 +32,6 @@ abstract class BaseActivity : AppCompatActivity() {
         init()
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     fun changeFragment(f: Fragment, cleanStack: Boolean = false) {
         val ft = supportFragmentManager.beginTransaction()
         if (cleanStack) {

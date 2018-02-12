@@ -7,6 +7,7 @@ import android.util.Log
 import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.activity_login.*
 import ua.shtain.irina.moviedbkt.R
+import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.BaseActivity
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -22,20 +23,25 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        mPresenter.mView = this
+
         setupUI()
-        Log.e("myLog", "initUI ")
+        setupPresenter()
     }
 
     private fun setupUI() {
         btSignUp.movementMethod = LinkMovementMethod.getInstance()
         RxView.clicks(btSignIn)
-                .throttleFirst(600, TimeUnit.MILLISECONDS)
+                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
                 .subscribe { aVoid ->
                     Log.e("myLog", "bt_signIn ")
                     hideKeyboard()
                     mPresenter.onSignInClick(tilUserNameContainer.editText!!.text.toString(), tilPasswordContainer.editText!!.text.toString())
                 }
+    }
+
+    private fun setupPresenter(){
+        mPresenter.mView = this
+        mPresenter.subscribe()
     }
 
     override fun getToolbar(): Toolbar? {
@@ -72,6 +78,11 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
 
     override fun startHomeScreen() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.unsubscribe()
     }
 
 

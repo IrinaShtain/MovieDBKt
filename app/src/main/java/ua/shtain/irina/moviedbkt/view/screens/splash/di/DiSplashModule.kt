@@ -2,7 +2,7 @@ package ua.shtain.irina.moviedbkt.view.screens.splash.di
 
 import dagger.Module
 import dagger.Provides
-import ua.shtain.irina.moviedbkt.root.session.SharedPrefManager
+import ua.shtain.irina.moviedbkt.root.session.SessionManager
 import ua.shtain.irina.moviedbkt.view.screens.splash.SplashContract
 import ua.shtain.irina.moviedbkt.view.screens.splash.SplashPresenter
 
@@ -14,6 +14,6 @@ class DiSplashModule {
 
     @Provides
     @SplashScope
-    fun provideSplashPresenter(sessionManager : SharedPrefManager): SplashContract.SplashPresenter = SplashPresenter(sessionManager)
+    fun provideSplashPresenter(sessionManager : SessionManager): SplashContract.SplashPresenter = SplashPresenter(sessionManager)
 
 }

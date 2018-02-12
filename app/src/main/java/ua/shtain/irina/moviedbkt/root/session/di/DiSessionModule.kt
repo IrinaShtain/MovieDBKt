@@ -4,7 +4,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import ua.shtain.irina.moviedbkt.root.session.ISessionManager
-import ua.shtain.irina.moviedbkt.root.session.SharedPrefManager
+import ua.shtain.irina.moviedbkt.root.session.SessionManager
 import javax.inject.Singleton
 
 /**
@@ -17,6 +17,6 @@ class DiSessionModule {
     @Provides
     @Singleton
    fun provideSharedPrefManager(context: Context): ISessionManager {
-        return SharedPrefManager(context)
+        return SessionManager(context)
     }
 }

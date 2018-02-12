@@ -2,10 +2,14 @@ package ua.shtain.irina.moviedbkt.view.screens.login.di
 
 import dagger.Module
 import dagger.Provides
-import ua.shtain.irina.moviedbkt.root.session.SharedPrefManager
-import ua.shtain.irina.moviedbkt.view.screens.splash.SplashContract
-import ua.shtain.irina.moviedbkt.view.screens.splash.SplashPresenter
-import ua.shtain.irina.moviedbkt.view.screens.splash.di.SplashScope
+import io.reactivex.disposables.CompositeDisposable
+import ua.shtain.irina.moviedbkt.domain.LoginRepository
+import ua.shtain.irina.moviedbkt.root.network.RetrofitHelper
+import ua.shtain.irina.moviedbkt.root.network.servises.LoginService
+import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
+import ua.shtain.irina.moviedbkt.root.session.SessionManager
+import ua.shtain.irina.moviedbkt.view.screens.login.LoginContract
+import ua.shtain.irina.moviedbkt.view.screens.login.LoginPresenter
 
 /**
  * Created by Irina Shtain on 09.02.2018.
@@ -14,7 +18,14 @@ import ua.shtain.irina.moviedbkt.view.screens.splash.di.SplashScope
 class DiLoginModule {
 
     @Provides
-    @SplashScope
-    fun provideSplashPresenter(sessionManager : SharedPrefManager): SplashContract.SplashPresenter = SplashPresenter(sessionManager)
+    @LoginScope
+    fun provideSplashPresenter(sessionManager: SessionManager, compositeDisposable: CompositeDisposable, loginRepository: LoginRepository)
+            : LoginContract.LoginPresenter = LoginPresenter(sessionManager, compositeDisposable, loginRepository)
+
+    @Provides
+    @LoginScope
+    fun provideDataRepository(helper: RetrofitHelper, schedulerHelper: SchedulerHelper): LoginContract.LoginModel {
+        return LoginRepository(helper.createService(LoginService::class.java), schedulerHelper)
+    }
 
 }

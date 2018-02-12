@@ -8,7 +8,7 @@ import javax.inject.Inject
 /**
  * Created by Irina Shtain on 08.02.2018.
  */
-class SharedPrefManager @Inject constructor(context: Context) : ISessionManager {
+class SessionManager @Inject constructor(context: Context) : ISessionManager {
     private val mPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     private val ACCESS_TOKEN = "ACCESS_TOKEN"
     private val SESSION_ID = "SESSION_ID"
