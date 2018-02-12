@@ -1,5 +1,6 @@
 package ua.shtain.irina.moviedbkt.view.base.content
 
+import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.IBaseView
 
 /**
@@ -9,7 +10,7 @@ import ua.shtain.irina.moviedbkt.view.base.IBaseView
     fun showProgressMain()
     fun showProgressPagination()
     fun hideProgress()
-//    fun showMessage(messageType: Constants.MessageType)
-//    fun showCustomMessage(msg: String, isDangerous: Boolean)
-//    fun showPlaceholder(placeholderType: Constants.PlaceholderType)
+    fun showMessage(messageType: Constants.MessageType)
+    fun showCustomMessage(msg: String, isDangerous: Boolean)
+    fun showPlaceholder(placeholderType: Constants.PlaceholderType)
 }

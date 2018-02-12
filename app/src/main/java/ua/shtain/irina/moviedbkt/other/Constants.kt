@@ -56,6 +56,8 @@ object Constants {
         INPUT_MOVIE_TITLE(R.string.error_msg_input_movie_title, true),
         INPUT_STAR_NAME(R.string.error_msg_star_name, true),
         UNKNOWN(R.string.err_msg_something_goes_wrong, true)
+
+
     }
 
     enum class PlaceholderType constructor(@param:StringRes @field:StringRes

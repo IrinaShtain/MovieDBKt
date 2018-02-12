@@ -1,7 +1,9 @@
-package ua.shtain.irina.moviedbkt.view.screens.login
+package ua.shtain.irina.moviedbkt.view.screens.login.content
 
 import android.util.Log
 import io.reactivex.disposables.CompositeDisposable
+import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
+import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.root.session.SessionManager
 import javax.inject.Inject
 
@@ -18,9 +20,15 @@ class LoginPresenter @Inject constructor(sessionManager: SessionManager,
     private var mCompositeDisposable: CompositeDisposable = compositeDisposable
     private var mModel: LoginContract.LoginModel = model
 
-    private val throwable = { t: Throwable ->
-        t.printStackTrace()
+
+    private val throwableConsumer = { t:Throwable ->
         Log.d("myLogs", "Error! " + t.message)
+        mView.hideProgress()
+        if (t is ConnectionException)
+            mView.showMessage(Constants.MessageType.CONNECTION_PROBLEMS)
+        else
+            mView.showMessage(Constants.MessageType.UNKNOWN)
+        t.printStackTrace()
     }
 
     override fun setView(view: LoginContract.LoginView) {
@@ -28,15 +36,18 @@ class LoginPresenter @Inject constructor(sessionManager: SessionManager,
     }
 
     override fun subscribe() {
+        mView.showProgressMain()
         mCompositeDisposable.add(mModel.getToken()
                 .subscribe({ loginResponse ->
+                    mView.hideProgress()
                     Log.e("myLog", "loginResponse.data.token.auth_token " + loginResponse.requestToken)
                     mSessionManager.saveAuthToken(loginResponse.requestToken)
-                }, { t -> throwable }))
+                }, throwableConsumer))
     }
 
     override fun unsubscribe() {
         mCompositeDisposable.clear()
+        Log.e("myLog", "LoginPresenter unsubscribe()")
     }
 
     override fun onSignInClick(userName: String, password: String) {
@@ -72,14 +83,22 @@ class LoginPresenter @Inject constructor(sessionManager: SessionManager,
     }
 
     private fun getSessionID(userName: String, password: String) {
-        mCompositeDisposable.add(
-                mModel.getSessionID(userName, password, mSessionManager.getAccessToken())
-                        .subscribe({ loginResponse ->
-                            mSessionManager.saveSessionID(loginResponse.sessionID)
-                            Log.e("myLog", "getSessionID .sessionID " + loginResponse.sessionID)
-                        }, { t -> throwable }))
+        mView.showProgressMain()
+        if (!mSessionManager.getAccessToken().isEmpty())
+            mCompositeDisposable.add(
+                    mModel.getSessionID(userName, password, mSessionManager.getAccessToken())
+                            .subscribe({ loginResponse ->
+                                mView.hideProgress()
+                                mSessionManager.saveSessionID(loginResponse.sessionID)
+                                Log.e("myLog", "getSessionID .sessionID " + loginResponse.sessionID)
+                                mView.startHomeScreen()
+                            }, throwableConsumer))
+        else {
+            subscribe()
+        }
 
     }
+
 
     private fun validatePassword(password: String) = password.length >= 4
 }

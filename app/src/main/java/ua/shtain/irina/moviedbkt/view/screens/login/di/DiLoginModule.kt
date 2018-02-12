@@ -8,8 +8,8 @@ import ua.shtain.irina.moviedbkt.root.network.RetrofitHelper
 import ua.shtain.irina.moviedbkt.root.network.servises.LoginService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.root.session.SessionManager
-import ua.shtain.irina.moviedbkt.view.screens.login.LoginContract
-import ua.shtain.irina.moviedbkt.view.screens.login.LoginPresenter
+import ua.shtain.irina.moviedbkt.view.screens.login.content.LoginContract
+import ua.shtain.irina.moviedbkt.view.screens.login.content.LoginPresenter
 
 /**
  * Created by Irina Shtain on 09.02.2018.

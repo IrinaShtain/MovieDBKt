@@ -10,8 +10,6 @@ import android.support.v7.widget.Toolbar
 import android.view.inputmethod.InputMethodManager
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.root.ObjectGraph
-import javax.inject.Inject
-import android.content.Context.INPUT_METHOD_SERVICE
 
 
 
@@ -20,8 +18,8 @@ import android.content.Context.INPUT_METHOD_SERVICE
  */
 abstract class BaseActivity : AppCompatActivity() {
     protected abstract fun getToolbar(): Toolbar?
-    protected abstract fun init()
-    protected lateinit var mObjectGraph: ObjectGraph
+    protected abstract fun initGraph()
+    public lateinit var mObjectGraph: ObjectGraph
     @IdRes
     protected abstract fun getContainer(): Int
 
@@ -29,7 +27,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mObjectGraph = ObjectGraph.getInstance(application)
         setSupportActionBar(getToolbar())
-        init()
+        initGraph()
     }
 
     fun changeFragment(f: Fragment, cleanStack: Boolean = false) {

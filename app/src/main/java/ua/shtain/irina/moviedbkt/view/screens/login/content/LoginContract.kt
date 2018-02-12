@@ -1,17 +1,17 @@
-package ua.shtain.irina.moviedbkt.view.screens.login
+package ua.shtain.irina.moviedbkt.view.screens.login.content
 
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.LoginSession
 import ua.shtain.irina.moviedbkt.model.LoginToken
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
-import ua.shtain.irina.moviedbkt.view.base.IBaseView
+import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 
 /**
  * Created by Irina Shtain on 09.02.2018.
  */
 interface LoginContract {
 
-    interface LoginView : IBaseView {
+    interface LoginView : ContentView {
         fun showEmptyNameError()
         fun showEmptyPasswordError()
         fun showNotValidPasswordError()

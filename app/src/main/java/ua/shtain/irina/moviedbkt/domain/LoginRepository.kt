@@ -5,7 +5,7 @@ import ua.shtain.irina.moviedbkt.model.LoginSession
 import ua.shtain.irina.moviedbkt.model.LoginToken
 import ua.shtain.irina.moviedbkt.root.network.servises.LoginService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
-import ua.shtain.irina.moviedbkt.view.screens.login.LoginContract
+import ua.shtain.irina.moviedbkt.view.screens.login.content.LoginContract
 import javax.inject.Inject
 
 /**
