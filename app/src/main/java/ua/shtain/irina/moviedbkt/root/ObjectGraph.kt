@@ -1,10 +1,13 @@
 package ua.shtain.irina.moviedbkt.root
 
 import android.content.Context
+import ua.shtain.irina.moviedbkt.view.screens.home.di.DaggerDiHomeComponent
+
+import ua.shtain.irina.moviedbkt.view.screens.home.di.DiHomeComponent
+import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.di.DiUserProfileModule
 import ua.shtain.irina.moviedbkt.view.screens.login.di.DaggerDiLoginComponent
 import ua.shtain.irina.moviedbkt.view.screens.login.di.DiLoginComponent
 import ua.shtain.irina.moviedbkt.view.screens.login.di.DiLoginModule
-import ua.shtain.irina.moviedbkt.view.screens.splash.SplashActivity
 import ua.shtain.irina.moviedbkt.view.screens.splash.di.DaggerDiSplashComponent
 import ua.shtain.irina.moviedbkt.view.screens.splash.di.DiSplashComponent
 import ua.shtain.irina.moviedbkt.view.screens.splash.di.DiSplashModule
@@ -19,6 +22,7 @@ class ObjectGraph private constructor(context: Context) {
             .diAppModule(DiAppModule(context))
             .build()
     private val  mLoginComponent : DiLoginComponent
+    private val mHomeComponent: DiHomeComponent
 
     companion object {
         private var instance: ObjectGraph? = null
@@ -40,6 +44,11 @@ class ObjectGraph private constructor(context: Context) {
                 .diRootComponent(mRootComponent)
                 .diLoginModule(DiLoginModule())
                 .build()
+        mHomeComponent = DaggerDiHomeComponent
+                .builder()
+                .diRootComponent(mRootComponent)
+                .diUserProfileModule(DiUserProfileModule())
+                .build()
 
     }
 
@@ -49,6 +58,10 @@ class ObjectGraph private constructor(context: Context) {
 
     fun getLoginComponent(): DiLoginComponent {
         return mLoginComponent
+    }
+
+    fun getHomeComponent(): DiHomeComponent {
+        return mHomeComponent
     }
 
 

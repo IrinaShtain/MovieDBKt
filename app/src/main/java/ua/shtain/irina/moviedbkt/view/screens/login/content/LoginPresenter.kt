@@ -16,9 +16,9 @@ class LoginPresenter @Inject constructor(sessionManager: SessionManager,
 
     lateinit var mView: LoginContract.LoginView
 
-    private var mSessionManager: SessionManager = sessionManager
-    private var mCompositeDisposable: CompositeDisposable = compositeDisposable
-    private var mModel: LoginContract.LoginModel = model
+    private var mSessionManager = sessionManager
+    private var mCompositeDisposable = compositeDisposable
+    private var mModel = model
 
 
     private val throwableConsumer = { t:Throwable ->

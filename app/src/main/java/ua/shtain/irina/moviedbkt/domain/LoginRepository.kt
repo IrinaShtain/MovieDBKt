@@ -12,13 +12,13 @@ import javax.inject.Inject
  * Created by Irina Shtain on 09.02.2018.
  */
 class LoginRepository @Inject constructor(loginService: LoginService, helper: SchedulerHelper) : LoginContract.LoginModel {
-    val loginServ = loginService
+    val service = loginService
     val mHelper = helper
 
 
-    override fun getToken(): Observable<LoginToken> = mHelper.getNetworkObservable(loginServ.getToken())
+    override fun getToken(): Observable<LoginToken> = mHelper.getNetworkObservable(service.getToken())
 
     override fun getSessionID(username: String, password: String, request_token: String): Observable<LoginSession> = mHelper
-            .getNetworkObservable(loginServ.validateToken(username, password, request_token)
-                    .concatMap { response -> loginServ.getSessionId(response.requestToken) })
+            .getNetworkObservable(service.validateToken(username, password, request_token)
+                    .concatMap { response -> service.getSessionId(response.requestToken) })
 }

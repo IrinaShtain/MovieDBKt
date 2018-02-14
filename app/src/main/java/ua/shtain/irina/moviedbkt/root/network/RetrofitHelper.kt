@@ -1,6 +1,7 @@
 package ua.shtain.irina.moviedbkt.root.network
 
 import android.util.Log
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -25,6 +26,7 @@ class RetrofitHelper @Inject constructor(network: INetworkManager,
                 .connectTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(Constants.TIMEOUT_READ, TimeUnit.SECONDS)
                 .writeTimeout(Constants.TIMEOUT_WRITE, TimeUnit.SECONDS)
+                .addNetworkInterceptor(StethoInterceptor())
                 .addInterceptor(QueryInterceptor(mSessionManager, mNetwork))
         Log.e("myLog", "Rest called ")
         val retrofit = Retrofit.Builder()
