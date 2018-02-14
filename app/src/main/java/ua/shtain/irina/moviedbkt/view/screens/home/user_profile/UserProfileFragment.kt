@@ -1,23 +1,21 @@
 package ua.shtain.irina.moviedbkt.view.screens.home.user_profile
 
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
-import com.jakewharton.rxbinding2.view.RxMenuItem
-import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_profile.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentFragment
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
-import javax.inject.Inject
-import kotlinx.android.synthetic.main.fragment_profile.*
-import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.screens.login.LoginActivity
-import java.util.concurrent.TimeUnit
+import javax.inject.Inject
+
 
 /**
  * Created by Irina Shtain on 13.02.2018.
@@ -35,6 +33,10 @@ class UserProfileFragment : ContentFragment(), UserProfileContract.View {
         mActivity.mObjectGraph.getHomeComponent().inject(this)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mPresenter.mView = this
@@ -73,16 +75,27 @@ class UserProfileFragment : ContentFragment(), UserProfileContract.View {
         mActivity.finish()
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-        RxMenuItem.clicks(menu.findItem(R.id.logout))
-                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { mPresenter.menuPressed() }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d("myLogs", "onOptionsItemSelected! ")
+        return when (item.itemId) {
+            R.id.logout -> {
+                mPresenter.menuPressed()
+                true
+            }
+            else
+            -> super.onOptionsItemSelected(item)
+        }
     }
 
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.menu_logout, menu)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        Log.d("myLogs", "onCreateOptionsMenu! ")
+        inflater.inflate(R.menu.menu_logout, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+     override fun onPrepareOptionsMenu(menu: Menu?) {
+         Log.d("myLogs", "onPrepareOptionsMenu! ")
+         menu?.findItem(R.id.logout)?.isVisible = true
+         super.onPrepareOptionsMenu(menu)
     }
 }

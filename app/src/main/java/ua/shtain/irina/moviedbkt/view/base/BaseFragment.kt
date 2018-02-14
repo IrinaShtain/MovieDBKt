@@ -1,6 +1,7 @@
 package ua.shtain.irina.moviedbkt.view.base
 
 import android.content.Context
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
@@ -14,6 +15,7 @@ abstract class BaseFragment : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         mActivity = context as BaseActivity
+        setHasOptionsMenu(true)
     }
 
     override fun onStop() {

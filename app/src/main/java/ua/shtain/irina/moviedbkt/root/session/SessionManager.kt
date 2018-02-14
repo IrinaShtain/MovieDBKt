@@ -53,4 +53,14 @@ class SessionManager @Inject constructor(context: Context) : ISessionManager {
                 mPreferences.getInt(USER_ID, -1)
         )
     }
+
+    override fun deleteUserData() {
+        mPreferences.edit()
+                .putString(USER_NAME, "")
+                .putString(USER_NICK, "")
+                .putString(USER_LANGUAGE, "")
+                .putBoolean(HAS_ADULT_PERM, false)
+                .putInt(USER_ID, -1)
+                .apply()
+    }
 }

@@ -19,7 +19,7 @@ import ua.shtain.irina.moviedbkt.root.ObjectGraph
 abstract class BaseActivity : AppCompatActivity() {
     protected abstract fun getToolbar(): Toolbar?
     protected abstract fun initGraph()
-    public lateinit var mObjectGraph: ObjectGraph
+    lateinit var mObjectGraph: ObjectGraph
     @IdRes
     protected abstract fun getContainer(): Int
 

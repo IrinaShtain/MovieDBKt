@@ -12,4 +12,5 @@ interface ISessionManager {
     fun saveSessionID(sessionID: String)
     fun saveUserData(user: User)
     fun getUserData(): User
+    fun deleteUserData()
 }

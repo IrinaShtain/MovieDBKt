@@ -5,13 +5,16 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.base.BaseActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.UserProfileFragment
-import ua.shtain.irina.moviedbkt.view.screens.login.content.LoginFragment
+import android.view.MenuInflater
+
+
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {

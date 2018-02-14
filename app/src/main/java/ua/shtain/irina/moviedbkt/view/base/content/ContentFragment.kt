@@ -40,7 +40,6 @@ abstract class ContentFragment : BaseFragment(), ContentView {
         val flContent = parent.findViewById(R.id.flContent_VC) as ViewGroup
         View.inflate(activity, getLayoutRes(), flContent)
         initGraph()
-        setHasOptionsMenu(true)
         return parent
     }
 

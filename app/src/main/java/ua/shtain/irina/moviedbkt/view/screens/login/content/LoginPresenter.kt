@@ -4,13 +4,13 @@ import android.util.Log
 import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
 import ua.shtain.irina.moviedbkt.other.Constants
-import ua.shtain.irina.moviedbkt.root.session.SessionManager
+import ua.shtain.irina.moviedbkt.root.session.ISessionManager
 import javax.inject.Inject
 
 /**
  * Created by Irina Shtain on 09.02.2018.
  */
-class LoginPresenter @Inject constructor(sessionManager: SessionManager,
+class LoginPresenter @Inject constructor(sessionManager: ISessionManager,
                                          compositeDisposable: CompositeDisposable,
                                          model: LoginContract.LoginModel) : LoginContract.LoginPresenter {
 

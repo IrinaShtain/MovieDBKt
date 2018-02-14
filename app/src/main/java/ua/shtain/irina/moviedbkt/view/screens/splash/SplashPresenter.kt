@@ -1,16 +1,16 @@
 package ua.shtain.irina.moviedbkt.view.screens.splash
 
-import ua.shtain.irina.moviedbkt.root.session.SessionManager
+import ua.shtain.irina.moviedbkt.root.session.ISessionManager
 import javax.inject.Inject
 
 
 /**
  * Created by Irina Shtain on 31.01.2018.
  */
-class SplashPresenter @Inject constructor(sessionManager: SessionManager) : SplashContract.SplashPresenter {
+class SplashPresenter @Inject constructor(sessionManager: ISessionManager) : SplashContract.SplashPresenter {
 
     lateinit var mView: SplashContract.SplashView
-    var mSessionManager: SessionManager = sessionManager
+    var mSessionManager = sessionManager
 
     override fun setView(view: SplashContract.SplashView) {
         mView = view

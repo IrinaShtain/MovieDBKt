@@ -5,13 +5,13 @@ import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
 import ua.shtain.irina.moviedbkt.model.main.User
 import ua.shtain.irina.moviedbkt.other.Constants
-import ua.shtain.irina.moviedbkt.root.session.SessionManager
+import ua.shtain.irina.moviedbkt.root.session.ISessionManager
 import javax.inject.Inject
 
 /**
  * Created by Irina Shtain on 13.02.2018.
  */
-class UserProfilePresenter @Inject constructor(sessionManager: SessionManager,
+class UserProfilePresenter @Inject constructor(sessionManager: ISessionManager,
                                                compositeDisposable: CompositeDisposable,
                                                model: UserProfileContract.Model) : UserProfileContract.Presenter {
     lateinit var mView: UserProfileContract.View
@@ -64,5 +64,7 @@ class UserProfilePresenter @Inject constructor(sessionManager: SessionManager,
         mView.showAlertAboutLogout()
     }
 
-    override fun clearUser() {}
+    override fun clearUser() {
+        mSessionManager.deleteUserData()
+    }
 }
