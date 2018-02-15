@@ -1,6 +1,5 @@
 package ua.shtain.irina.moviedbkt.root.network
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 

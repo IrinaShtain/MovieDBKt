@@ -6,6 +6,7 @@ import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.root.network.DiNetworkModule
 import ua.shtain.irina.moviedbkt.root.network.INetworkManager
 import ua.shtain.irina.moviedbkt.root.network.RetrofitHelper
+import ua.shtain.irina.moviedbkt.root.network.servises.ProfileService
 import ua.shtain.irina.moviedbkt.root.session.ISessionManager
 import ua.shtain.irina.moviedbkt.root.session.di.DiSessionModule
 import ua.shtain.irina.moviedbkt.root.rx.DiRxModule

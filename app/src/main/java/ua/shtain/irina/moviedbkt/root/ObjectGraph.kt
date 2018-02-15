@@ -3,7 +3,9 @@ package ua.shtain.irina.moviedbkt.root
 import android.content.Context
 import ua.shtain.irina.moviedbkt.view.screens.home.di.DaggerDiHomeComponent
 
+
 import ua.shtain.irina.moviedbkt.view.screens.home.di.DiHomeComponent
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.di.DiMovieListsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.di.DiUserProfileModule
 import ua.shtain.irina.moviedbkt.view.screens.login.di.DaggerDiLoginComponent
 import ua.shtain.irina.moviedbkt.view.screens.login.di.DiLoginComponent
@@ -48,6 +50,7 @@ class ObjectGraph private constructor(context: Context) {
                 .builder()
                 .diRootComponent(mRootComponent)
                 .diUserProfileModule(DiUserProfileModule())
+                .diMovieListsModule(DiMovieListsModule())
                 .build()
 
     }

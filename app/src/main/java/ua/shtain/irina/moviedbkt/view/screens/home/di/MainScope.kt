@@ -9,4 +9,4 @@ import javax.inject.Scope
  */
 @Scope
 @Retention(value = RetentionPolicy.RUNTIME)
-internal annotation class MainScope
+ annotation class MainScope

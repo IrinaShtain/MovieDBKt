@@ -10,6 +10,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.base.BaseActivity
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.MovieListsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.UserProfileFragment
 
 
@@ -61,7 +62,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         when (item.itemId) {
             R.id.menuMyProfile -> changeFragment(UserProfileFragment(), true)
-            R.id.menuLists -> changeFragment(UserProfileFragment(), true)
+            R.id.menuLists -> changeFragment(MovieListsFragment(), true)
             R.id.menuLatestMovies -> Toast.makeText(this, "Menu menuLatestMovies", Toast.LENGTH_SHORT).show()
             R.id.menuReadAboutStar -> Toast.makeText(this, "Menu menuReadAboutStar", Toast.LENGTH_SHORT).show()
 

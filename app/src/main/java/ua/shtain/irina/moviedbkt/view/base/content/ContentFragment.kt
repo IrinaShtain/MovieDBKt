@@ -3,7 +3,6 @@ package ua.shtain.irina.moviedbkt.view.base.content
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,12 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.jakewharton.rxbinding2.view.RxView
-import ua.shtain.irina.moviedbkt.R
-import ua.shtain.irina.moviedbkt.other.Constants
-import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import kotlinx.android.synthetic.main.view_content.*
 import kotlinx.android.synthetic.main.view_placeholder.*
+import ua.shtain.irina.moviedbkt.R
+import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.BaseFragment
+import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import java.util.concurrent.TimeUnit
 
 /**
@@ -31,9 +30,8 @@ abstract class ContentFragment : BaseFragment(), ContentView {
     protected abstract fun initGraph()
 
     @LayoutRes
-    protected fun getRootLayoutRes(): Int {
-        return R.layout.view_content
-    }
+    protected open fun getRootLayoutRes() = R.layout.view_content
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val parent = inflater.inflate(getRootLayoutRes(), container, false)
@@ -67,7 +65,6 @@ abstract class ContentFragment : BaseFragment(), ContentView {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.e("myLog", ("onDestroyView " + getPresenter() == null).toString())
         getPresenter()?.unsubscribe()
     }
 
