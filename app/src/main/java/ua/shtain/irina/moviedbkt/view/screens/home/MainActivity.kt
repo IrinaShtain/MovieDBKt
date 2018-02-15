@@ -5,22 +5,18 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.base.BaseActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.UserProfileFragment
-import android.view.MenuInflater
-
-
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private var drawerToggle: ActionBarDrawerToggle? = null
-    override fun getToolbar(): Toolbar? {
+    override fun getToolbar(): Toolbar {
         return toolbar_MA
     }
 
@@ -36,15 +32,23 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         toolbar_MA?.title = getString(R.string.app_name)
-        initUI()
         changeFragment(UserProfileFragment(), true)
     }
 
-    private fun initUI() {
+    override fun onStart() {
+        super.onStart()
+        initDrawer()
+    }
+
+    private fun initDrawer() {
         drawerToggle = ActionBarDrawerToggle(this, drawerLayout_MA, toolbar_MA, R.string.drawer_open, R.string.drawer_close)
         drawerLayout_MA.addDrawerListener(drawerToggle!!)
         drawerToggle!!.syncState()
         nvDrawer_MA.setNavigationItemSelectedListener(this)
+    }
+
+    fun updateNavigationItem(id: Int, isChecked: Boolean) {
+        nvDrawer_MA.menu.findItem(id)?.isChecked = isChecked
     }
 
 
@@ -57,7 +61,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         when (item.itemId) {
             R.id.menuMyProfile -> changeFragment(UserProfileFragment(), true)
-            R.id.menuLists -> Toast.makeText(this, "Menu menuLists", Toast.LENGTH_SHORT).show()
+            R.id.menuLists -> changeFragment(UserProfileFragment(), true)
             R.id.menuLatestMovies -> Toast.makeText(this, "Menu menuLatestMovies", Toast.LENGTH_SHORT).show()
             R.id.menuReadAboutStar -> Toast.makeText(this, "Menu menuReadAboutStar", Toast.LENGTH_SHORT).show()
 

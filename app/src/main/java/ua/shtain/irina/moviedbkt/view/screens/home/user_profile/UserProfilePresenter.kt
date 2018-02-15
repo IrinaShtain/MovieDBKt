@@ -66,5 +66,6 @@ class UserProfilePresenter @Inject constructor(sessionManager: ISessionManager,
 
     override fun clearUser() {
         mSessionManager.deleteUserData()
+        mView.openLogin()
     }
 }

@@ -12,7 +12,6 @@ import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.root.ObjectGraph
 
 
-
 /**
  * Created by Irina Shtain on 30.01.2018.
  */
@@ -26,8 +25,12 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mObjectGraph = ObjectGraph.getInstance(application)
-        setSupportActionBar(getToolbar())
         initGraph()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setSupportActionBar(getToolbar())
     }
 
     fun changeFragment(f: Fragment, cleanStack: Boolean = false) {

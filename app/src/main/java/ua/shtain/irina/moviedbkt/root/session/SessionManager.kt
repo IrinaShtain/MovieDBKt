@@ -1,7 +1,6 @@
 package ua.shtain.irina.moviedbkt.root.session
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import ua.shtain.irina.moviedbkt.model.main.User
 import javax.inject.Inject
@@ -61,6 +60,7 @@ class SessionManager @Inject constructor(context: Context) : ISessionManager {
                 .putString(USER_LANGUAGE, "")
                 .putBoolean(HAS_ADULT_PERM, false)
                 .putInt(USER_ID, -1)
+                .putString(SESSION_ID, "")
                 .apply()
     }
 }

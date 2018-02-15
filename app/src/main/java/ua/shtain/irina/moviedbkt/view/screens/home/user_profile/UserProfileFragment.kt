@@ -3,7 +3,6 @@ package ua.shtain.irina.moviedbkt.view.screens.home.user_profile
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -13,6 +12,7 @@ import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentFragment
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
+import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.login.LoginActivity
 import javax.inject.Inject
 
@@ -33,14 +33,15 @@ class UserProfileFragment : ContentFragment(), UserProfileContract.View {
         mActivity.mObjectGraph.getHomeComponent().inject(this)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mPresenter.mView = this
         mPresenter.subscribe()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        (mActivity as MainActivity).updateNavigationItem(R.id.menuMyProfile, true)
     }
 
     override fun setUserNick(name: String) {
@@ -55,7 +56,7 @@ class UserProfileFragment : ContentFragment(), UserProfileContract.View {
     }
 
     override fun setAdultPermission(hasPermission: Boolean) {
-        val perm = if (hasPermission) "Yes" else "No"
+        val perm = if (hasPermission) getString(R.string.answer_yes) else getString(R.string.answer_no)
         tvIncludeAdult.text = getString(R.string.include_adult, perm)
     }
 
@@ -76,7 +77,6 @@ class UserProfileFragment : ContentFragment(), UserProfileContract.View {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Log.d("myLogs", "onOptionsItemSelected! ")
         return when (item.itemId) {
             R.id.logout -> {
                 mPresenter.menuPressed()
@@ -88,14 +88,7 @@ class UserProfileFragment : ContentFragment(), UserProfileContract.View {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        Log.d("myLogs", "onCreateOptionsMenu! ")
         inflater.inflate(R.menu.menu_logout, menu)
         super.onCreateOptionsMenu(menu, inflater)
-    }
-
-     override fun onPrepareOptionsMenu(menu: Menu?) {
-         Log.d("myLogs", "onPrepareOptionsMenu! ")
-         menu?.findItem(R.id.logout)?.isVisible = true
-         super.onPrepareOptionsMenu(menu)
     }
 }
