@@ -1,6 +1,5 @@
 package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.di
 
-import android.widget.ListAdapter
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable

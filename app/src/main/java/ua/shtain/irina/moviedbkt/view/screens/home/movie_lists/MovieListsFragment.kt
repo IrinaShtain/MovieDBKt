@@ -1,5 +1,7 @@
 package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.*
 import android.os.Bundle
 import android.support.annotation.DrawableRes
@@ -21,6 +23,7 @@ import ua.shtain.irina.moviedbkt.view.screens.common.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.common.OnNextPageListener
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.adapter.CreatedListsAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.adapter.CreatedListsDH
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.CreateNewListDialog
 import javax.inject.Inject
 
 /**
@@ -30,7 +33,7 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
 
     @Inject
     lateinit var mPresenter: MovieListsPresenter
-    // var newListDialog: CreateNewListDialog? = null
+    var newListDialog: CreateNewListDialog? = null
 
 
     @Inject
@@ -69,10 +72,9 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
         fabAdd_VC.visibility = View.VISIBLE
         fabAdd_VC.setOnClickListener({ v ->
             Log.e("myLog", "onClick FAB ")
-//            newListDialog = CreateNewListDialog_.builder()
-//                    .build()
-//            newListDialog!!.setTargetFragment(this, Constants.REQUEST_CODE_CREATE_NEW_LIST)
-//            newListDialog!!.show(mActivity.getSupportFragmentManager(), "create_list")
+            newListDialog = CreateNewListDialog()
+            newListDialog!!.setTargetFragment(this, Constants.REQUEST_CODE_CREATE_NEW_LIST)
+            newListDialog!!.show(mActivity.supportFragmentManager, "create_list")
         })
 
     }
@@ -170,8 +172,13 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
 //        }
 //    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // if (newListDialog != null && newListDialog!!.isVisible()) newListDialog!!.dismiss()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK && requestCode == Constants.REQUEST_CODE_CREATE_NEW_LIST) {
+            mPresenter.showResult(data!!.getIntExtra(Constants.KEY_ERROR_CODE, Constants.ERROR_CODE_UNKNOWN),
+                    data.getStringExtra(Constants.KEY_TITLE), data.getStringExtra(Constants.KEY_DESCRIPTION))
+
+        }
     }
+
+
 }

@@ -20,7 +20,6 @@ interface ProfileService {
     fun getLists(@Path("account_id") account_id: Int,
                  @Query("page") page: Int): Observable<CreatedListsData>
 
-
     @Headers("content-type: application/json;charset=utf-8")
     @POST("/3/list")
     fun createList(@Body request: NewListRequest): Observable<ResponseMessage>
