@@ -3,8 +3,8 @@ package ua.shtain.irina.moviedbkt.root.network.servises
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ua.shtain.irina.moviedbkt.model.LoginSession
-import ua.shtain.irina.moviedbkt.model.LoginToken
+import ua.shtain.irina.moviedbkt.model.user.LoginSession
+import ua.shtain.irina.moviedbkt.model.user.LoginToken
 import ua.shtain.irina.moviedbkt.other.Constants
 
 /**

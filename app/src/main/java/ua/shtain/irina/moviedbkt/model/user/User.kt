@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.model.main
+package ua.shtain.irina.moviedbkt.model.user
 
 import com.google.gson.annotations.SerializedName
 

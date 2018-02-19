@@ -5,7 +5,7 @@ import retrofit2.http.*
 import ua.shtain.irina.moviedbkt.model.lists.CreatedListsData
 import ua.shtain.irina.moviedbkt.model.lists.NewListRequest
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
-import ua.shtain.irina.moviedbkt.model.main.User
+import ua.shtain.irina.moviedbkt.model.user.User
 import ua.shtain.irina.moviedbkt.other.Constants
 
 /**

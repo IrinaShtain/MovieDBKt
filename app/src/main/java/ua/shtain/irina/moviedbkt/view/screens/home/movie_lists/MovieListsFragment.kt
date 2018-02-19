@@ -24,6 +24,7 @@ import ua.shtain.irina.moviedbkt.view.screens.common.OnNextPageListener
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.adapter.CreatedListsAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.adapter.CreatedListsDH
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.CreateNewListDialog
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListFragment
 import javax.inject.Inject
 
 /**
@@ -60,7 +61,7 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
     }
 
     override fun openListDetails(lisID: Int, listsName: String) {
-        // mActivity.changeFragment()
+         mActivity.changeFragment(MoviesInListFragment.newInstance(lisID))
     }
 
 
@@ -162,15 +163,6 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
             tvPlaceholderMessage_VC.setText(R.string.err_msg_no_lists)
         }
     }
-//
-//    @OnActivityResult(Constants.REQUEST_CODE_CREATE_NEW_LIST)
-//    fun onDialogFragmentResult(resultCode: Int, @OnActivityResult.Extra(value = Constants.KEY_TITLE) title: String,
-//                               @OnActivityResult.Extra(value = Constants.KEY_DESCRIPTION) description: String,
-//                               @OnActivityResult.Extra(value = Constants.KEY_ERROR_CODE) errorCode: Int) {
-//        if (resultCode == Activity.RESULT_OK) {
-//            presenter!!.showResult(errorCode, title, description)
-//        }
-//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == Constants.REQUEST_CODE_CREATE_NEW_LIST) {

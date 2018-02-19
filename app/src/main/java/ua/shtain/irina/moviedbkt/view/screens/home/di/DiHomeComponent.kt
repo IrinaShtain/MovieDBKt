@@ -7,6 +7,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.MovieListsFragmen
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.CreateNewListDialog
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.di.DiCreateNewListModule
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.di.DiMovieListsModule
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.di.DiMovieInListModule
 import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.UserProfileFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.di.DiUserProfileModule
 
@@ -16,7 +18,9 @@ import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.di.DiUserProfile
 @MainScope
 @Component(modules = arrayOf(DiUserProfileModule::class,
         DiMovieListsModule::class,
-        DiCreateNewListModule::class),
+        DiCreateNewListModule::class,
+        DiMovieInListModule::class
+),
         dependencies = arrayOf(DiRootComponent::class))
 interface DiHomeComponent {
 
@@ -24,4 +28,5 @@ interface DiHomeComponent {
     fun inject(fragment: UserProfileFragment)
     fun inject(fragment: MovieListsFragment)
     fun inject(fragment: CreateNewListDialog)
+    fun inject(fragment: MoviesInListFragment)
 }

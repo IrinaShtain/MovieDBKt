@@ -1,7 +1,7 @@
 package ua.shtain.irina.moviedbkt.view.screens.home.user_profile
 
 import io.reactivex.Observable
-import ua.shtain.irina.moviedbkt.model.main.User
+import ua.shtain.irina.moviedbkt.model.user.User
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 

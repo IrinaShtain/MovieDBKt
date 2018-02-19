@@ -3,7 +3,7 @@ package ua.shtain.irina.moviedbkt.view.screens.home.user_profile
 import android.util.Log
 import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
-import ua.shtain.irina.moviedbkt.model.main.User
+import ua.shtain.irina.moviedbkt.model.user.User
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.root.session.ISessionManager
 import javax.inject.Inject

@@ -1,6 +1,6 @@
 package ua.shtain.irina.moviedbkt.root.session
 
-import ua.shtain.irina.moviedbkt.model.main.User
+import ua.shtain.irina.moviedbkt.model.user.User
 
 /**
  * Created by Irina Shtain on 08.02.2018.

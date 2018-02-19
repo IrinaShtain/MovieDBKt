@@ -1,8 +1,8 @@
 package ua.shtain.irina.moviedbkt.domain
 
 import io.reactivex.Observable
-import ua.shtain.irina.moviedbkt.model.LoginSession
-import ua.shtain.irina.moviedbkt.model.LoginToken
+import ua.shtain.irina.moviedbkt.model.user.LoginSession
+import ua.shtain.irina.moviedbkt.model.user.LoginToken
 import ua.shtain.irina.moviedbkt.root.network.servises.LoginService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.login.content.LoginContract

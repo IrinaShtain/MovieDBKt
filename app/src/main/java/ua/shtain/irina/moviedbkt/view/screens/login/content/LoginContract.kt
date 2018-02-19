@@ -1,8 +1,8 @@
 package ua.shtain.irina.moviedbkt.view.screens.login.content
 
 import io.reactivex.Observable
-import ua.shtain.irina.moviedbkt.model.LoginSession
-import ua.shtain.irina.moviedbkt.model.LoginToken
+import ua.shtain.irina.moviedbkt.model.user.LoginSession
+import ua.shtain.irina.moviedbkt.model.user.LoginToken
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 

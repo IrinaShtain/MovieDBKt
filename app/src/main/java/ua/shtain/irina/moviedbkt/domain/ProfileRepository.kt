@@ -4,7 +4,7 @@ import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.lists.CreatedListsData
 import ua.shtain.irina.moviedbkt.model.lists.NewListRequest
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
-import ua.shtain.irina.moviedbkt.model.main.User
+import ua.shtain.irina.moviedbkt.model.user.User
 import ua.shtain.irina.moviedbkt.root.network.servises.ProfileService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.MovieListsContract

@@ -2,7 +2,7 @@ package ua.shtain.irina.moviedbkt.root.session
 
 import android.content.Context
 import android.preference.PreferenceManager
-import ua.shtain.irina.moviedbkt.model.main.User
+import ua.shtain.irina.moviedbkt.model.user.User
 import javax.inject.Inject
 
 /**
