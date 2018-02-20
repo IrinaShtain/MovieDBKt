@@ -8,8 +8,10 @@ import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.inputmethod.InputMethodManager
+import kotlinx.android.synthetic.main.activity_main.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.root.ObjectGraph
+import ua.shtain.irina.moviedbkt.view.base.toolbar.ToolbarManager
 
 
 /**
@@ -26,11 +28,6 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mObjectGraph = ObjectGraph.getInstance(application)
         initGraph()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        setSupportActionBar(getToolbar())
     }
 
     fun changeFragment(f: Fragment, cleanStack: Boolean = false) {

@@ -16,7 +16,7 @@ interface MoviesInListContract {
 
     interface View : RefreshableView {
         fun setLists(itemDHS: ArrayList<MovieItemDH>)
-        fun openMovieDetails(listID: Int, movieItems: ArrayList<MovieItem>)
+        fun openMovieDetails(movieID: Int)
         fun openSearchByTitleScreen(listID: Int, movieItems: ArrayList<MovieItem>)
         fun openSearchByGenreScreen(listID: Int, movieItems: ArrayList<MovieItem>)
         fun openLatestSearchScreen(listID: Int, movieItems: ArrayList<MovieItem>)

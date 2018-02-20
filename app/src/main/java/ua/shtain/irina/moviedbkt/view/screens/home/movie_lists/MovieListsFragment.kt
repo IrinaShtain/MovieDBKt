@@ -21,6 +21,7 @@ import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresen
 import ua.shtain.irina.moviedbkt.view.screens.common.EndlessScrollListener
 import ua.shtain.irina.moviedbkt.view.screens.common.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.common.OnNextPageListener
+import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.adapter.CreatedListsAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.adapter.CreatedListsDH
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.CreateNewListDialog
@@ -60,8 +61,13 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
         mPresenter.subscribe()
     }
 
+    override fun onStart() {
+        super.onStart()
+        (mActivity as MainActivity).getToolbarMan()?.setTitle(R.string.title_my_lists)
+    }
+
     override fun openListDetails(lisID: Int, listsName: String) {
-         mActivity.changeFragment(MoviesInListFragment.newInstance(lisID))
+         mActivity.changeFragment(MoviesInListFragment.newInstance(lisID, listsName))
     }
 
 
@@ -123,8 +129,8 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
                         val background = RectF(itemView.right.toFloat() + dX, itemView.top.toFloat(), itemView.right.toFloat(), itemView.bottom.toFloat())
                         c.drawRect(background, p)
                         c.clipRect(background)
-                        val icon_dest = RectF(itemView.right.toFloat() - 2 * width, itemView.top.toFloat() + width, itemView.right.toFloat() - width, itemView.bottom.toFloat() - width)
-                        c.drawBitmap(icon, null, icon_dest, p)
+                        val iconDest = RectF(itemView.right.toFloat() - 2 * width, itemView.top.toFloat() + width, itemView.right.toFloat() - width, itemView.bottom.toFloat() - width)
+                        c.drawBitmap(icon, null, iconDest, p)
                     }
                 }
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)

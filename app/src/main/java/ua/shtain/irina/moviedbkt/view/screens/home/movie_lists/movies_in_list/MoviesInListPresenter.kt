@@ -75,7 +75,7 @@ class MoviesInListPresenter(compositeDisposable: CompositeDisposable,
 
     override fun showDetails(movieID: Int) {
         mIsFabOpen = false
-        mView.openMovieDetails(movieID, movieItems!!)
+        mView.openMovieDetails(movieID)
     }
 
     override fun deleteList(listID: Int) {

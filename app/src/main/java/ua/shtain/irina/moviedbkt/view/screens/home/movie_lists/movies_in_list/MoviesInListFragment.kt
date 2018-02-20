@@ -17,6 +17,7 @@ import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
 import ua.shtain.irina.moviedbkt.view.screens.common.OnCardClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemDH
@@ -35,15 +36,18 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
     lateinit var movieAdapter: MovieItemAdapter
 
     private var mListID = 0
+    private var mListTitle = ""
     private var mAnimFabClose: Animation? = null
     private var mAnimFabOpen: Animation? = null
 
     companion object {
         private val LIST_ID = "list_id"
-        fun newInstance(listID: Int): MoviesInListFragment {
+        private val LIST_TITLE = "list_title"
+        fun newInstance(listID: Int, title :String): MoviesInListFragment {
             val fragment = MoviesInListFragment()
             val bundle = Bundle()
             bundle.putInt(LIST_ID, listID)
+            bundle.putString(LIST_TITLE, title)
             fragment.arguments = bundle
             return fragment
         }
@@ -52,11 +56,17 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mListID = arguments.getInt(LIST_ID)
+        mListTitle = arguments.getString(LIST_TITLE)
         setupAnimations()
         setupRecyclerView()
         setupFABs()
         mPresenter.mView = this
         mPresenter.subscribe()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        (mActivity as MainActivity).getToolbarMan()?.setTitle(mListTitle)
     }
 
     private fun setupAnimations() {
@@ -110,8 +120,8 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
         movieAdapter.setListDH(itemDHS)
     }
 
-    override fun openMovieDetails(movieID: Int, movieItems: ArrayList<MovieItem>) {
-        mActivity.changeFragment(MovieDetailsFragment.newInstance(movieID))
+    override fun openMovieDetails(movieID: Int) {
+        mActivity.changeFragment(MovieDetailsFragment.newInstance(movieID, mListID))
     }
 
     override fun openSearchByTitleScreen(listID: Int, movieItems: ArrayList<MovieItem>) {

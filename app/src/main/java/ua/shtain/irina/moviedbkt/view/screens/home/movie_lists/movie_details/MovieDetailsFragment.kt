@@ -16,8 +16,7 @@ import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentFragment
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.UserProfilePresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -27,13 +26,16 @@ import javax.inject.Inject
 class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
 
     private var mMovieID = 0
+    private var mListID = 0
 
     companion object {
         private val MOVIE_ID = "movie_id"
-        fun newInstance(movieID: Int): MovieDetailsFragment {
+        private val LIST_ID = "list_id"
+        fun newInstance(movieID: Int, listID :Int): MovieDetailsFragment {
             val fragment = MovieDetailsFragment()
             val bundle = Bundle()
             bundle.putInt(MOVIE_ID, movieID)
+            bundle.putInt(LIST_ID, listID)
             fragment.arguments = bundle
             return fragment
         }
@@ -53,22 +55,25 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mMovieID = arguments.getInt(MOVIE_ID)
+        mListID = arguments.getInt(LIST_ID)
         initUI()
         mPresenter.mView = this
         mPresenter.subscribe()
     }
 
     protected fun initUI() {
+        toolbar.setNavigationOnClickListener { v -> mActivity.onBackPressed() }
         RxView.clicks(bt_add_online)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { aVoid -> mPresenter.buttonMovieActionClicked(mMovieID) }
+                .subscribe { _ -> mPresenter.buttonMovieActionClicked(mListID) }
         RxView.clicks(fabRating)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { aVoid -> mPresenter.fabClicked() }
+                .subscribe { _ -> mPresenter.fabClicked() }
         setupCollapsingToolbar()
     }
 
     private fun setupCollapsingToolbar() {
+        (mActivity as MainActivity).getToolbarMan()?.displayToolbar(false)
         appBarLayout.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             internal var scrollRange = -1
             internal var collapseOffset = -1
@@ -119,6 +124,11 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     }
 
     override fun getMovieID() = mMovieID
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (mActivity as MainActivity).getToolbarMan()?.displayToolbar(true)
+    }
 
 
 }
