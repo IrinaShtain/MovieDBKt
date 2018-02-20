@@ -1,6 +1,7 @@
 package ua.shtain.irina.moviedbkt.model.movie
 
 import com.google.gson.annotations.SerializedName
+import ua.shtain.irina.moviedbkt.model.movie.genre.GenreItem
 import java.util.ArrayList
 
 /**
@@ -13,6 +14,7 @@ data class MovieItem(@SerializedName("title") val title: String,
                      @SerializedName("poster_path") val posterPath: String,
                      @SerializedName("media_type") val mediaType: String,
                      @SerializedName("genre_ids") val genreIds: ArrayList<Integer>,
+                     @SerializedName("genres") val genres: ArrayList<GenreItem>,
                      @SerializedName("id") val id: Int,
                      @SerializedName("vote_count") val voteCount: Int,
                      @SerializedName("vote_average") val voteAverage: Float

@@ -17,6 +17,7 @@ import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
 import ua.shtain.irina.moviedbkt.view.screens.common.OnCardClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemDH
 import java.util.concurrent.TimeUnit
@@ -109,12 +110,8 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
         movieAdapter.setListDH(itemDHS)
     }
 
-    override fun openMovieDetails(listID: Int, movieItems: ArrayList<MovieItem>) {
-//        mActivity.replaceFragment(MovieDetailsFragment_.builder()
-//                .movieID(movieID)
-//                .listID(listID)
-//                .moviesInList(movieItems)
-//                .build())
+    override fun openMovieDetails(movieID: Int, movieItems: ArrayList<MovieItem>) {
+        mActivity.changeFragment(MovieDetailsFragment.newInstance(movieID))
     }
 
     override fun openSearchByTitleScreen(listID: Int, movieItems: ArrayList<MovieItem>) {

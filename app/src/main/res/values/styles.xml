@@ -9,4 +9,9 @@
         <item name="colorControlNormal">@android:color/white</item>
     </style>
 
+    <style name="ExpandedTitleAppearance" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/text_size_title</item>
+    </style>
+
 </resources>

@@ -7,6 +7,9 @@ import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.MovieListsFragmen
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.CreateNewListDialog
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.di.DiCreateNewListModule
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.di.DiMovieListsModule
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsFragment_MembersInjector
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.di.DiMovieDetailsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.di.DiMovieInListModule
 import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.UserProfileFragment
@@ -19,7 +22,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.di.DiUserProfile
 @Component(modules = arrayOf(DiUserProfileModule::class,
         DiMovieListsModule::class,
         DiCreateNewListModule::class,
-        DiMovieInListModule::class
+        DiMovieInListModule::class,
+        DiMovieDetailsModule::class
 ),
         dependencies = arrayOf(DiRootComponent::class))
 interface DiHomeComponent {
@@ -29,4 +33,5 @@ interface DiHomeComponent {
     fun inject(fragment: MovieListsFragment)
     fun inject(fragment: CreateNewListDialog)
     fun inject(fragment: MoviesInListFragment)
+    fun inject(fragment: MovieDetailsFragment)
 }
