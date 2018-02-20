@@ -1,8 +1,11 @@
 package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details
 
 import io.reactivex.Observable
+import retrofit2.http.Body
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
+import ua.shtain.irina.moviedbkt.model.movie.FavoriteRequest
 import ua.shtain.irina.moviedbkt.model.movie.MovieItem
+import ua.shtain.irina.moviedbkt.model.movie.RateRequest
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 
@@ -18,14 +21,18 @@ interface MovieDetailsContract {
     }
 
     interface Presenter : IBasePresenter<View> {
-        fun buttonMovieActionClicked(listID: Int)
-        fun fabClicked()
+        fun fabRatingClicked()
+        fun fabAddToFavoriteClicked()
+        fun fabAddToWatchListClicked()
+        fun fabAddToListClicked(listID: Int)
         fun showResult(errorCode: Int)
     }
 
     interface Model {
-        fun addMovie(listID: Int, movieID: Int): Observable<ResponseMessage>
+        fun addToListMovie(listID: Int, movieID: Int): Observable<ResponseMessage>
         fun deleteMovie(listID: Int, movieID: Int): Observable<ResponseMessage>
         fun getMovieDetails(movieID: Int): Observable<MovieItem>
+        fun addToFavoriteMovie(movieID: Int): Observable<ResponseMessage>
+        fun addToWatchListMovie(movieID: Int): Observable<ResponseMessage>
     }
 }

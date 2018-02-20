@@ -2,8 +2,7 @@ package ua.shtain.irina.moviedbkt.domain
 
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
-import ua.shtain.irina.moviedbkt.model.movie.ActionRequest
-import ua.shtain.irina.moviedbkt.model.movie.MoviesResponse
+import ua.shtain.irina.moviedbkt.model.movie.*
 import ua.shtain.irina.moviedbkt.root.network.servises.MovieService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsContract
@@ -22,9 +21,13 @@ class MovieRepository @Inject constructor(movieService: MovieService, helper: Sc
 
     override fun deleteList(listID: Int): Observable<ResponseMessage> = mHelper.getNetworkObservable(mService.deleteList(listID))
 
-    override fun addMovie(listID: Int, movieID: Int) = mHelper.getNetworkObservable(mService.addMovie(listID, ActionRequest(movieID)))
+    override fun addToListMovie(listID: Int, movieID: Int) = mHelper.getNetworkObservable(mService.addMovie(listID, ActionRequest(movieID)))
 
     override fun deleteMovie(listID: Int, movieID: Int) = mHelper.getNetworkObservable(mService.deleteMovie(listID, ActionRequest(movieID)))
 
     override fun getMovieDetails(movieID: Int) = mHelper.getNetworkObservable(mService.getMovieDetails(movieID))
+
+    override fun addToFavoriteMovie(movieID: Int) = mHelper.getNetworkObservable(mService.addToFavoriteMovie(FavoriteRequest("movie", movieID, true)))
+
+    override fun addToWatchListMovie(movieID: Int)= mHelper.getNetworkObservable(mService.addToWatchListMovie(WatchRequest("movie", movieID, true)))
 }

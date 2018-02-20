@@ -61,14 +61,20 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
         mPresenter.subscribe()
     }
 
-    protected fun initUI() {
+    private fun initUI() {
         toolbar.setNavigationOnClickListener { v -> mActivity.onBackPressed() }
-        RxView.clicks(bt_add_online)
+        RxView.clicks(fabAddToList)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { _ -> mPresenter.buttonMovieActionClicked(mListID) }
+                .subscribe { _ -> mPresenter.fabAddToListClicked(mListID) }
         RxView.clicks(fabRating)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { _ -> mPresenter.fabClicked() }
+                .subscribe { _ -> mPresenter.fabRatingClicked() }
+        RxView.clicks(fabAddToFavorite)
+                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
+                .subscribe { _ -> mPresenter.fabAddToFavoriteClicked() }
+        RxView.clicks(fabAddToWatchList)
+                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
+                .subscribe { _ -> mPresenter.fabAddToWatchListClicked() }
         setupCollapsingToolbar()
     }
 
@@ -94,10 +100,7 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     }
 
     override fun setupButton(isMovieAdded: Boolean) {
-        if (isMovieAdded)
-            bt_add_online.text = getString(R.string.btn_delete_from_list)
-        else
-            bt_add_online.text = getString(R.string.btn_add_to_list)
+
     }
 
     override fun setupUI(movieItem: MovieItem) {

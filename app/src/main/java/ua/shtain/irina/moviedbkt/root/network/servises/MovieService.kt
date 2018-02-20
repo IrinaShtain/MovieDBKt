@@ -56,4 +56,12 @@ interface MovieService {
     @POST("/3/movie/{movie_id}/rating")
     fun rateMovie(@Path("movie_id") movie_id: Int,
                   @Body rateRequest: RateRequest): Observable<ResponseMessage>
+
+    @Headers("content-type: application/json;charset=utf-8")
+    @POST("/3/account/{account_id}/favorite")
+    fun addToFavoriteMovie(@Body favoriteRequest: FavoriteRequest): Observable<ResponseMessage>
+
+    @Headers("content-type: application/json;charset=utf-8")
+    @POST("/3/account/{account_id}/watchlist")
+    fun addToWatchListMovie(@Body watchRequest: WatchRequest): Observable<ResponseMessage>
 }

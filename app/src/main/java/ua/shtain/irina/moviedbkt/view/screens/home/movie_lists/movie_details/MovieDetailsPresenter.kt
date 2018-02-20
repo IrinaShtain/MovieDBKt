@@ -3,6 +3,8 @@ package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details
 import android.util.Log
 import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
+import ua.shtain.irina.moviedbkt.model.movie.FavoriteRequest
+import ua.shtain.irina.moviedbkt.model.movie.MovieItem
 import ua.shtain.irina.moviedbkt.other.Constants
 import javax.inject.Inject
 
@@ -13,10 +15,10 @@ class MovieDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
                                                 model: MovieDetailsContract.Model) : MovieDetailsContract.Presenter {
     lateinit var mView: MovieDetailsContract.View
     private var movieID = 0
-    private var isMovieAddedToList = false
 
     private var mCompositeDisposable = compositeDisposable
     private var mModel = model
+    private var movieItem: MovieItem? = null
 
     override fun setView(view: MovieDetailsContract.View) {
         mView = view
@@ -24,10 +26,10 @@ class MovieDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
 
     override fun subscribe() {
         movieID = mView.getMovieID()
-        Log.e("myLog", "movieID " + movieID)
         mView.showProgressMain()
         mCompositeDisposable.add(mModel.getMovieDetails(movieID)
                 .subscribe({ response ->
+                    movieItem = response
                     mView.hideProgress()
                     mView.setupUI(response)
                     mView.setupButton(false)
@@ -46,28 +48,32 @@ class MovieDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
         mCompositeDisposable.clear()
     }
 
-    override fun buttonMovieActionClicked(listID: Int) {
-        mView.showProgressPagination()
-        if (!isMovieAddedToList)
-            mCompositeDisposable.add(mModel.addMovie(listID, movieID)
-                    .subscribe({ (statusCode, statusMessage, listId) ->
-                        mView.hideProgress()
-                        mView.showMessage(Constants.MessageType.NEW_MOVIE_ADDED_SUCCESSFULLY)
-                        isMovieAddedToList = true
-                        mView.setupButton(true)
-                    }, throwableConsumer))
-        else {
-            mCompositeDisposable.add(mModel.deleteMovie(listID, movieID)
-                    .subscribe({ (statusCode, statusMessage, listId) ->
-                        mView.hideProgress()
-                        mView.showMessage(Constants.MessageType.NEW_MOVIE_REMOVED_SUCCESSFULLY)
-                        isMovieAddedToList = false
-                        mView.setupButton(false)
-                    }, throwableConsumer))
-        }
+    override fun fabAddToFavoriteClicked() {
+        mCompositeDisposable.add(mModel.addToFavoriteMovie(movieID)
+                .subscribe({ (_, _, _) ->
+                    mView.hideProgress()
+                    mView.showMessage(Constants.MessageType.NEW_MOVIE_ADDED_SUCCESSFULLY)
+                }, throwableConsumer))
     }
 
-    override fun fabClicked() {
+    override fun fabAddToWatchListClicked() {
+        mCompositeDisposable.add(mModel.addToWatchListMovie(movieID)
+                .subscribe({ (_, _, _) ->
+                    mView.hideProgress()
+                    mView.showMessage(Constants.MessageType.NEW_MOVIE_ADDED_SUCCESSFULLY)
+                }, throwableConsumer))
+    }
+
+    override fun fabAddToListClicked(listID: Int) {
+        mCompositeDisposable.add(mModel.addToListMovie(listID, movieID)
+                .subscribe({ (_, _, _) ->
+                    mView.hideProgress()
+                    mView.showMessage(Constants.MessageType.NEW_MOVIE_ADDED_SUCCESSFULLY)
+                    mView.setupButton(true)
+                }, throwableConsumer))
+    }
+
+    override fun fabRatingClicked() {
         mView.showRatingDialog()
     }
 
