@@ -58,4 +58,9 @@ class MovieItemAdapter : RecyclerView.Adapter<MovieItemVH>() {
             items!!.size
         }
     }
+
+    fun clearData() {
+        items?.clear()
+        notifyDataSetChanged()
+    }
 }

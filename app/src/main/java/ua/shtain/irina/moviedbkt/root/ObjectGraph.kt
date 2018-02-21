@@ -9,6 +9,7 @@ import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.di.DiCre
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.di.DiMovieListsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.di.DiMovieDetailsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.di.DiMovieInListModule
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.di.DiSearchMoviesModule
 import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.di.DiUserProfileModule
 import ua.shtain.irina.moviedbkt.view.screens.login.di.DaggerDiLoginComponent
 import ua.shtain.irina.moviedbkt.view.screens.login.di.DiLoginComponent
@@ -57,6 +58,7 @@ class ObjectGraph private constructor(context: Context) {
                 .diCreateNewListModule(DiCreateNewListModule())
                 .diMovieInListModule(DiMovieInListModule())
                 .diMovieDetailsModule(DiMovieDetailsModule())
+                .diSearchMoviesModule(DiSearchMoviesModule())
                 .build()
 
     }

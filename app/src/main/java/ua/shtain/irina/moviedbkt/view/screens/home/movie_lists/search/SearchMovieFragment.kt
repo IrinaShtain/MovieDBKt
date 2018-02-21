@@ -1,0 +1,139 @@
+package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search
+
+import android.os.Bundle
+import android.support.annotation.StringRes
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.LinearSnapHelper
+import android.view.View
+import com.jakewharton.rxbinding2.view.RxView
+import kotlinx.android.synthetic.main.fragment_search.*
+import ua.shtain.irina.moviedbkt.R
+import ua.shtain.irina.moviedbkt.other.Constants
+import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
+import ua.shtain.irina.moviedbkt.view.screens.common.EndlessScrollListener
+import ua.shtain.irina.moviedbkt.view.screens.common.OnCardClickListener
+import ua.shtain.irina.moviedbkt.view.screens.common.OnNextPageListener
+import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreDH
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.OnGenreClickListener
+import java.util.*
+import java.util.concurrent.TimeUnit
+
+/**
+ * Created by Irina Shtain on 20.02.2018.
+ */
+abstract class SearchMovieFragment : RefreshableFragment(), SearchMovieContract.View, OnCardClickListener, OnGenreClickListener {
+
+    protected var mListID = 0
+    protected var mSearchType = 0
+    lateinit var mMovieAdapter: MovieItemAdapter
+    lateinit var mGenreAdapter: GenreAdapter
+    protected lateinit var scrollListener: EndlessScrollListener
+
+    abstract fun getSearchPresenter(): SearchMoviePresenter
+    @StringRes
+    abstract fun getToolbarTitle(): Int
+
+    override fun getLayoutRes() = R.layout.fragment_search
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUI()
+    }
+
+    private fun initUI() {
+        (mActivity as MainActivity).getToolbarMan()?.setTitle(getToolbarTitle())
+        setupMoviesRecyclerView()
+    }
+
+    private fun setupMoviesRecyclerView() {
+        val layoutManager = GridLayoutManager(mActivity, 2)
+        rvMovies.layoutManager = layoutManager
+        mMovieAdapter.setListener(this)
+        rvMovies.adapter = mMovieAdapter
+        scrollListener = EndlessScrollListener(layoutManager, object : OnNextPageListener {
+            override fun onLoadMore(): Boolean {
+                getSearchPresenter().getNextPage()
+                return true
+            }
+        })
+        rvMovies.addOnScrollListener(scrollListener)
+    }
+
+    override fun getSearchType() = mSearchType
+
+    override fun setList(movieDHs: ArrayList<MovieItemDH>) {
+        scrollListener.reset()
+        mMovieAdapter.setListDH(movieDHs)
+    }
+
+    override fun addList(movieDHs: ArrayList<MovieItemDH>) {
+        mMovieAdapter.addListDH(movieDHs)
+    }
+
+    override fun setGenres(genreItems: ArrayList<GenreDH>) {
+        rlPlaceholder.visibility = View.GONE
+        mGenreAdapter.setListDH(genreItems)
+    }
+
+    override fun setupSearchByTitle() {
+        RxView.clicks(bt_search)
+                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
+                .subscribe { _ ->
+                    hideKeyboard()
+                    rlPlaceholder.visibility = View.GONE
+                    mMovieAdapter.clearData()
+                    getSearchPresenter().onSearchClick(tvSearch.text.toString())
+                }
+    }
+
+    override fun setupGenresList() {
+        rvGenres.visibility = View.VISIBLE
+        val layoutManager = LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false)
+        rvGenres.layoutManager = layoutManager
+        mGenreAdapter.setListener(this)
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(rvGenres)
+        rvGenres.adapter = mGenreAdapter
+    }
+
+    override fun clearListData() {
+        mMovieAdapter.clearData()
+    }
+
+    override fun onCardClick(itemID: Int, position: Int) {
+        mActivity.changeFragment(MovieDetailsFragment.newInstance(itemID, mListID))
+        getSearchPresenter().updateNeedRefresh(false)
+    }
+
+    override fun onGenreClick(genreId: Int, position: Int) {
+        mMovieAdapter.clearData()
+        getSearchPresenter().searchByGenre(genreId)
+        rvGenres.smoothScrollToPosition(position)
+    }
+
+    override fun showPlaceholder(placeholderType: Constants.PlaceholderType) {
+        rlPlaceholder.visibility = View.VISIBLE
+
+        when (placeholderType) {
+            Constants.PlaceholderType.EMPTY -> {
+                ivPlaceholderImage.setImageResource(R.drawable.placeholder_empty)
+                tvPlaceholderMessage.setText(R.string.error_msg_no_movies_with_such_title)
+            }
+            Constants.PlaceholderType.NETWORK -> {
+                ivPlaceholderImage.setImageResource(R.drawable.ic_cloud_off)
+                tvPlaceholderMessage.setText(R.string.err_msg_connection_problem)
+            }
+            Constants.MessageType.UNKNOWN -> {
+                ivPlaceholderImage.setImageResource(R.drawable.ic_sentiment_dissatisfied)
+                tvPlaceholderMessage.setText(R.string.err_msg_something_goes_wrong)
+            }
+            else -> super.showPlaceholder(placeholderType)
+        }
+    }
+}

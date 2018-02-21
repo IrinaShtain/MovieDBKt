@@ -7,11 +7,12 @@ import ua.shtain.irina.moviedbkt.model.movie.MovieItem
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemDH
+import javax.inject.Inject
 
 /**
  * Created by Irina Shtain on 16.02.2018.
  */
-class MoviesInListPresenter(compositeDisposable: CompositeDisposable,
+class MoviesInListPresenter@Inject constructor(compositeDisposable: CompositeDisposable,
                             model: MoviesInListContract.Model) : MoviesInListContract.Presenter {
 
 

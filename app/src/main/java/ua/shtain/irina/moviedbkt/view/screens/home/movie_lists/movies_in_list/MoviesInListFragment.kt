@@ -21,6 +21,10 @@ import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.latest_movies.SearchLatestMovieFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.popular_movies.SearchPopularMovieFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_genre.SearchMovieByGenreFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_title.SearchMovieByTitleFragment
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -40,10 +44,15 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
     private var mAnimFabClose: Animation? = null
     private var mAnimFabOpen: Animation? = null
 
+
+    override fun getLayoutRes(): Int {
+        return R.layout.fragment_recycler_view
+    }
+
     companion object {
         private val LIST_ID = "list_id"
         private val LIST_TITLE = "list_title"
-        fun newInstance(listID: Int, title :String): MoviesInListFragment {
+        fun newInstance(listID: Int, title: String): MoviesInListFragment {
             val fragment = MoviesInListFragment()
             val bundle = Bundle()
             bundle.putInt(LIST_ID, listID)
@@ -100,10 +109,6 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
         movieAdapter.setListener(this)
     }
 
-    override fun getLayoutRes(): Int {
-        return R.layout.fragment_recycler_view
-    }
-
     override fun initGraph() {
         mActivity.mObjectGraph.getHomeComponent().inject(this)
     }
@@ -125,35 +130,19 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
     }
 
     override fun openSearchByTitleScreen(listID: Int, movieItems: ArrayList<MovieItem>) {
-//        mActivity.replaceFragment(SearchMovieByTitleFragment_.builder()
-//                .listID(listID)
-//                .moviesInList(movieItems)
-//                .searchType(Constants.SEARCH_TYPE_MOVIES_BY_TITLE)
-//                .build())
+        mActivity.changeFragment(SearchMovieByTitleFragment.newInstance(listID, Constants.SEARCH_TYPE_MOVIES_BY_TITLE))
     }
 
     override fun openSearchByGenreScreen(listID: Int, movieItems: ArrayList<MovieItem>) {
-//        mActivity.replaceFragment(SearchMovieByGenreFragment_.builder()
-//                .listID(listID)
-//                .moviesInList(movieItems)
-//                .searchType(Constants.SEARCH_TYPE_MOVIES_BY_GENRE)
-//                .build())
+        mActivity.changeFragment(SearchMovieByGenreFragment.newInstance(listID, Constants.SEARCH_TYPE_MOVIES_BY_GENRE))
     }
 
     override fun openLatestSearchScreen(listID: Int, movieItems: ArrayList<MovieItem>) {
-//        mActivity.replaceFragment(SearchLatestMovieFragment_.builder()
-//                .listID(listID)
-//                .moviesInList(movieItems)
-//                .searchType(Constants.SEARCH_TYPE_LATEST_MOVIES)
-//                .build())
+        mActivity.changeFragment(SearchPopularMovieFragment.newInstance(listID, Constants.SEARCH_TYPE_LATEST_MOVIES))
     }
 
     override fun openPopularSearchScreen(listID: Int, movieItems: ArrayList<MovieItem>) {
-//        mActivity.replaceFragment(SearchPopularMovieFragment_.builder()
-//                .listID(listID)
-//                .moviesInList(movieItems)
-//                .searchType(Constants.SEARCH_TYPE_POPULAR_MOVIES)
-//                .build())
+        mActivity.changeFragment(SearchLatestMovieFragment.newInstance(listID, Constants.SEARCH_TYPE_POPULAR_MOVIES))
     }
 
     override fun closeFragment() {

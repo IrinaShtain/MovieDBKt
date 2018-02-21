@@ -30,7 +30,6 @@ interface MovieDetailsContract {
 
     interface Model {
         fun addToListMovie(listID: Int, movieID: Int): Observable<ResponseMessage>
-        fun deleteMovie(listID: Int, movieID: Int): Observable<ResponseMessage>
         fun getMovieDetails(movieID: Int): Observable<MovieItem>
         fun addToFavoriteMovie(movieID: Int): Observable<ResponseMessage>
         fun addToWatchListMovie(movieID: Int): Observable<ResponseMessage>

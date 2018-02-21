@@ -16,6 +16,8 @@ abstract class RefreshableFragment : ContentFragment(){
 
     abstract override fun getPresenter(): RefreshablePresenter
 
+
+
     @LayoutRes
     override fun getRootLayoutRes() = R.layout.view_content_refreshable
 
