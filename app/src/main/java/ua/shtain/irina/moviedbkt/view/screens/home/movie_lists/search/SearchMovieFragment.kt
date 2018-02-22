@@ -67,12 +67,12 @@ abstract class SearchMovieFragment : RefreshableFragment(), SearchMovieContract.
 
     override fun getSearchType() = mSearchType
 
-    override fun setList(movieDHs: ArrayList<MovieItemDH>) {
+    override fun setList(movieDHs: MutableList<MovieItemDH>) {
         scrollListener.reset()
         mMovieAdapter.setListDH(movieDHs)
     }
 
-    override fun addList(movieDHs: ArrayList<MovieItemDH>) {
+    override fun addList(movieDHs: MutableList<MovieItemDH>) {
         mMovieAdapter.addListDH(movieDHs)
     }
 

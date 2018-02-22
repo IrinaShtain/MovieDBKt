@@ -12,8 +12,8 @@ import javax.inject.Inject
 /**
  * Created by Irina Shtain on 16.02.2018.
  */
-class MoviesInListPresenter@Inject constructor(compositeDisposable: CompositeDisposable,
-                            model: MoviesInListContract.Model) : MoviesInListContract.Presenter {
+class MoviesInListPresenter @Inject constructor(compositeDisposable: CompositeDisposable,
+                                                model: MoviesInListContract.Model) : MoviesInListContract.Presenter {
 
 
     lateinit var mView: MoviesInListContract.View
@@ -21,6 +21,7 @@ class MoviesInListPresenter@Inject constructor(compositeDisposable: CompositeDis
     private var mCompositeDisposable = compositeDisposable
     private var mModel = model
     private var listID: Int = 0
+    private var totalResults: Int = 0
     private var movieItems: ArrayList<MovieItem>? = null
     private var mIsFabOpen = false
     override fun setView(view: ContentView) {
@@ -40,8 +41,10 @@ class MoviesInListPresenter@Inject constructor(compositeDisposable: CompositeDis
                     Log.e("myLog", "getMoviesByTitle " + listID)
                     mView.hideProgress()
                     movieItems = moviesList.movies
-                    if (!movieItems!!.isEmpty())
+                    if (!movieItems!!.isEmpty()) {
+                        totalResults = movieItems!!.size
                         mView.setLists(prepareList(movieItems!!))
+                    }
                     else
                         mView.showPlaceholder(Constants.PlaceholderType.EMPTY)
                 }, { throwable ->
@@ -61,7 +64,12 @@ class MoviesInListPresenter@Inject constructor(compositeDisposable: CompositeDis
                 }))
     }
 
-    private fun prepareList(items: ArrayList<MovieItem>) = items.mapTo(ArrayList()) { MovieItemDH(it) }
+    private fun prepareList(items: ArrayList<MovieItem>): MutableList<MovieItemDH> {
+        val result = items.mapTo(ArrayList()) { MovieItemDH(it) }
+        for (item in result)
+            item.isInList = true
+        return result
+    }
 
 
     override fun unsubscribe() {
@@ -79,25 +87,38 @@ class MoviesInListPresenter@Inject constructor(compositeDisposable: CompositeDis
         mView.openMovieDetails(movieID)
     }
 
-    override fun deleteList(listID: Int) {
-        Log.e("myLog", "deleteItem listID = " + listID)
-        mCompositeDisposable.add(mModel.deleteList(listID)
+    override fun deleteMovieAlert(movieID: Int,  position :Int) {
+        mView.showConfirmAlert(movieID, position)
+    }
+
+    override fun deleteMovie(movieID: Int,  position :Int) {
+        Log.e("myLog", "deleteItem movieID = " + movieID)
+        mCompositeDisposable.add(mModel.deleteMovie(listID, movieID)
                 .subscribe({ _ ->
                     mView.hideProgress()
-                    mView.showMessage(Constants.MessageType.LIST_WAS_DELETED)
-                    mView.closeFragment()
+                    mView.showMessage(Constants.MessageType.MOVIE_WAS_DELETED)
+                    mView.updateMovies(position)
+                    --totalResults
+                    checkEmptyList()
                 }, { throwable ->
-                    Log.e("myLog", "throwable " + throwable.getLocalizedMessage())
+                    Log.e("myLog", "throwable " + throwable.localizedMessage)
                     mView.hideProgress()
                     when {
                         throwable.message.equals("HTTP 500 Internal Server Error") -> { // backend's bug :(
                             mView.showMessage(Constants.MessageType.LIST_WAS_DELETED)
-                            mView.closeFragment()
+                            mView.updateMovies(position)
+                            --totalResults
+                            checkEmptyList()
                         }
                         throwable is ConnectionException -> mView.showMessage(Constants.MessageType.CONNECTION_PROBLEMS)
                         else -> mView.showMessage(Constants.MessageType.UNKNOWN)
                     }
                 }))
+    }
+
+    private fun checkEmptyList() {
+        if (totalResults == 0)
+            mView.showPlaceholder(Constants.PlaceholderType.EMPTY)
     }
 
     override fun onMainFABClick() {
@@ -108,10 +129,6 @@ class MoviesInListPresenter@Inject constructor(compositeDisposable: CompositeDis
             mView.openFabMenu()
             true
         }
-    }
-
-    override fun menuPressed() {
-        mView.showAlert()
     }
 
     override fun onFabFindUsingTitleClick() {

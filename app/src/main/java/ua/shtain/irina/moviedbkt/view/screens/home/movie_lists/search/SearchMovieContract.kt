@@ -14,8 +14,8 @@ import java.util.ArrayList
  */
 interface SearchMovieContract {
     interface View : RefreshableView {
-        fun setList(movieDHs: ArrayList<MovieItemDH>)
-        fun addList(movieDHs: ArrayList<MovieItemDH>)
+        fun setList(movieDHs: MutableList<MovieItemDH>)
+        fun addList(movieDHs: MutableList<MovieItemDH>)
         fun setGenres(genreItems: ArrayList<GenreDH>)
         fun setupSearchByTitle()
         fun setupGenresList()

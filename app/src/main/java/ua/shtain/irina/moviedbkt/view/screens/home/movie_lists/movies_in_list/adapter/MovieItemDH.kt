@@ -7,10 +7,15 @@ import ua.shtain.irina.moviedbkt.other.Constants
  * Created by Irina Shtain on 16.02.2018.
  */
 class MovieItemDH(val model: MovieItem) {
+    var isInList = false
 
-    fun getMovieTitle() = if (model.title == null) "No title" else model.title.trim()
+    fun getMovieTitle() = model.title.trim()
 
     fun getMovieID() = model.id
 
     fun getPosterPath() = Constants.IMAGE_BASE + model.posterPath
+
+    fun makeVisible() {
+        isInList = true
+    }
 }

@@ -13,14 +13,19 @@ import ua.shtain.irina.moviedbkt.R
 class MovieItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val tvTitle = itemView.findViewById(R.id.tvTitle) as TextView
     private val ivImage = itemView.findViewById(R.id.ivImage) as ImageView
+    val ivDelete = itemView.findViewById(R.id.ivDelete) as ImageView
 
 
-    fun bindData(listsDH: MovieItemDH) {
+    fun bindData(movieItemDH: MovieItemDH) {
         Picasso.with(itemView.context)
-                .load(listsDH.getPosterPath())
+                .load(movieItemDH.getPosterPath())
                 .error(R.drawable.placeholder_movie)
                 .placeholder(R.drawable.placeholder_movie)
                 .into(ivImage)
-        tvTitle.text = listsDH.getMovieTitle()
+        tvTitle.text = movieItemDH.getMovieTitle()
+        if (movieItemDH.isInList)
+            ivDelete.visibility = View.VISIBLE
+        else
+            ivDelete.visibility = View.GONE
     }
 }

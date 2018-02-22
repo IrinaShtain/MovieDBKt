@@ -15,24 +15,24 @@ import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.ad
 interface MoviesInListContract {
 
     interface View : RefreshableView {
-        fun setLists(itemDHS: ArrayList<MovieItemDH>)
+        fun setLists(itemDHS: MutableList<MovieItemDH>)
         fun openMovieDetails(movieID: Int)
         fun openSearchByTitleScreen(listID: Int)
         fun openSearchByGenreScreen(listID: Int)
         fun openLatestSearchScreen(listID: Int)
         fun openPopularSearchScreen(listID: Int)
-        fun closeFragment()
-        fun showAlert()
+        fun updateMovies(position: Int)
         fun closeFabMenu()
         fun openFabMenu()
         fun getListID(): Int
+        fun showConfirmAlert(movieID: Int, position: Int)
     }
 
     interface Presenter : RefreshablePresenter {
         fun showDetails(movieID: Int)
-        fun deleteList(listID: Int)
+        fun deleteMovie(movieID: Int, position: Int)
+        fun deleteMovieAlert(movieID: Int, position: Int)
         fun onMainFABClick()
-        fun menuPressed()
         fun onFabFindUsingTitleClick()
         fun onFabFindUsingGenreClick()
         fun onFabFindPopularClick()
@@ -41,6 +41,6 @@ interface MoviesInListContract {
 
     interface Model {
         fun getMovies(listID: Int): Observable<MoviesResponse>
-        fun deleteList(listID: Int): Observable<ResponseMessage>
+        fun deleteMovie(listID: Int, movieID: Int): Observable<ResponseMessage>
     }
 }

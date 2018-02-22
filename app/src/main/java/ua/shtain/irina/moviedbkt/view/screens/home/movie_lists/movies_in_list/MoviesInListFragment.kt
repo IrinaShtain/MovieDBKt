@@ -3,7 +3,6 @@ package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.GridLayoutManager
-import android.view.Menu
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -12,11 +11,11 @@ import kotlinx.android.synthetic.main.fragment_recycler_view.*
 import kotlinx.android.synthetic.main.view_content_refreshable.*
 import kotlinx.android.synthetic.main.view_placeholder.*
 import ua.shtain.irina.moviedbkt.R
-import ua.shtain.irina.moviedbkt.model.movie.MovieItem
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
 import ua.shtain.irina.moviedbkt.view.screens.common.OnCardClickListener
+import ua.shtain.irina.moviedbkt.view.screens.common.OnDeleteClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemAdapter
@@ -31,7 +30,7 @@ import javax.inject.Inject
 /**
  * Created by Irina Shtain on 19.02.2018.
  */
-class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, OnCardClickListener {
+class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, OnCardClickListener, OnDeleteClickListener {
 
 
     @Inject
@@ -107,6 +106,7 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
         rvLists.layoutManager = layoutManager
         rvLists.adapter = movieAdapter
         movieAdapter.setListener(this)
+        movieAdapter.setDeleteItemListener(this)
     }
 
     override fun initGraph() {
@@ -119,9 +119,14 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
 
     override fun onCardClick(itemID: Int, position: Int) {
         mPresenter.showDetails(itemID)
+
     }
 
-    override fun setLists(itemDHS: ArrayList<MovieItemDH>) {
+    override fun onItemClick(itemID: Int, position: Int) {
+        mPresenter.deleteMovieAlert(itemID, position)
+    }
+
+    override fun setLists(itemDHS: MutableList<MovieItemDH>) {
         movieAdapter.setListDH(itemDHS)
     }
 
@@ -145,21 +150,14 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
         mActivity.changeFragment(SearchLatestMovieFragment.newInstance(listID, Constants.SEARCH_TYPE_POPULAR_MOVIES))
     }
 
-    override fun closeFragment() {
-        mActivity.onBackPressed()
+    override fun updateMovies(position: Int) {
+        movieAdapter.deleteItem(position)
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu) {
-//        super.onPrepareOptionsMenu(menu)
-//        RxMenuItem.clicks(menu.findItem(R.id.menuDelete))
-//                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-//                .subscribe { o -> mPresenter.menuPressed() }
-    }
-
-    override fun showAlert() {
+    override fun showConfirmAlert(movieID: Int, position: Int) {
         val builder = AlertDialog.Builder(activity)
-        builder.setMessage(R.string.question_about_goal)
-        builder.setPositiveButton(R.string.answer_yes) { _, _ -> mPresenter.deleteList(mListID) }
+        builder.setMessage(R.string.question_about_deleting_movie)
+        builder.setPositiveButton(R.string.answer_yes) { _, _ -> mPresenter.deleteMovie(movieID, position) }
         builder.setNegativeButton(R.string.answer_no, null)
 
         builder.show()
