@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.common
+package ua.shtain.irina.moviedbkt.view.screens.home.common.listeners
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView

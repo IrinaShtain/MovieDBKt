@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter
+package ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

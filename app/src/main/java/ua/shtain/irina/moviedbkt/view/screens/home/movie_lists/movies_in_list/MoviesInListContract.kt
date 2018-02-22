@@ -2,11 +2,10 @@ package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list
 
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
-import ua.shtain.irina.moviedbkt.model.movie.MovieItem
 import ua.shtain.irina.moviedbkt.model.movie.MoviesResponse
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableView
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
 
 
 /**

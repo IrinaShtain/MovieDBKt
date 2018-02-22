@@ -1,11 +1,11 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search
+package ua.shtain.irina.moviedbkt.view.screens.home.common.movies
 
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.movie.SearchMovieResponse
 import ua.shtain.irina.moviedbkt.model.movie.genre.GenresResponse
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableView
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreDH
 import java.util.ArrayList
 

@@ -18,9 +18,9 @@ import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
-import ua.shtain.irina.moviedbkt.view.screens.common.EndlessScrollListener
-import ua.shtain.irina.moviedbkt.view.screens.common.OnCardClickListener
-import ua.shtain.irina.moviedbkt.view.screens.common.OnNextPageListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.EndlessScrollListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnNextPageListener
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.adapter.CreatedListsAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.adapter.CreatedListsDH

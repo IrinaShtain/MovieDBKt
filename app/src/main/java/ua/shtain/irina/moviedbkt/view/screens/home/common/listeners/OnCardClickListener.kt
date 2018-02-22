@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.common
+package ua.shtain.irina.moviedbkt.view.screens.home.common.listeners
 
 /**
  * Created by Irina Shtain on 15.02.2018.

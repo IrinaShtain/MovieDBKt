@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import ua.shtain.irina.moviedbkt.R
-import ua.shtain.irina.moviedbkt.view.screens.common.OnCardClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
 import java.util.*
 import javax.inject.Inject
 

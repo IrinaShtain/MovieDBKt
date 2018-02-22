@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.di
+package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.di
 
 import dagger.Module
 import dagger.Provides
@@ -8,7 +8,7 @@ import ua.shtain.irina.moviedbkt.root.network.RetrofitHelper
 import ua.shtain.irina.moviedbkt.root.network.servises.MovieService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.home.di.MainScope
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsPresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsPresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListContract
 
 /**

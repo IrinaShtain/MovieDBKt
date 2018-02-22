@@ -4,9 +4,9 @@ import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.movie.*
 import ua.shtain.irina.moviedbkt.root.network.servises.MovieService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsContract
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsContract
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListContract
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.MoviesContract
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesContract
 import javax.inject.Inject
 
 /**

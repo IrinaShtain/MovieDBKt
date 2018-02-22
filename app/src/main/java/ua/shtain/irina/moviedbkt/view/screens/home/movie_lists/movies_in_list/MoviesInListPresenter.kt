@@ -6,7 +6,7 @@ import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
 import ua.shtain.irina.moviedbkt.model.movie.MovieItem
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
 import javax.inject.Inject
 
 /**

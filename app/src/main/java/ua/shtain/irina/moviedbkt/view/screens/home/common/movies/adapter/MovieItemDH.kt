@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter
+package ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter
 
 import ua.shtain.irina.moviedbkt.model.movie.MovieItem
 import ua.shtain.irina.moviedbkt.other.Constants

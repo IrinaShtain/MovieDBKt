@@ -1,11 +1,8 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details
+package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details
 
 import io.reactivex.Observable
-import retrofit2.http.Body
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
-import ua.shtain.irina.moviedbkt.model.movie.FavoriteRequest
 import ua.shtain.irina.moviedbkt.model.movie.MovieItem
-import ua.shtain.irina.moviedbkt.model.movie.RateRequest
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 

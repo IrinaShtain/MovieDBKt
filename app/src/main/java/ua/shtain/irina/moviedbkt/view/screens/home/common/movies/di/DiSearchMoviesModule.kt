@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.di
+package ua.shtain.irina.moviedbkt.view.screens.home.common.movies.di
 
 import dagger.Module
 import dagger.Provides

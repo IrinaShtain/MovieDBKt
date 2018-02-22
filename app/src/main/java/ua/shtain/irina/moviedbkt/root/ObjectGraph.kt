@@ -7,9 +7,9 @@ import ua.shtain.irina.moviedbkt.view.screens.home.di.DaggerDiHomeComponent
 import ua.shtain.irina.moviedbkt.view.screens.home.di.DiHomeComponent
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.di.DiCreateNewListModule
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.di.DiMovieListsModule
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.di.DiMovieDetailsModule
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.di.DiMovieDetailsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.di.DiMovieInListModule
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.di.DiSearchMoviesModule
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.di.DiSearchMoviesModule
 import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.di.DiUserProfileModule
 import ua.shtain.irina.moviedbkt.view.screens.login.di.DaggerDiLoginComponent
 import ua.shtain.irina.moviedbkt.view.screens.login.di.DiLoginComponent

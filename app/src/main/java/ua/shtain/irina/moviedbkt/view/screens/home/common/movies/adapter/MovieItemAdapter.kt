@@ -1,11 +1,11 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter
+package ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import ua.shtain.irina.moviedbkt.R
-import ua.shtain.irina.moviedbkt.view.screens.common.OnCardClickListener
-import ua.shtain.irina.moviedbkt.view.screens.common.OnDeleteClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnDeleteClickListener
 import java.util.ArrayList
 
 /**

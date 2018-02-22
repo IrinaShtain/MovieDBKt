@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search
+package ua.shtain.irina.moviedbkt.view.screens.home.common.movies
 
 import android.util.Log
 import io.reactivex.Observable
@@ -9,7 +9,7 @@ import ua.shtain.irina.moviedbkt.model.movie.SearchMovieResponse
 import ua.shtain.irina.moviedbkt.model.movie.genre.GenreItem
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreDH
 
 /**

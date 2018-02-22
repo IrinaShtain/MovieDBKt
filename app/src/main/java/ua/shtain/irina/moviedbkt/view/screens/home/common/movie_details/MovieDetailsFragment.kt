@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details
+package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details
 
 import android.graphics.Color
 import android.os.Bundle

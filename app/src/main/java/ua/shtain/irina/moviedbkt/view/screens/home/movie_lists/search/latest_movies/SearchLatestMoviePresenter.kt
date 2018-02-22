@@ -1,8 +1,8 @@
 package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.latest_movies
 
 import io.reactivex.disposables.CompositeDisposable
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.MoviesContract
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.MoviesPresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesContract
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesPresenter
 import javax.inject.Inject
 
 /**

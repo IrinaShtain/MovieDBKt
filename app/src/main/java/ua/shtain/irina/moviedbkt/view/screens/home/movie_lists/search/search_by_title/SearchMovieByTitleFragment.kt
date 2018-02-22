@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_search.*
 import ua.shtain.irina.moviedbkt.R
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemAdapter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.MoviesFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreAdapter
 import javax.inject.Inject
 

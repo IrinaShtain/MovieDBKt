@@ -14,12 +14,12 @@ import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
-import ua.shtain.irina.moviedbkt.view.screens.common.OnCardClickListener
-import ua.shtain.irina.moviedbkt.view.screens.common.OnDeleteClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnDeleteClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemAdapter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.latest_movies.SearchLatestMovieFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.popular_movies.SearchPopularMovieFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_genre.SearchMovieByGenreFragment

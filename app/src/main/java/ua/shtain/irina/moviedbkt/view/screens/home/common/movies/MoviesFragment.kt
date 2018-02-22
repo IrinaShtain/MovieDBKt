@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search
+package ua.shtain.irina.moviedbkt.view.screens.home.common.movies
 
 import android.os.Bundle
 import android.support.annotation.StringRes
@@ -11,13 +11,13 @@ import kotlinx.android.synthetic.main.fragment_search.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
-import ua.shtain.irina.moviedbkt.view.screens.common.EndlessScrollListener
-import ua.shtain.irina.moviedbkt.view.screens.common.OnCardClickListener
-import ua.shtain.irina.moviedbkt.view.screens.common.OnNextPageListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.EndlessScrollListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnNextPageListener
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemAdapter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreDH
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.OnGenreClickListener

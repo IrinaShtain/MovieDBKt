@@ -10,7 +10,7 @@ import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.home.di.MainScope
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListContract
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListPresenter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
 
 /**
  * Created by Irina Shtain on 19.02.2018.

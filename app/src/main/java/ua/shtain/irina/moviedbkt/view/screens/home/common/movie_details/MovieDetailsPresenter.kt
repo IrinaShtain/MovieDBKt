@@ -1,9 +1,7 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details
+package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details
 
-import android.util.Log
 import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
-import ua.shtain.irina.moviedbkt.model.movie.FavoriteRequest
 import ua.shtain.irina.moviedbkt.model.movie.MovieItem
 import ua.shtain.irina.moviedbkt.other.Constants
 import javax.inject.Inject
