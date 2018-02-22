@@ -129,19 +129,19 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
         mActivity.changeFragment(MovieDetailsFragment.newInstance(movieID, mListID))
     }
 
-    override fun openSearchByTitleScreen(listID: Int, movieItems: ArrayList<MovieItem>) {
+    override fun openSearchByTitleScreen(listID: Int) {
         mActivity.changeFragment(SearchMovieByTitleFragment.newInstance(listID, Constants.SEARCH_TYPE_MOVIES_BY_TITLE))
     }
 
-    override fun openSearchByGenreScreen(listID: Int, movieItems: ArrayList<MovieItem>) {
+    override fun openSearchByGenreScreen(listID: Int) {
         mActivity.changeFragment(SearchMovieByGenreFragment.newInstance(listID, Constants.SEARCH_TYPE_MOVIES_BY_GENRE))
     }
 
-    override fun openLatestSearchScreen(listID: Int, movieItems: ArrayList<MovieItem>) {
+    override fun openLatestSearchScreen(listID: Int) {
         mActivity.changeFragment(SearchPopularMovieFragment.newInstance(listID, Constants.SEARCH_TYPE_LATEST_MOVIES))
     }
 
-    override fun openPopularSearchScreen(listID: Int, movieItems: ArrayList<MovieItem>) {
+    override fun openPopularSearchScreen(listID: Int) {
         mActivity.changeFragment(SearchLatestMovieFragment.newInstance(listID, Constants.SEARCH_TYPE_POPULAR_MOVIES))
     }
 

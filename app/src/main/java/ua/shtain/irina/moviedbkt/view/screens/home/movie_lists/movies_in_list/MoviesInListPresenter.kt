@@ -101,12 +101,12 @@ class MoviesInListPresenter@Inject constructor(compositeDisposable: CompositeDis
     }
 
     override fun onMainFABClick() {
-        if (mIsFabOpen) {
+        mIsFabOpen = if (mIsFabOpen) {
             mView.closeFabMenu()
-            mIsFabOpen = false
+            false
         } else {
             mView.openFabMenu()
-            mIsFabOpen = true
+            true
         }
     }
 
@@ -116,21 +116,21 @@ class MoviesInListPresenter@Inject constructor(compositeDisposable: CompositeDis
 
     override fun onFabFindUsingTitleClick() {
         mIsFabOpen = false
-        mView.openSearchByTitleScreen(listID, movieItems!!)
+        mView.openSearchByTitleScreen(listID)
     }
 
     override fun onFabFindUsingGenreClick() {
         mIsFabOpen = false
-        mView.openSearchByGenreScreen(listID, movieItems!!)
+        mView.openSearchByGenreScreen(listID)
     }
 
     override fun onFabFindPopularClick() {
         mIsFabOpen = false
-        mView.openPopularSearchScreen(listID, movieItems!!)
+        mView.openPopularSearchScreen(listID)
     }
 
     override fun onFabFindLatestClick() {
         mIsFabOpen = false
-        mView.openLatestSearchScreen(listID, movieItems!!)
+        mView.openLatestSearchScreen(listID)
     }
 }

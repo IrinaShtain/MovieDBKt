@@ -70,7 +70,16 @@ class MovieDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
                     mView.hideProgress()
                     mView.showMessage(Constants.MessageType.NEW_MOVIE_ADDED_SUCCESSFULLY)
                     mView.setupButton(true)
-                }, throwableConsumer))
+                }, { throwable: Throwable ->
+                    throwable.printStackTrace()
+                    mView.hideProgress()
+                    when {
+                        throwable is ConnectionException -> mView.showMessage(Constants.MessageType.CONNECTION_PROBLEMS)
+                        throwable.message.equals("HTTP 403 Forbidden") -> mView.showMessage(Constants.MessageType.MOVIE_ALREADY_ADDED)
+                        else -> mView.showMessage(Constants.MessageType.UNKNOWN)
+                    }
+
+                }))
     }
 
     override fun fabRatingClicked() {
