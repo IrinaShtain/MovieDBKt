@@ -29,6 +29,12 @@ interface MovieService {
     @GET("/3/movie/popular")
     fun searchPopularMovies(@Query("page") page: Int): Observable<SearchMovieResponse>
 
+    @GET("/3/account/{account_id}/watchlist/movies")
+    fun getWatchlistMovies(@Query("page") page: Int): Observable<SearchMovieResponse>
+
+    @GET("/3/account/{account_id}/favorite/movies")
+    fun getFavoriteMovies(@Query("page") page: Int): Observable<SearchMovieResponse>
+
     @GET("/3/movie/now_playing")
     fun searchLatestMovies(@Query("page") page: Int): Observable<SearchMovieResponse>
 

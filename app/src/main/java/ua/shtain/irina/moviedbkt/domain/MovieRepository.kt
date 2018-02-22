@@ -1,21 +1,19 @@
 package ua.shtain.irina.moviedbkt.domain
 
 import io.reactivex.Observable
-import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
 import ua.shtain.irina.moviedbkt.model.movie.*
-import ua.shtain.irina.moviedbkt.model.movie.genre.GenresResponse
 import ua.shtain.irina.moviedbkt.root.network.servises.MovieService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movie_details.MovieDetailsContract
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListContract
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.SearchMovieContract
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.MoviesContract
 import javax.inject.Inject
 
 /**
  * Created by Irina Shtain on 19.02.2018.
  */
 class MovieRepository @Inject constructor(movieService: MovieService, helper: SchedulerHelper) : MoviesInListContract.Model,
-        MovieDetailsContract.Model, SearchMovieContract.Model {
+        MovieDetailsContract.Model, MoviesContract.Model {
     val mService = movieService
     val mHelper = helper
 
@@ -34,11 +32,15 @@ class MovieRepository @Inject constructor(movieService: MovieService, helper: Sc
 
     override fun getGenres() = mHelper.getNetworkObservable(mService.getGenres())
 
-    override fun getMoviesByTitle(title: String, page: Int) = mHelper.getNetworkObservable(mService.searchMovieByTitle(title, page))
+    override fun searchMoviesByTitle(title: String, page: Int) = mHelper.getNetworkObservable(mService.searchMovieByTitle(title, page))
 
     override fun searchMovieByGenre(genreId: Int, page: Int) = mHelper.getNetworkObservable(mService.searchMovieByGenre(genreId, page))
 
-    override fun getLatestMovies(page: Int) = mHelper.getNetworkObservable(mService.searchLatestMovies(page))
+    override fun searchLatestMovies(page: Int) = mHelper.getNetworkObservable(mService.searchLatestMovies(page))
 
-    override fun getPopularMovies(page: Int) = mHelper.getNetworkObservable(mService.searchPopularMovies(page))
+    override fun searchPopularMovies(page: Int) = mHelper.getNetworkObservable(mService.searchPopularMovies(page))
+
+    override fun getFavoriteMovies(page: Int)= mHelper.getNetworkObservable(mService.getFavoriteMovies(page))
+
+    override fun getWatchlistMovies(page: Int)= mHelper.getNetworkObservable(mService.getWatchlistMovies(page))
 }

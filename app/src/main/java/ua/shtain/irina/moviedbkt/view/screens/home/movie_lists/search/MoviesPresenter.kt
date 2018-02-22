@@ -15,11 +15,11 @@ import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adap
 /**
  * Created by Irina Shtain on 20.02.2018.
  */
-abstract class SearchMoviePresenter : SearchMovieContract.Presenter {
+abstract class MoviesPresenter : MoviesContract.Presenter {
 
-    lateinit var mView: SearchMovieContract.View
+    lateinit var mView: MoviesContract.View
     protected lateinit var mCompositeDisposable: CompositeDisposable
-    protected lateinit var mModel: SearchMovieContract.Model
+    protected lateinit var mModel: MoviesContract.Model
 
     protected var searchType: Int = 0
     protected var movieTitle: String = ""
@@ -32,7 +32,7 @@ abstract class SearchMoviePresenter : SearchMovieContract.Presenter {
     private var mNeedRefresh = true
 
     override fun setView(view: ContentView) {
-        mView = view as SearchMovieContract.View
+        mView = view as MoviesContract.View
     }
 
     override fun subscribe() {

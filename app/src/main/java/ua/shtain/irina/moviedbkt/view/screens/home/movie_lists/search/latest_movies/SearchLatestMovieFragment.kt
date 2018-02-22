@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.adapter.MovieItemAdapter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.SearchMovieFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.MoviesFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.popular_movies.SearchPopularMoviePresenter
 import javax.inject.Inject
@@ -12,7 +12,7 @@ import javax.inject.Inject
 /**
  * Created by Irina Shtain on 21.02.2018.
  */
-class SearchLatestMovieFragment : SearchMovieFragment() {
+class SearchLatestMovieFragment : MoviesFragment() {
     @Inject
     lateinit var mPresenter: SearchPopularMoviePresenter
     @Inject

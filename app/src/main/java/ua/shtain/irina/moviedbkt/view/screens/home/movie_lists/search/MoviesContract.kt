@@ -12,7 +12,7 @@ import java.util.ArrayList
 /**
  * Created by Irina Shtain on 20.02.2018.
  */
-interface SearchMovieContract {
+interface MoviesContract {
     interface View : RefreshableView {
         fun setList(movieDHs: MutableList<MovieItemDH>)
         fun addList(movieDHs: MutableList<MovieItemDH>)
@@ -32,9 +32,11 @@ interface SearchMovieContract {
 
     interface Model {
         fun getGenres(): Observable<GenresResponse>
-        fun getMoviesByTitle(title: String, page: Int): Observable<SearchMovieResponse>
+        fun searchMoviesByTitle(title: String, page: Int): Observable<SearchMovieResponse>
         fun searchMovieByGenre(genreId: Int, page: Int): Observable<SearchMovieResponse>
-        fun getLatestMovies(page: Int): Observable<SearchMovieResponse>
-        fun getPopularMovies(page: Int): Observable<SearchMovieResponse>
+        fun searchLatestMovies(page: Int): Observable<SearchMovieResponse>
+        fun searchPopularMovies(page: Int): Observable<SearchMovieResponse>
+        fun getFavoriteMovies(page: Int): Observable<SearchMovieResponse>
+        fun getWatchlistMovies(page: Int): Observable<SearchMovieResponse>
     }
 }

@@ -1,15 +1,15 @@
 package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_genre
 
 import io.reactivex.disposables.CompositeDisposable
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.SearchMovieContract
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.SearchMoviePresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.MoviesContract
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.MoviesPresenter
 import javax.inject.Inject
 
 /**
  * Created by Irina Shtain on 21.02.2018.
  */
 class SearchMovieByGenrePresenter  @Inject constructor(compositeDisposable: CompositeDisposable,
-                                                       model: SearchMovieContract.Model) : SearchMoviePresenter() {
+                                                       model: MoviesContract.Model) : MoviesPresenter() {
     init {
         mModel = model
         mCompositeDisposable = compositeDisposable

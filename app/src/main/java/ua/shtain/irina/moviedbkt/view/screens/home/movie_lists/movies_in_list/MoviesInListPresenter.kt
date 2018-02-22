@@ -38,7 +38,7 @@ class MoviesInListPresenter @Inject constructor(compositeDisposable: CompositeDi
     private fun loadMovies() {
         mCompositeDisposable.add(mModel.getMovies(listID)
                 .subscribe({ moviesList ->
-                    Log.e("myLog", "getMoviesByTitle " + listID)
+                    Log.e("myLog", "searchMoviesByTitle " + listID)
                     mView.hideProgress()
                     movieItems = moviesList.movies
                     if (!movieItems!!.isEmpty()) {

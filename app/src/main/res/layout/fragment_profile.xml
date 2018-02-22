@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_half"
         android:layout_marginTop="@dimen/margin_half"
-        android:textSize="@dimen/text_size_default"
+        android:textSize="@dimen/text_size_large"
         android:textStyle="bold|italic"
         tools:text="@string/username"
         />
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_half"
-        android:textSize="@dimen/text_size_default"
+        android:textSize="@dimen/text_size_large"
         android:textStyle="bold|italic"
         tools:text="@string/name"
         />
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_half"
         android:text="@string/include_adult"
-        android:textSize="@dimen/text_size_default"
+        android:textSize="@dimen/text_size_large"
         android:textStyle="bold|italic"
         />
 

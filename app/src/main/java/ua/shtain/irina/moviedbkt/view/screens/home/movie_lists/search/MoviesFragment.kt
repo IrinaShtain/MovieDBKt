@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by Irina Shtain on 20.02.2018.
  */
-abstract class SearchMovieFragment : RefreshableFragment(), SearchMovieContract.View, OnCardClickListener, OnGenreClickListener {
+abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCardClickListener, OnGenreClickListener {
 
     protected var mListID = 0
     protected var mSearchType = 0
@@ -35,7 +35,7 @@ abstract class SearchMovieFragment : RefreshableFragment(), SearchMovieContract.
     lateinit var mGenreAdapter: GenreAdapter
     protected lateinit var scrollListener: EndlessScrollListener
 
-    abstract fun getSearchPresenter(): SearchMoviePresenter
+    abstract fun getSearchPresenter(): MoviesPresenter
     @StringRes
     abstract fun getToolbarTitle(): Int
 
