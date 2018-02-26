@@ -31,7 +31,7 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCa
 
     protected var mListID = 0
     protected var mSearchType = 0
-    lateinit var mMovieAdapter: MovieItemAdapter
+    var mMovieAdapter: MovieItemAdapter? = null
     lateinit var mGenreAdapter: GenreAdapter
     protected lateinit var scrollListener: EndlessScrollListener
 
@@ -54,7 +54,9 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCa
     private fun setupMoviesRecyclerView() {
         val layoutManager = GridLayoutManager(mActivity, 2)
         rvMovies.layoutManager = layoutManager
-        mMovieAdapter.setListener(this)
+        if (mMovieAdapter == null)
+            mMovieAdapter = MovieItemAdapter()
+        mMovieAdapter!!.setListener(this)
         rvMovies.adapter = mMovieAdapter
         scrollListener = EndlessScrollListener(layoutManager, object : OnNextPageListener {
             override fun onLoadMore(): Boolean {
@@ -69,11 +71,11 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCa
 
     override fun setList(movieDHs: MutableList<MovieItemDH>) {
         scrollListener.reset()
-        mMovieAdapter.setListDH(movieDHs)
+        mMovieAdapter?.setListDH(movieDHs)
     }
 
     override fun addList(movieDHs: MutableList<MovieItemDH>) {
-        mMovieAdapter.addListDH(movieDHs)
+        mMovieAdapter?.addListDH(movieDHs)
     }
 
     override fun setGenres(genreItems: ArrayList<GenreDH>) {
@@ -87,7 +89,6 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCa
                 .subscribe { _ ->
                     hideKeyboard()
                     rlPlaceholder.visibility = View.GONE
-                    mMovieAdapter.clearData()
                     getSearchPresenter().onSearchClick(tvSearch.text.toString())
                 }
     }
@@ -102,17 +103,12 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCa
         rvGenres.adapter = mGenreAdapter
     }
 
-    override fun clearListData() {
-        mMovieAdapter.clearData()
-    }
-
     override fun onCardClick(itemID: Int, position: Int) {
         mActivity.changeFragment(MovieDetailsFragment.newInstance(itemID, mListID))
         getSearchPresenter().updateNeedRefresh(false)
     }
 
     override fun onGenreClick(genreId: Int, position: Int) {
-        mMovieAdapter.clearData()
         getSearchPresenter().searchByGenre(genreId)
         rvGenres.smoothScrollToPosition(position)
     }

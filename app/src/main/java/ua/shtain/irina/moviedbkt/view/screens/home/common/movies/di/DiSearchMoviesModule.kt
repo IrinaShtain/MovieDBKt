@@ -8,6 +8,8 @@ import ua.shtain.irina.moviedbkt.root.network.RetrofitHelper
 import ua.shtain.irina.moviedbkt.root.network.servises.MovieService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.home.di.MainScope
+import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_movies.FavoriteMoviePresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.watchlist_movies.WatchListMoviePresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListContract
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.latest_movies.SearchLatestMoviePresenter
@@ -35,6 +37,14 @@ class DiSearchMoviesModule {
     @Provides
     @MainScope
     fun provideSearchMovieByTitlePresenter(compositeDisposable: CompositeDisposable, repository: MovieRepository) = SearchMovieByTitlePresenter(compositeDisposable, repository)
+
+    @Provides
+    @MainScope
+    fun provideFavoriteMoviePresenter(compositeDisposable: CompositeDisposable, repository: MovieRepository) = FavoriteMoviePresenter(compositeDisposable, repository)
+
+    @Provides
+    @MainScope
+    fun provideWatchlistMoviePresenter(compositeDisposable: CompositeDisposable, repository: MovieRepository) = WatchListMoviePresenter(compositeDisposable, repository)
 
     @Provides
     @MainScope

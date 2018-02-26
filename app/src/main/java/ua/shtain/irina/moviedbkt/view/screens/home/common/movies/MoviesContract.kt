@@ -19,7 +19,6 @@ interface MoviesContract {
         fun setGenres(genreItems: ArrayList<GenreDH>)
         fun setupSearchByTitle()
         fun setupGenresList()
-        fun clearListData()
         fun getSearchType(): Int
     }
 

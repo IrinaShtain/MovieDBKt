@@ -39,15 +39,20 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
         if (mNeedRefresh) {
             searchType = mView.getSearchType()
             when (searchType) {
-                Constants.SEARCH_TYPE_LATEST_MOVIES, Constants.SEARCH_TYPE_POPULAR_MOVIES -> loadMovies()
+                Constants.SEARCH_TYPE_LATEST_MOVIES,
+                Constants.SEARCH_TYPE_POPULAR_MOVIES,
+                Constants.TYPE_FAVORITE_MOVIES,
+                Constants.TYPE_WATCHLIST_MOVIES -> {
+                    loadMovies()
+                }
+
                 Constants.SEARCH_TYPE_MOVIES_BY_GENRE -> {
                     genreId = 0
                     mView.setupGenresList()
-                    mView.clearListData()
                     loadGenres()
                 }
+
                 Constants.SEARCH_TYPE_MOVIES_BY_TITLE -> {
-                    mView.clearListData()
                     mView.setupSearchByTitle()
                 }
             }
@@ -157,7 +162,6 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
                     Log.e("myLogs", throwable.localizedMessage)
                     if (mTotalPages != Integer.MAX_VALUE)
                         if (searchType == Constants.SEARCH_TYPE_MOVIES_BY_GENRE && genreId == 0) {
-                            mView.clearListData()
                         } else
                             if (throwable is ConnectionException) {
                                 mView.showMessage(Constants.MessageType.CONNECTION_PROBLEMS)
@@ -169,7 +173,6 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
                             mView.showPlaceholder(Constants.PlaceholderType.NETWORK)
                         } else {
                             if (searchType == Constants.SEARCH_TYPE_MOVIES_BY_GENRE && genreId == 0) {
-                                mView.clearListData()
                             } else
                                 mView.showPlaceholder(Constants.PlaceholderType.UNKNOWN)
                         }

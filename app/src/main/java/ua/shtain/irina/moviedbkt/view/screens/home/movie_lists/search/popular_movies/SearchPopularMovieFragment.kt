@@ -15,11 +15,6 @@ class SearchPopularMovieFragment : MoviesFragment() {
 
     @Inject
     lateinit var mPresenter: SearchPopularMoviePresenter
-    @Inject
-    lateinit var movieAdapter: MovieItemAdapter
-    @Inject
-    lateinit var genreAdapter: GenreAdapter
-
 
     companion object {
         private val LIST_ID = "list_id"
@@ -35,8 +30,6 @@ class SearchPopularMovieFragment : MoviesFragment() {
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        mMovieAdapter = movieAdapter
-        mGenreAdapter = genreAdapter
         mListID = arguments.getInt(LIST_ID)
         mSearchType = arguments.getInt(SEARCH_TYPE)
         super.onViewCreated(view, savedInstanceState)

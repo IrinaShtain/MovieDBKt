@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.view.View
+import android.webkit.RenderProcessGoneDetail
 import com.jakewharton.rxbinding2.view.RxView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_movie_details.*
@@ -31,7 +32,7 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     companion object {
         private val MOVIE_ID = "movie_id"
         private val LIST_ID = "list_id"
-        fun newInstance(movieID: Int, listID :Int): MovieDetailsFragment {
+        fun newInstance(movieID: Int, listID: Int): MovieDetailsFragment {
             val fragment = MovieDetailsFragment()
             val bundle = Bundle()
             bundle.putInt(MOVIE_ID, movieID)
@@ -57,6 +58,7 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
         mMovieID = arguments.getInt(MOVIE_ID)
         mListID = arguments.getInt(LIST_ID)
         initUI()
+        if (mListID == 0) fabAddToList.visibility = View.GONE
         mPresenter.mView = this
         mPresenter.subscribe()
     }

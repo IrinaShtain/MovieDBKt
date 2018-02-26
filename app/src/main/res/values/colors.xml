@@ -10,6 +10,7 @@
     <color name="red">#f44336</color>
     <color name="colorBackgroundGrey">#fdfbfb</color>
     <color name="colorBlackTransparent">#88000000</color>
+    <color name="colorPrimaryDarkTransparent">#8800838f</color>
 
 
 </resources>

@@ -4,8 +4,6 @@ import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.IBaseView
-import ua.shtain.irina.moviedbkt.view.base.content.ContentView
-import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.UserProfileContract
 
 /**
  * Created by Irina Shtain on 16.02.2018.

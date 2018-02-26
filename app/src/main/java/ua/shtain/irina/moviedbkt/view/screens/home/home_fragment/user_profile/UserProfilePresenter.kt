@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.user_profile
+package ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile
 
 import android.util.Log
 import io.reactivex.disposables.CompositeDisposable
@@ -6,6 +6,7 @@ import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
 import ua.shtain.irina.moviedbkt.model.user.User
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.root.session.ISessionManager
+import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.UserProfileContract
 import javax.inject.Inject
 
 /**

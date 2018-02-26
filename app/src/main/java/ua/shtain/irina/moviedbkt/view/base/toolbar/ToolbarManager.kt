@@ -3,6 +3,7 @@ package ua.shtain.irina.moviedbkt.view.base.toolbar
 import android.support.annotation.StringRes
 import android.support.v7.app.ActionBar
 import android.support.v7.widget.Toolbar
+import android.util.TypedValue
 import android.view.View
 import ua.shtain.irina.moviedbkt.view.base.BaseActivity
 import javax.inject.Inject
@@ -17,6 +18,7 @@ class ToolbarManager @Inject constructor(toolbar: Toolbar?,
     private var mToolbar = toolbar
     private var mActivity = activity
     private var mNavigationClickListener: View.OnClickListener
+    private var pxToolbarElevation: Float = 0.toFloat()
 
     init {
         mToolbar = toolbar
@@ -29,6 +31,9 @@ class ToolbarManager @Inject constructor(toolbar: Toolbar?,
             actionBar!!.setDisplayShowTitleEnabled(true)
             actionBar!!.setHomeButtonEnabled(true)
         }
+
+        val r = activity.resources
+        pxToolbarElevation = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4f, r.displayMetrics)
     }
 
     fun showHomeButton(show: Boolean) {
@@ -62,6 +67,10 @@ class ToolbarManager @Inject constructor(toolbar: Toolbar?,
 
     fun displayToolbar(isShown: Boolean) {
         mToolbar?.visibility = if (isShown) View.VISIBLE else View.GONE
+    }
+
+    fun enableToolbarElevation(isEnabled: Boolean) {
+        actionBar?.elevation = if (isEnabled) pxToolbarElevation else 0.toFloat()
     }
 
 }

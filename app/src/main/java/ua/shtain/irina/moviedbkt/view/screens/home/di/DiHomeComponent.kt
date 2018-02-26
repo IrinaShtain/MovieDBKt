@@ -12,12 +12,14 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.di.DiMov
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.di.DiMovieInListModule
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.di.DiSearchMoviesModule
+import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_movies.FavoriteMovieFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.latest_movies.SearchLatestMovieFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.popular_movies.SearchPopularMovieFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_genre.SearchMovieByGenreFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_title.SearchMovieByTitleFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.UserProfileFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.di.DiUserProfileModule
+import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.UserProfileFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.di.DiUserProfileModule
+import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.watchlist_movies.WatchListMovieFragment
 
 /**
  * Created by Irina Shtain on 13.02.2018.
@@ -44,4 +46,6 @@ interface DiHomeComponent {
     fun inject(fragment: SearchLatestMovieFragment)
     fun inject(fragment: SearchMovieByGenreFragment)
     fun inject(fragment: SearchMovieByTitleFragment)
+    fun inject(fragment: FavoriteMovieFragment)
+    fun inject(fragment: WatchListMovieFragment)
 }

@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.user_profile
+package ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile
 
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.user.User

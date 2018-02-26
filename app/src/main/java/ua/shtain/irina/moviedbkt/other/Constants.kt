@@ -34,6 +34,8 @@ object Constants {
     const val SEARCH_TYPE_POPULAR_MOVIES = 202
     const val SEARCH_TYPE_MOVIES_BY_TITLE = 203
     const val SEARCH_TYPE_MOVIES_BY_GENRE = 204
+    const val TYPE_FAVORITE_MOVIES = 205
+    const val TYPE_WATCHLIST_MOVIES = 206
 
     /*----------------- KEY CODE ------------------*/
     const val KEY_TITLE = "list_title"

@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.user_profile.di
+package ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.di
 
 import dagger.Module
 import dagger.Provides
@@ -9,8 +9,8 @@ import ua.shtain.irina.moviedbkt.root.network.servises.ProfileService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.root.session.SessionManager
 import ua.shtain.irina.moviedbkt.view.screens.home.di.MainScope
-import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.UserProfileContract
-import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.UserProfilePresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.UserProfileContract
+import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.UserProfilePresenter
 
 /**
  * Created by Irina Shtain on 13.02.2018.

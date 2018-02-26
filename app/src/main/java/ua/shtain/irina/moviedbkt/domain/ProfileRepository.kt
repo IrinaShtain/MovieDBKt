@@ -9,7 +9,7 @@ import ua.shtain.irina.moviedbkt.root.network.servises.ProfileService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.MovieListsContract
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.CreateNewListContract
-import ua.shtain.irina.moviedbkt.view.screens.home.user_profile.UserProfileContract
+import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.UserProfileContract
 import javax.inject.Inject
 
 /**
