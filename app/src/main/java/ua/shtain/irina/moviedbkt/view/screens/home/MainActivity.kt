@@ -11,7 +11,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.base.BaseActivity
-import ua.shtain.irina.moviedbkt.view.base.toolbar.ToolbarManager
+import ua.shtain.irina.moviedbkt.view.base.managers.ToolbarManager
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.MovieListsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.HomeFragment
 

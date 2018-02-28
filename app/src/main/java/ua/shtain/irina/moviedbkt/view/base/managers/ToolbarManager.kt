@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.base.toolbar
+package ua.shtain.irina.moviedbkt.view.base.managers
 
 import android.support.annotation.StringRes
 import android.support.v7.app.ActionBar
@@ -6,7 +6,6 @@ import android.support.v7.widget.Toolbar
 import android.util.TypedValue
 import android.view.View
 import ua.shtain.irina.moviedbkt.view.base.BaseActivity
-import javax.inject.Inject
 
 /**
  * Created by Irina Shtain on 20.02.2018.
