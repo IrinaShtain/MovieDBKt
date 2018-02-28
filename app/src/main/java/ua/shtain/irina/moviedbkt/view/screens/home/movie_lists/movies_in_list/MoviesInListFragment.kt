@@ -4,27 +4,18 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.fragment_recycler_view.*
-import kotlinx.android.synthetic.main.view_content_refreshable.*
 import kotlinx.android.synthetic.main.view_placeholder.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.other.Constants
+import ua.shtain.irina.moviedbkt.view.base.refreshable_content_with_fabs.RefreshableFragmentWithFABs
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
-import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnDeleteClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.latest_movies.SearchLatestMovieFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.popular_movies.SearchPopularMovieFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_genre.SearchMovieByGenreFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_title.SearchMovieByTitleFragment
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
@@ -40,8 +31,6 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
 
     private var mListID = 0
     private var mListTitle = ""
-    private var mAnimFabClose: Animation? = null
-    private var mAnimFabOpen: Animation? = null
 
 
     override fun getLayoutRes(): Int {
@@ -65,9 +54,8 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
         super.onViewCreated(view, savedInstanceState)
         mListID = arguments.getInt(LIST_ID)
         mListTitle = arguments.getString(LIST_TITLE)
-        setupAnimations()
         setupRecyclerView()
-        setupFABs()
+        setupFabMenu()
         mPresenter.mView = this
         mPresenter.subscribe()
     }
@@ -77,28 +65,9 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
         (mActivity as MainActivity).getToolbarMan()?.setTitle(mListTitle)
     }
 
-    private fun setupAnimations() {
-        mAnimFabOpen = AnimationUtils.loadAnimation(activity, R.anim.menu_fab_open)
-        mAnimFabClose = AnimationUtils.loadAnimation(activity, R.anim.menu_fab_close)
-    }
-
-    private fun setupFABs() {
-        fabAdd_VC.visibility = View.VISIBLE
-        RxView.clicks(fabAdd_VC)
-                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { mPresenter.onMainFABClick() }
-        RxView.clicks(fabFindUsingTitle)
-                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { mPresenter.onFabFindUsingTitleClick() }
-        RxView.clicks(fabFindUsingGenre)
-                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { mPresenter.onFabFindUsingGenreClick() }
-        RxView.clicks(fabFindPopular)
-                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { mPresenter.onFabFindPopularClick() }
-        RxView.clicks(fabFindLatest)
-                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { mPresenter.onFabFindLatestClick() }
+    private fun setupFabMenu() {
+        fabManager?.attachListID(mListID)
+        fabManager?.showFabMenu(true)
     }
 
     private fun setupRecyclerView() {
@@ -115,7 +84,7 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
 
     override fun getListID() = mListID
 
-    override fun getPresenter(): RefreshablePresenter = mPresenter
+    override fun getPresenter() = mPresenter
 
     override fun onCardClick(itemID: Int, position: Int) {
         mPresenter.showDetails(itemID)
@@ -132,22 +101,6 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
 
     override fun openMovieDetails(movieID: Int) {
         mActivity.changeFragment(MovieDetailsFragment.newInstance(movieID, mListID))
-    }
-
-    override fun openSearchByTitleScreen(listID: Int) {
-        mActivity.changeFragment(SearchMovieByTitleFragment.newInstance(listID, Constants.SEARCH_TYPE_MOVIES_BY_TITLE))
-    }
-
-    override fun openSearchByGenreScreen(listID: Int) {
-        mActivity.changeFragment(SearchMovieByGenreFragment.newInstance(listID, Constants.SEARCH_TYPE_MOVIES_BY_GENRE))
-    }
-
-    override fun openLatestSearchScreen(listID: Int) {
-        mActivity.changeFragment(SearchPopularMovieFragment.newInstance(listID, Constants.SEARCH_TYPE_LATEST_MOVIES))
-    }
-
-    override fun openPopularSearchScreen(listID: Int) {
-        mActivity.changeFragment(SearchLatestMovieFragment.newInstance(listID, Constants.SEARCH_TYPE_POPULAR_MOVIES))
     }
 
     override fun updateMovies(position: Int) {
@@ -169,41 +122,6 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
             ivPlaceholderImage_VC.setImageResource(R.drawable.placeholder_empty)
             tvPlaceholderMessage_VC.setText(R.string.error_msg_no_movies)
         }
-    }
-
-    override fun closeFabMenu() {
-        setClickableViews(false)
-        fabAdd_VC.setImageResource(R.drawable.ic_add)
-        seAnimation(mAnimFabClose!!)
-        updateContainerAlpha(1f)
-    }
-
-    override fun openFabMenu() {
-        fabAdd_VC.setImageResource(R.drawable.ic_close)
-        setClickableViews(true)
-        seAnimation(mAnimFabOpen!!)
-        updateContainerAlpha(0.15f)
-    }
-
-    private fun updateContainerAlpha(value: Float) {
-        if (rlPlaceholder_VC.visibility == View.VISIBLE)
-            rlPlaceholder_VC.alpha = value
-        else
-            flContent_VC.alpha = value
-    }
-
-    private fun setClickableViews(isViewsClickable: Boolean) {
-        fabFindUsingTitle.isClickable = isViewsClickable
-        fabFindUsingGenre.isClickable = isViewsClickable
-        fabFindPopular.isClickable = isViewsClickable
-        fabFindLatest.isClickable = isViewsClickable
-    }
-
-    private fun seAnimation(animation: Animation) {
-        llFindUsingTitle.startAnimation(animation)
-        llFindUsingGenre.startAnimation(animation)
-        llFindPopular.startAnimation(animation)
-        llFindLatest.startAnimation(animation)
     }
 
 }

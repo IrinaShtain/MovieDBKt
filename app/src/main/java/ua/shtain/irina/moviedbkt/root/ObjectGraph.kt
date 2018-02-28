@@ -43,24 +43,15 @@ class ObjectGraph private constructor(context: Context) {
         mSplashComponent = DaggerDiSplashComponent
                 .builder()
                 .diRootComponent(mRootComponent)
-                .diSplashModule(DiSplashModule())
                 .build()
         mLoginComponent = DaggerDiLoginComponent
                 .builder()
                 .diRootComponent(mRootComponent)
-                .diLoginModule(DiLoginModule())
                 .build()
         mHomeComponent = DaggerDiHomeComponent
                 .builder()
                 .diRootComponent(mRootComponent)
-                .diUserProfileModule(DiUserProfileModule())
-                .diMovieListsModule(DiMovieListsModule())
-                .diCreateNewListModule(DiCreateNewListModule())
-                .diMovieInListModule(DiMovieInListModule())
-                .diMovieDetailsModule(DiMovieDetailsModule())
-                .diSearchMoviesModule(DiSearchMoviesModule())
                 .build()
-
     }
 
     fun getSplashComponent(): DiSplashComponent {

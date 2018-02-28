@@ -31,8 +31,14 @@ class FavoriteMovieFragment  : MoviesFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         mSearchType = arguments.getInt(SEARCH_TYPE)
         super.onViewCreated(view, savedInstanceState)
+        setupFabMenu()
         mPresenter.mView = this
         mPresenter.subscribe()
+    }
+
+    private fun setupFabMenu() {
+        fabManager?.attachListID(0)
+        fabManager?.showFabMenu(true)
     }
 
     override fun getPresenter() = mPresenter

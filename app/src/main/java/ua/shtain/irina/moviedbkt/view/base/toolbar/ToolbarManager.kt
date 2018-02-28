@@ -11,7 +11,7 @@ import javax.inject.Inject
 /**
  * Created by Irina Shtain on 20.02.2018.
  */
-class ToolbarManager @Inject constructor(toolbar: Toolbar?,
+class ToolbarManager constructor(toolbar: Toolbar?,
                                          activity: BaseActivity) {
 
     private var actionBar: ActionBar? = null

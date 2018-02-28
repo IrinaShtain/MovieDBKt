@@ -7,16 +7,17 @@ import android.view.View
 import kotlinx.android.synthetic.main.view_content_refreshable.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.base.content.ContentFragment
+import ua.shtain.irina.moviedbkt.view.base.toolbar.FABManager
 
 /**
  * Created by Irina Shtain on 15.02.2018.
  */
-abstract class RefreshableFragment : ContentFragment(){
+abstract class RefreshableFragment : ContentFragment() {
 
 
     abstract override fun getPresenter(): RefreshablePresenter
 
-
+    protected var fabManager: FABManager? = null
 
     @LayoutRes
     override fun getRootLayoutRes() = R.layout.view_content_refreshable
@@ -25,14 +26,27 @@ abstract class RefreshableFragment : ContentFragment(){
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initFabManager()
         initRefreshing()
     }
 
-    protected fun initRefreshing() {
+    private fun initFabManager() {
+        fabManager = FABManager(mActivity)
+        fabManager!!.attachFabAdd(fabAdd_VC)
+        fabManager!!.attachContainerFindLatest(llFindLatest)
+        fabManager!!.attachContainerFindPopular(llFindPopular)
+        fabManager!!.attachContainerFindUsingGenre(llFindUsingGenre)
+        fabManager!!.attachContainerFindUsingTitle(llFindUsingTitle)
+    }
+
+    private fun initRefreshing() {
         swipeContainer_VC!!.isEnabled = false
         swipeContainer_VC!!.setColorSchemeColors(ContextCompat.getColor(mActivity, R.color.colorPrimaryDark))
         swipeContainer_VC!!.isEnabled = true
-        swipeContainer_VC!!.setOnRefreshListener { getPresenter().onRefresh() }
+        swipeContainer_VC!!.setOnRefreshListener {
+            if (fabManager?.isFabGroupOpen()!!) fabManager?.closeFabMenu()
+            getPresenter().onRefresh()
+        }
     }
 
     fun enableRefreshing(isEnabled: Boolean) {

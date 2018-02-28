@@ -44,8 +44,7 @@ class MoviesInListPresenter @Inject constructor(compositeDisposable: CompositeDi
                     if (!movieItems!!.isEmpty()) {
                         totalResults = movieItems!!.size
                         mView.setLists(prepareList(movieItems!!))
-                    }
-                    else
+                    } else
                         mView.showPlaceholder(Constants.PlaceholderType.EMPTY)
                 }, { throwable ->
                     mView.hideProgress()
@@ -77,8 +76,6 @@ class MoviesInListPresenter @Inject constructor(compositeDisposable: CompositeDi
     }
 
     override fun onRefresh() {
-        if (mIsFabOpen)
-            mView.closeFabMenu()
         loadMovies()
     }
 
@@ -87,11 +84,11 @@ class MoviesInListPresenter @Inject constructor(compositeDisposable: CompositeDi
         mView.openMovieDetails(movieID)
     }
 
-    override fun deleteMovieAlert(movieID: Int,  position :Int) {
+    override fun deleteMovieAlert(movieID: Int, position: Int) {
         mView.showConfirmAlert(movieID, position)
     }
 
-    override fun deleteMovie(movieID: Int,  position :Int) {
+    override fun deleteMovie(movieID: Int, position: Int) {
         Log.e("myLog", "deleteItem movieID = " + movieID)
         mCompositeDisposable.add(mModel.deleteMovie(listID, movieID)
                 .subscribe({ _ ->
@@ -121,33 +118,33 @@ class MoviesInListPresenter @Inject constructor(compositeDisposable: CompositeDi
             mView.showPlaceholder(Constants.PlaceholderType.EMPTY)
     }
 
-    override fun onMainFABClick() {
-        mIsFabOpen = if (mIsFabOpen) {
-            mView.closeFabMenu()
-            false
-        } else {
-            mView.openFabMenu()
-            true
-        }
-    }
-
-    override fun onFabFindUsingTitleClick() {
-        mIsFabOpen = false
-        mView.openSearchByTitleScreen(listID)
-    }
-
-    override fun onFabFindUsingGenreClick() {
-        mIsFabOpen = false
-        mView.openSearchByGenreScreen(listID)
-    }
-
-    override fun onFabFindPopularClick() {
-        mIsFabOpen = false
-        mView.openPopularSearchScreen(listID)
-    }
-
-    override fun onFabFindLatestClick() {
-        mIsFabOpen = false
-        mView.openLatestSearchScreen(listID)
-    }
+//    override fun onMainFABClick() {
+//        mIsFabOpen = if (mIsFabOpen) {
+//            mView.closeFabMenu()
+//            false
+//        } else {
+//            mView.openFabMenu()
+//            true
+//        }
+//    }
+//
+//    override fun onFabFindUsingTitleClick() {
+//        mIsFabOpen = false
+//        mView.openSearchByTitleScreen(listID)
+//    }
+//
+//    override fun onFabFindUsingGenreClick() {
+//        mIsFabOpen = false
+//        mView.openSearchByGenreScreen(listID)
+//    }
+//
+//    override fun onFabFindPopularClick() {
+//        mIsFabOpen = false
+//        mView.openPopularSearchScreen(listID)
+//    }
+//
+//    override fun onFabFindLatestClick() {
+//        mIsFabOpen = false
+//        mView.openLatestSearchScreen(listID)
+//    }
 }
