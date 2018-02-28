@@ -8,11 +8,10 @@ import kotlinx.android.synthetic.main.fragment_recycler_view.*
 import kotlinx.android.synthetic.main.view_placeholder.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.other.Constants
-import ua.shtain.irina.moviedbkt.view.base.refreshable_content_with_fabs.RefreshableFragmentWithFABs
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnDeleteClickListener
-import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH

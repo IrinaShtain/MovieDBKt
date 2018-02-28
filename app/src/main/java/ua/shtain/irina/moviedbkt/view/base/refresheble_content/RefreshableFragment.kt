@@ -44,9 +44,13 @@ abstract class RefreshableFragment : ContentFragment() {
         swipeContainer_VC!!.setColorSchemeColors(ContextCompat.getColor(mActivity, R.color.colorPrimaryDark))
         swipeContainer_VC!!.isEnabled = true
         swipeContainer_VC!!.setOnRefreshListener {
-            if (fabManager?.isFabGroupOpen()!!) fabManager?.closeFabMenu()
+            closeFabMenu()
             getPresenter().onRefresh()
         }
+    }
+
+    fun closeFabMenu(){
+        if (fabManager?.isFabGroupOpen()!!) fabManager?.closeFabMenu()
     }
 
     fun enableRefreshing(isEnabled: Boolean) {
