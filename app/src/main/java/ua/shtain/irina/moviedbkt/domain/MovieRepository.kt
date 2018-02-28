@@ -1,10 +1,12 @@
 package ua.shtain.irina.moviedbkt.domain
 
 import io.reactivex.Observable
+import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
 import ua.shtain.irina.moviedbkt.model.movie.*
 import ua.shtain.irina.moviedbkt.root.network.servises.MovieService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsContract
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.rating_dialog.RatingDialogContract
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListContract
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesContract
 import javax.inject.Inject
@@ -13,7 +15,7 @@ import javax.inject.Inject
  * Created by Irina Shtain on 19.02.2018.
  */
 class MovieRepository @Inject constructor(movieService: MovieService, helper: SchedulerHelper) : MoviesInListContract.Model,
-        MovieDetailsContract.Model, MoviesContract.Model {
+        MovieDetailsContract.Model, MoviesContract.Model, RatingDialogContract.Model {
     val mService = movieService
     val mHelper = helper
 
@@ -43,4 +45,6 @@ class MovieRepository @Inject constructor(movieService: MovieService, helper: Sc
     override fun getFavoriteMovies(page: Int)= mHelper.getNetworkObservable(mService.getFavoriteMovies(page))
 
     override fun getWatchlistMovies(page: Int)= mHelper.getNetworkObservable(mService.getWatchlistMovies(page))
+
+    override fun rateMovie(rating: Float, movieID: Int)= mHelper.getNetworkObservable(mService.rateMovie(movieID, RateRequest(rating)))
 }

@@ -9,6 +9,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.di.DiCre
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.di.DiMovieListsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.di.DiMovieDetailsModule
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.rating_dialog.RatingDialogFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.rating_dialog.di.DiRatingMovieModule
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.di.DiMovieInListModule
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.di.DiSearchMoviesModule
@@ -30,7 +32,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.watchlist_movie
         DiCreateNewListModule::class,
         DiMovieInListModule::class,
         DiMovieDetailsModule::class,
-        DiSearchMoviesModule::class
+        DiSearchMoviesModule::class,
+        DiRatingMovieModule::class
 ),
         dependencies = arrayOf(DiRootComponent::class))
 interface DiHomeComponent {
@@ -48,4 +51,5 @@ interface DiHomeComponent {
     fun inject(fragment: SearchMovieByTitleFragment)
     fun inject(fragment: FavoriteMovieFragment)
     fun inject(fragment: WatchListMovieFragment)
+    fun inject(fragment: RatingDialogFragment)
 }

@@ -1,11 +1,12 @@
 package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.view.View
-import android.webkit.RenderProcessGoneDetail
 import com.jakewharton.rxbinding2.view.RxView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_movie_details.*
@@ -18,6 +19,7 @@ import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentFragment
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.rating_dialog.RatingDialogFragment
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -28,6 +30,7 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
 
     private var mMovieID = 0
     private var mListID = 0
+    private var dialogRating: RatingDialogFragment? = null
 
     companion object {
         private val MOVIE_ID = "movie_id"
@@ -121,18 +124,24 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     }
 
     override fun showRatingDialog() {
-//        dialogRating = RatingDialogFragment_.builder()
-//                .movieID(movieID)
-//                .build()
-//        dialogRating.setTargetFragment(this, Constants.REQUEST_CODE_RATE_MOVIE)
-//        dialogRating.show(mActivity.supportFragmentManager, "rate_ movie")
+        dialogRating = RatingDialogFragment.newInstance(mMovieID)
+        dialogRating!!.setTargetFragment(this, Constants.REQUEST_CODE_RATE_MOVIE)
+        dialogRating!!.show(mActivity.supportFragmentManager, "rate_ movie")
     }
 
     override fun getMovieID() = mMovieID
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK && requestCode == Constants.REQUEST_CODE_RATE_MOVIE) {
+            mPresenter.showResult(data!!.getIntExtra(Constants.KEY_ERROR_CODE, Constants.ERROR_CODE_UNKNOWN))
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         (mActivity as MainActivity).getToolbarMan()?.displayToolbar(true)
+        if (dialogRating != null && dialogRating!!.isVisible)
+            dialogRating!!.dismiss()
     }
 
 
