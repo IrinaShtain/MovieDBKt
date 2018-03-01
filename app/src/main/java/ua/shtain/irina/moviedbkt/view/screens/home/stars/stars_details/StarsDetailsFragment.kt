@@ -6,6 +6,7 @@ import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.widget.Toast
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_star_details.*
 import ua.shtain.irina.moviedbkt.R
@@ -141,7 +142,10 @@ class StarsDetailsFragment : ContentFragment(), StarsDetailsContract.View, OnCar
     }
 
     override fun onCardClick(itemID: Int, position: Int) {
-        mActivity.changeFragment(MovieDetailsFragment.newInstance(itemID, 0))
+        if (famousForItem[position].mediaType != "tv")
+            mActivity.changeFragment(MovieDetailsFragment.newInstance(itemID, 0))
+        else
+            Toast.makeText(context, "It's TV!!!", Toast.LENGTH_SHORT).show()
     }
 
     override fun showProgressMain() {
