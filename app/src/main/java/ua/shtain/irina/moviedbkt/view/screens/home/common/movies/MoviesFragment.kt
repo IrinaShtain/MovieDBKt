@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.view.View
 import com.jakewharton.rxbinding2.view.RxView
-import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.fragment_movies.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
@@ -39,7 +39,7 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCa
     @StringRes
     abstract fun getToolbarTitle(): Int
 
-    override fun getLayoutRes() = R.layout.fragment_search
+    override fun getLayoutRes() = R.layout.fragment_movies
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

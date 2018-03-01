@@ -67,7 +67,6 @@ class MovieListsPresenter @Inject constructor(sessionManager: ISessionManager,
                     checkEmptyList()
                 }, { throwable ->
                     mView.hideProgress()
-                    Log.e("myLog", "throwable " + throwable.localizedMessage)
                     when {
                         throwable.message.equals("HTTP 500 Internal Server Error") -> {// backend bug :(
                             mView.deleteItem(pos)

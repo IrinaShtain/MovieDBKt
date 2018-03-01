@@ -106,6 +106,7 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
     private fun loadMovies() {
         mView.showProgressMain()
         mCurrentPage = 1
+        mTotalPages = Integer.MAX_VALUE
         loadPage(mCurrentPage)
     }
 
@@ -159,23 +160,14 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
                 }) { throwable ->
                     mView.hideProgress()
                     throwable.printStackTrace()
-                    Log.e("myLogs", throwable.localizedMessage)
-                    if (mTotalPages != Integer.MAX_VALUE)
-                        if (searchType == Constants.SEARCH_TYPE_MOVIES_BY_GENRE && genreId == 0) {
-                        } else
-                            if (throwable is ConnectionException) {
-                                mView.showMessage(Constants.MessageType.CONNECTION_PROBLEMS)
-                            } else {
-                                mView.showMessage(Constants.MessageType.UNKNOWN)
-                            }
-                    else
-                        if (throwable is ConnectionException) {
-                            mView.showPlaceholder(Constants.PlaceholderType.NETWORK)
-                        } else {
-                            if (searchType == Constants.SEARCH_TYPE_MOVIES_BY_GENRE && genreId == 0) {
-                            } else
-                                mView.showPlaceholder(Constants.PlaceholderType.UNKNOWN)
+                    when {
+                        mTotalPages != Integer.MAX_VALUE -> when (throwable) {
+                            is ConnectionException -> mView.showMessage(Constants.MessageType.CONNECTION_PROBLEMS)
+                            else -> mView.showMessage(Constants.MessageType.UNKNOWN)
                         }
+                        throwable is ConnectionException -> mView.showPlaceholder(Constants.PlaceholderType.NETWORK)
+                        else -> mView.showPlaceholder(Constants.PlaceholderType.UNKNOWN)
+                    }
                 })
     }
 

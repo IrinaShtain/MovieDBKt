@@ -2,7 +2,7 @@ package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by
 
 import android.os.Bundle
 import android.view.View
-import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.fragment_movies.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesFragment
