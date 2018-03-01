@@ -54,12 +54,12 @@ class MovieListsPresenter @Inject constructor(sessionManager: ISessionManager,
     }
 
     override fun showDetails(lisID: Int, item: CreatedListsDH) {
-        mView.openListDetails(lisID, item.getListsName())
+        mView.openListDetails(lisID, item.listName)
     }
 
     override fun removeList(item: CreatedListsDH, pos: Int) {
         mView.showProgressPagination()
-        mCompositeDisposable.add(mModel.deleteList(item.getListsID())
+        mCompositeDisposable.add(mModel.deleteList(item.id)
                 .subscribe({ _ ->
                     mView.hideProgress()
                     mView.deleteItem(pos)

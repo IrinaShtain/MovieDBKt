@@ -8,14 +8,12 @@ import ua.shtain.irina.moviedbkt.other.Constants
  */
 class MovieItemDH(val model: MovieItem) {
     var isInList = false
+    val title: String
+        get() = model.title.trim()
 
-    fun getMovieTitle() = model.title.trim()
+    val id: Int
+        get() = model.id
 
-    fun getMovieID() = model.id
-
-    fun getPosterPath() = Constants.IMAGE_BASE + model.posterPath
-
-    fun makeVisible() {
-        isInList = true
-    }
+    val posterPath: String
+        get() = Constants.IMAGE_BASE + model.posterPath
 }

@@ -22,6 +22,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.UserProfileFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.di.DiUserProfileModule
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.watchlist_movies.WatchListMovieFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.stars.SearchStarFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.stars.di.DiStarsModule
 
 /**
  * Created by Irina Shtain on 13.02.2018.
@@ -33,7 +35,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.watchlist_movie
         DiMovieInListModule::class,
         DiMovieDetailsModule::class,
         DiSearchMoviesModule::class,
-        DiRatingMovieModule::class
+        DiRatingMovieModule::class,
+        DiStarsModule::class
 ),
         dependencies = arrayOf(DiRootComponent::class))
 interface DiHomeComponent {
@@ -52,4 +55,5 @@ interface DiHomeComponent {
     fun inject(fragment: FavoriteMovieFragment)
     fun inject(fragment: WatchListMovieFragment)
     fun inject(fragment: RatingDialogFragment)
+    fun inject(fragment: SearchStarFragment)
 }

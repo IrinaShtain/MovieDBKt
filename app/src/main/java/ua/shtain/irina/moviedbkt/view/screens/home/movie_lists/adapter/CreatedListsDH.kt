@@ -8,11 +8,15 @@ import ua.shtain.irina.moviedbkt.model.lists.ListItem
  */
 class CreatedListsDH constructor(val model: ListItem) {
 
-    fun getListsName() = model.name
+    val listName : String
+        get() = model.name
 
-    fun getListsID() = model.id
+    val id :Int
+        get() = model.id
 
-    fun getListsDescription() = if (model.description == "") "No description" else model.description
+    val description : String
+        get() = if (model.description == "") "No description" else model.description
 
-    fun getListsType() = model.listType
+    val type : String
+        get() = model.listType
 }

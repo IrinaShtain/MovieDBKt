@@ -14,6 +14,7 @@ import ua.shtain.irina.moviedbkt.view.base.BaseActivity
 import ua.shtain.irina.moviedbkt.view.base.managers.ToolbarManager
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.MovieListsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.HomeFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.stars.SearchStarFragment
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -106,9 +107,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         when (item.itemId) {
             R.id.menuMyProfile -> changeFragment(HomeFragment(), true)
             R.id.menuLists -> changeFragment(MovieListsFragment(), true)
-            R.id.menuLatestMovies -> Toast.makeText(this, "Menu menuLatestMovies", Toast.LENGTH_SHORT).show()
-            R.id.menuReadAboutStar -> Toast.makeText(this, "Menu menuReadAboutStar", Toast.LENGTH_SHORT).show()
-
+            R.id.menuReadAboutStar -> changeFragment(SearchStarFragment(), true)
         }
         return true
     }

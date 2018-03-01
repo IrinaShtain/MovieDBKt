@@ -45,17 +45,16 @@ class MovieItemAdapter : RecyclerView.Adapter<MovieItemVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieItemVH {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.list_item, parent, false)
+        val view = layoutInflater.inflate(R.layout.list_item_movie, parent, false)
         return MovieItemVH(view)
-
     }
 
     override fun onBindViewHolder(holder: MovieItemVH, position: Int) {
         if (mListener != null) {
-            holder.itemView.setOnClickListener({ v -> mListener!!.onCardClick(items!![position].getMovieID(), position) })
+            holder.itemView.setOnClickListener({ mListener!!.onCardClick(items!![position].id, position) })
         }
         if (mDeleteListener!=null){
-            holder.ivDelete.setOnClickListener({ v -> mDeleteListener!!.onItemClick (items!![position].getMovieID(), position) })
+            holder.ivDelete.setOnClickListener({ mDeleteListener!!.onItemClick (items!![position].id, position) })
         }
         holder.bindData(items!![position])
     }
@@ -68,8 +67,4 @@ class MovieItemAdapter : RecyclerView.Adapter<MovieItemVH>() {
         }
     }
 
-    fun clearData() {
-        items?.clear()
-        notifyDataSetChanged()
-    }
 }
