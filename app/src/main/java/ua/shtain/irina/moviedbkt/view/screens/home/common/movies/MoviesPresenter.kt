@@ -75,7 +75,10 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
     }
 
     override fun onRefresh() {
-        loadMovies()
+        when {
+            searchType == Constants.SEARCH_TYPE_MOVIES_BY_GENRE && genreId == 0 || searchType == Constants.SEARCH_TYPE_MOVIES_BY_TITLE && movieTitle.isEmpty() -> mView.hideProgress()
+            else -> loadMovies()
+        }
     }
 
     override fun updateNeedRefresh(needRefresh: Boolean) {
