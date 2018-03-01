@@ -6,14 +6,17 @@ import android.view.View
 import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.fragment_search_star.*
 import ua.shtain.irina.moviedbkt.R
+import ua.shtain.irina.moviedbkt.model.star.StarItem
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.EndlessScrollListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnNextPageListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.StarListener
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.adapter.SearchStarAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.adapter.StarDH
+import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.StarsDetailsFragment
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -21,7 +24,7 @@ import javax.inject.Inject
 /**
  * Created by Irina Shtain on 01.03.2018.
  */
-class SearchStarFragment : RefreshableFragment(), SearchStarContract.View, OnCardClickListener {
+class SearchStarFragment : RefreshableFragment(), SearchStarContract.View, StarListener {
     @Inject
     lateinit var mPresenter: SearchStarPresenter
     @Inject
@@ -67,8 +70,8 @@ class SearchStarFragment : RefreshableFragment(), SearchStarContract.View, OnCar
         }))
     }
 
-    override fun onCardClick(itemID: Int, position: Int) {
-        //  mActivity.replaceFragment(StarsDetailsFragment_.builder().starItem(starItem).build())
+    override fun onStarClick(starItem: StarItem) {
+       mActivity.changeFragment(StarsDetailsFragment.newInstance(starItem.id, starItem.knownFor))
     }
 
     override fun setList(starDHs: ArrayList<StarDH>) {

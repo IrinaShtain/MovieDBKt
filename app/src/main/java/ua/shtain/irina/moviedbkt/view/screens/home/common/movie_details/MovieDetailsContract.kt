@@ -11,7 +11,6 @@ import ua.shtain.irina.moviedbkt.view.base.content.ContentView
  */
 interface MovieDetailsContract {
     interface View : ContentView {
-        fun setupButton(isMovieAdded: Boolean)
         fun setupUI(movieItem: MovieItem)
         fun showRatingDialog()
         fun getMovieID(): Int

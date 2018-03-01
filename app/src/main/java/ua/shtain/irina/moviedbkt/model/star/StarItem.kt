@@ -9,6 +9,6 @@ import java.util.ArrayList
 data class StarItem(@SerializedName("profile_path") val profilePath: String,
                     @SerializedName("name") val name: String,
                     @SerializedName("popularity") val popularity: Float,
-                    @SerializedName("known_for") val genreIds: ArrayList<FamousForItem>,
+                    @SerializedName("known_for") val knownFor: ArrayList<FamousForItem>,
                     @SerializedName("id") val id: Int
 )

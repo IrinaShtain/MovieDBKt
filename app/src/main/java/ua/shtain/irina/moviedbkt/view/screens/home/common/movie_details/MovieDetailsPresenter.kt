@@ -30,7 +30,6 @@ class MovieDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
                     movieItem = response
                     mView.hideProgress()
                     mView.setupUI(response)
-                    mView.setupButton(false)
                 }, { throwable ->
                     mView.hideProgress()
                     throwable.printStackTrace()
@@ -56,7 +55,7 @@ class MovieDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
 
     override fun fabAddToWatchListClicked() {
         mCompositeDisposable.add(mModel.addToWatchListMovie(movieID)
-                .subscribe({ (_, _, _) ->
+                .subscribe({
                     mView.hideProgress()
                     mView.showMessage(Constants.MessageType.NEW_MOVIE_ADDED_SUCCESSFULLY)
                 }, throwableConsumer))
@@ -67,7 +66,6 @@ class MovieDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
                 .subscribe({ (_, _, _) ->
                     mView.hideProgress()
                     mView.showMessage(Constants.MessageType.NEW_MOVIE_ADDED_SUCCESSFULLY)
-                    mView.setupButton(true)
                 }, { throwable: Throwable ->
                     throwable.printStackTrace()
                     mView.hideProgress()

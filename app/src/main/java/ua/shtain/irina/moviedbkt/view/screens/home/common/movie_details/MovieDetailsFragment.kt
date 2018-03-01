@@ -32,6 +32,17 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     private var mListID = 0
     private var dialogRating: RatingDialogFragment? = null
 
+    @Inject
+    lateinit var mPresenter: MovieDetailsPresenter
+
+    override fun getLayoutRes() = R.layout.fragment_movie_details
+
+    override fun getPresenter() = mPresenter as IBasePresenter<ContentView>
+
+    override fun initGraph() {
+        mActivity.mObjectGraph.getHomeComponent().inject(this)
+    }
+
     companion object {
         private val MOVIE_ID = "movie_id"
         private val LIST_ID = "list_id"
@@ -45,17 +56,6 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
         }
     }
 
-    @Inject
-    lateinit var mPresenter: MovieDetailsPresenter
-
-    override fun getLayoutRes() = R.layout.fragment_movie_details
-
-    override fun getPresenter() = mPresenter as IBasePresenter<ContentView>
-
-    override fun initGraph() {
-        mActivity.mObjectGraph.getHomeComponent().inject(this)
-    }
-
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mMovieID = arguments.getInt(MOVIE_ID)
@@ -67,7 +67,7 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     }
 
     private fun initUI() {
-        toolbar.setNavigationOnClickListener { v -> mActivity.onBackPressed() }
+        toolbar.setNavigationOnClickListener {mActivity.onBackPressed() }
         RxView.clicks(fabAddToList)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
                 .subscribe { _ -> mPresenter.fabAddToListClicked(mListID) }
@@ -104,10 +104,6 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
         })
     }
 
-    override fun setupButton(isMovieAdded: Boolean) {
-
-    }
-
     override fun setupUI(movieItem: MovieItem) {
         collapsingToolbar.title = movieItem.title
         collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE)
@@ -115,7 +111,7 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
         tvTitle.text = movieItem.title
         tv_genre.text = resources.getString(R.string.genre, movieItem.getGenres())
         tv_releaseDate.text = movieItem.releaseDate
-        tv_popularity.text = movieItem.voteAverage.toString()
+        tvPopularity.text = movieItem.voteAverage.toString()
         Picasso.with(context)
                 .load(movieItem.getAvatarUrl())
                 .error(R.drawable.placeholder_movie)

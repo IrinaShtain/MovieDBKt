@@ -122,7 +122,7 @@
                 />
 
             <TextView
-                android:id="@+id/tv_popularity"
+                android:id="@+id/tvPopularity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -142,7 +142,7 @@
                 android:id="@+id/fabRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_popularity"
+                android:layout_below="@+id/tvPopularity"
                 android:layout_margin="@dimen/margin_half"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_rating_white"/>
@@ -152,7 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toStartOf="@+id/fabRating"
-                android:layout_below="@+id/tv_popularity"
+                android:layout_below="@+id/tvPopularity"
                 android:layout_margin="@dimen/margin_half"
                 android:src="@drawable/ic_list"/>
 
@@ -161,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/fabAddToList"
-            android:layout_below="@+id/tv_popularity"
+            android:layout_below="@+id/tvPopularity"
             android:layout_margin="@dimen/margin_half"
             android:src="@drawable/ic_favorite"/>
 
@@ -170,7 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toStartOf="@+id/fabAddToFavorite"
-                android:layout_below="@+id/tv_popularity"
+                android:layout_below="@+id/tvPopularity"
                 android:layout_margin="@dimen/margin_half"
                 android:src="@drawable/ic_watch_list"/>
 

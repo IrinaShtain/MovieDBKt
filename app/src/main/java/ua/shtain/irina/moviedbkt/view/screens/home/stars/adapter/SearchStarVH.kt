@@ -18,8 +18,8 @@ class SearchStarVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bindData(starDH: StarDH) {
         Picasso.with(itemView.context)
                 .load(starDH.posterPath)
-                .error(R.drawable.placeholder_movie)
-                .placeholder(R.drawable.placeholder_movie)
+                .error(R.drawable.placeholder_star)
+                .placeholder(R.drawable.placeholder_star)
                 .into(ivImage)
         tvTitle.text = starDH.name
     }

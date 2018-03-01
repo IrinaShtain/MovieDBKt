@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import ua.shtain.irina.moviedbkt.R
-import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.StarListener
 import java.util.*
 
 /**
@@ -12,7 +12,7 @@ import java.util.*
  */
 class SearchStarAdapter : RecyclerView.Adapter<SearchStarVH>() {
     private var items: MutableList<StarDH>? = null
-    private var mListener: OnCardClickListener? = null
+    private var mListener: StarListener? = null
 
     init {
         items = ArrayList()
@@ -33,7 +33,7 @@ class SearchStarAdapter : RecyclerView.Adapter<SearchStarVH>() {
         notifyDataSetChanged()
     }
 
-    fun setListener(listener: OnCardClickListener) {
+    fun setListener(listener: StarListener) {
         mListener = listener
     }
 
@@ -45,7 +45,7 @@ class SearchStarAdapter : RecyclerView.Adapter<SearchStarVH>() {
 
     override fun onBindViewHolder(holder: SearchStarVH, position: Int) {
         if (mListener != null) {
-            holder.itemView.setOnClickListener({ mListener!!.onCardClick(items!![position].id, position) })
+            holder.itemView.setOnClickListener({ mListener!!.onStarClick(items?.get(position)!!.model) })
         }
         holder.bindData(items!![position])
     }

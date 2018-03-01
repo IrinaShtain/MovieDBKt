@@ -49,15 +49,6 @@ interface MovieService {
     fun addMovie(@Path("list_id") list_id: Int,
                  @Body action: ActionRequest): Observable<ResponseMessage>
 
-    @GET("/3/search/person")
-    fun searchStar(@Query("query") title: String,
-                   @Query("page") page: Int): Observable<StarResponse>
-
-
-    @Headers("content-type: application/json;charset=utf-8")
-    @DELETE("/3/list/{list_id}")
-    fun deleteList(@Path("list_id") list_id: Int): Observable<ResponseMessage>
-
     @Headers("content-type: application/json;charset=utf-8")
     @POST("/3/movie/{movie_id}/rating")
     fun rateMovie(@Path("movie_id") movie_id: Int,
