@@ -22,16 +22,16 @@ class HomeFragment : ContentTabsFragment() {
         super.onViewCreated(view, savedInstanceState)
         tlTabs_FCT.getTabAt(0)?.setIcon(R.drawable.ic_user_white)
         tlTabs_FCT.getTabAt(1)?.setIcon(R.drawable.ic_favorite)
-        tlTabs_FCT.getTabAt(2)?.setIcon(R.drawable.ic_favorite)
-        tlTabs_FCT.getTabAt(3)?.setIcon(R.drawable.ic_watch_list)
+        tlTabs_FCT.getTabAt(2)?.setIcon(R.drawable.ic_watch_list)
+        tlTabs_FCT.getTabAt(3)?.setIcon(R.drawable.ic_favorite)
         tlTabs_FCT.getTabAt(4)?.setIcon(R.drawable.ic_watch_list)
     }
 
     override fun addFragmentsToAdapter(adapter: TabPagerAdapter) {
         adapter.addFragment(UserProfileFragment(), "User Profile")
         adapter.addFragment(FavoriteMovieFragment(), "Favorite Movies")
-        adapter.addFragment(FavoriteTvShowsFragment(), "Favorite TV Show")
         adapter.addFragment(WatchListMovieFragment(), "Watchlist Movies")
+        adapter.addFragment(FavoriteTvShowsFragment(), "Favorite TV Show")
         adapter.addFragment(WatchListTvShowsFragment(), "Watchlist TV Show")
     }
 

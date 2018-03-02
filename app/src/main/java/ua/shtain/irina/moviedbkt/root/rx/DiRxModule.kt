@@ -11,7 +11,6 @@ import javax.inject.Singleton
  */
 @Module
 class DiRxModule {
-    @Singleton
     @Provides
      fun provideCompositeSubscription(): CompositeDisposable {
         return CompositeDisposable()
