@@ -27,6 +27,10 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.latest_m
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.popular_movies.SearchPopularMovieFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.search_by_genre.SearchMovieByGenreFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.search_by_title.SearchMovieByTitleFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.latest_shows.SearchLatestTvShowsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.on_air_shows.SearchOnAirTvShowsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.popular_shows.SearchPopularTvShowsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.top_rated_shows.SearchTopRatedTvShowsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.SearchStarFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.di.DiStarsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.StarsDetailsFragment
@@ -70,4 +74,8 @@ interface DiHomeComponent {
     fun inject(fragment: TvShowDetailsFragment)
     fun inject(fragment: FavoriteTvShowsFragment)
     fun inject(fragment: WatchListTvShowsFragment)
+    fun inject(fragment: SearchLatestTvShowsFragment)
+    fun inject(fragment: SearchPopularTvShowsFragment)
+    fun inject(fragment: SearchTopRatedTvShowsFragment)
+    fun inject(fragment: SearchOnAirTvShowsFragment)
 }

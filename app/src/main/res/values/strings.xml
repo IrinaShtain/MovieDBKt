@@ -30,7 +30,11 @@
     <string name="title_my_account">My account details</string>
     <string name="read_about_star">Read about star</string>
     <string name="title_latest_movies">The latest movies</string>
+    <string name="title_latest_shows">The latest shows</string>
+    <string name="title_on_air_shows">The currently on the air shows</string>
     <string name="title_popular_movies">The popular movies</string>
+    <string name="title_popular_shows">The popular shows</string>
+    <string name="title_top_rated_shows">The top rated shows</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
@@ -85,6 +89,7 @@
     <string name="error_msg_no_movies_with_such_title">No movies with such title</string>
     <string name="error_msg_no_tv_shows_added_to_favorite">No shows added to favorite</string>
     <string name="error_msg_no_tv_shows_added_to_watchlist">No shows added to watchlist</string>
+    <string name="error_msg_no_tv_shows">No shows for presenting</string>
     <string name="error_msg_no_star_with_such_name">No star with such name</string>
     <string name="err_message_input_rating">Set Rating</string>
     <string name="err_movie_added">Movie already is on your list</string>
@@ -93,7 +98,11 @@
     <string name="menu_delete">Delete</string>
     <string name="menu_logout">Logout</string>
     <string name="menu_fab_latest_movies">Find the latest movies</string>
+    <string name="menu_fab_latest_shows">Find the latest TV shows</string>
     <string name="menu_fab_popular_movies">Find the popular movies</string>
+    <string name="menu_fab_popular_shows">Find the popular TV shows</string>
+    <string name="menu_fab_top_rated_shows">Find the top rated TV show</string>
+    <string name="menu_fab_currently_on_the_air_shows">Find the running TV show</string>
     <string name="menu_fab_find_by_genres">Find a movie by genre</string>
     <string name="menu_fab_find_by_title">Find a movie by title</string>
 </resources>

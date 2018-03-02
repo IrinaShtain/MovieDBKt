@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_shows
+package ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.popular_shows
 
 import android.os.Bundle
 import android.view.View
@@ -10,22 +10,16 @@ import javax.inject.Inject
 /**
  * Created by Irina Shtain on 02.03.2018.
  */
-class FavoriteTvShowsFragment : TvShowsFragment() {
+class SearchPopularTvShowsFragment : TvShowsFragment() {
 
     @Inject
-    lateinit var mPresenter: FavoriteTvShowsPresenter
+    lateinit var mPresenter: SearchPopularTvShowsPresenter
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        mShowsType = Constants.TYPE_FAVORITE_TV_SHOWS
+        mShowsType = Constants.SEARCH_TYPE_TVSHOWS
         super.onViewCreated(view, savedInstanceState)
-        setupFabMenu()
         mPresenter.mView = this
         mPresenter.subscribe()
-    }
-
-    private fun setupFabMenu() {
-        fabManager?.attachListID(0)
-        fabManager?.showFabMenu(true, false)
     }
 
     override fun getPresenter() = mPresenter
@@ -36,7 +30,7 @@ class FavoriteTvShowsFragment : TvShowsFragment() {
 
     override fun getSearchPresenter() = mPresenter
 
-    override fun getToolbarTitle() = R.string.app_name
+    override fun getToolbarTitle() = R.string.title_popular_shows
 
-    override fun getErrorEmptyText() = R.string.error_msg_no_tv_shows_added_to_favorite
+    override fun getErrorEmptyText() = R.string.error_msg_no_tv_shows
 }

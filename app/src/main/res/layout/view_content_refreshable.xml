@@ -52,6 +52,7 @@
         tools:visibility="visible">
 
         <TextView
+            android:id="@+id/tvFindUsingTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_horizontal"
@@ -92,6 +93,7 @@
         >
 
         <TextView
+            android:id="@+id/tvFindUsingGenre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_horizontal"
@@ -130,6 +132,7 @@
         tools:visibility="visible">
 
         <TextView
+            android:id="@+id/tvFindPopular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_horizontal"
@@ -169,6 +172,7 @@
         tools:visibility="visible">
 
         <TextView
+            android:id="@+id/tvFindLatest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_horizontal"

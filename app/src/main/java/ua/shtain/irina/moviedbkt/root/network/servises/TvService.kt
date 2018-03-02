@@ -35,7 +35,7 @@ interface TvService {
     @GET("/3/account/{account_id}/favorite/tv")
     fun getFavoriteaShows(@Query("page") page: Int): Observable<SearchTvShowResponse>
 
-    @GET("/3/tv/latest")
+    @GET("/3/tv/airing_today")
     fun searchLatestShows(@Query("page") page: Int): Observable<SearchTvShowResponse>
 
     @GET("/3/tv/on_the_air")
