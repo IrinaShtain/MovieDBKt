@@ -25,7 +25,7 @@ class WatchListTvShowsFragment : TvShowsFragment() {
 
     private fun setupFabMenu() {
         fabManager?.attachListID(0)
-        fabManager?.showFabMenu(true)
+        fabManager?.showFabMenu(true, false)
     }
 
     override fun getPresenter() = mPresenter
