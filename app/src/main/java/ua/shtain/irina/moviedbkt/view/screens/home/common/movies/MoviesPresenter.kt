@@ -10,7 +10,7 @@ import ua.shtain.irina.moviedbkt.model.genre.GenreItem
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter.GenreDH
 
 /**
  * Created by Irina Shtain on 20.02.2018.

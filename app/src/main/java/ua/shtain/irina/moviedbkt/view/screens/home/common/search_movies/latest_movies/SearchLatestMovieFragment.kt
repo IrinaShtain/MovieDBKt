@@ -1,41 +1,34 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_genre
+package ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.latest_movies
 
 import android.os.Bundle
 import android.view.View
 import ua.shtain.irina.moviedbkt.R
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
+import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.popular_movies.SearchPopularMoviePresenter
 import javax.inject.Inject
 
 /**
  * Created by Irina Shtain on 21.02.2018.
  */
-class SearchMovieByGenreFragment : MoviesFragment() {
-
+class SearchLatestMovieFragment : MoviesFragment() {
     @Inject
-    lateinit var mPresenter: SearchMovieByGenrePresenter
-    @Inject
-    lateinit var genreAdapter: GenreAdapter
-
+    lateinit var mPresenter: SearchPopularMoviePresenter
 
     companion object {
         private val LIST_ID = "list_id"
-        private val SEARCH_TYPE = "search_type"
-        fun newInstance(listID: Int, searchType: Int): SearchMovieByGenreFragment {
-            val fragment = SearchMovieByGenreFragment()
+        fun newInstance(listID: Int): SearchLatestMovieFragment {
+            val fragment = SearchLatestMovieFragment()
             val bundle = Bundle()
             bundle.putInt(LIST_ID, listID)
-            bundle.putInt(SEARCH_TYPE, searchType)
             fragment.arguments = bundle
             return fragment
         }
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        mGenreAdapter = genreAdapter
         mListID = arguments.getInt(LIST_ID)
-        mSearchType = arguments.getInt(SEARCH_TYPE)
+        mSearchType = Constants.SEARCH_TYPE_POPULAR_MOVIES
         super.onViewCreated(view, savedInstanceState)
         mPresenter.mView = this
         mPresenter.subscribe()
@@ -49,5 +42,5 @@ class SearchMovieByGenreFragment : MoviesFragment() {
 
     override fun getSearchPresenter() = mPresenter
 
-    override fun getToolbarTitle()= R.string.menu_fab_find_by_genres
+    override fun getToolbarTitle() = R.string.title_latest_movies
 }

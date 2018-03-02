@@ -23,10 +23,10 @@ import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.di.DiCre
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.di.DiMovieListsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.di.DiMovieInListModule
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.latest_movies.SearchLatestMovieFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.popular_movies.SearchPopularMovieFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_genre.SearchMovieByGenreFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_title.SearchMovieByTitleFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.latest_movies.SearchLatestMovieFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.popular_movies.SearchPopularMovieFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.search_by_genre.SearchMovieByGenreFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.search_by_title.SearchMovieByTitleFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.SearchStarFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.di.DiStarsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.StarsDetailsFragment

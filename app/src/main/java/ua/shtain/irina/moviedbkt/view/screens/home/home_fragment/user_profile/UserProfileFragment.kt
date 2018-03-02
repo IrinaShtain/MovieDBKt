@@ -42,7 +42,7 @@ class UserProfileFragment : ContentFragment(), UserProfileContract.View {
     override fun onStart() {
         super.onStart()
         (mActivity as MainActivity).updateNavigationItem(R.id.menuMyProfile, true)
-        (mActivity as MainActivity).getToolbarMan()?.setTitle(R.string.title_my_account)
+        (mActivity as MainActivity).getToolbarMan()?.setTitle(R.string.app_name)
     }
 
     override fun setUserNick(name: String) {

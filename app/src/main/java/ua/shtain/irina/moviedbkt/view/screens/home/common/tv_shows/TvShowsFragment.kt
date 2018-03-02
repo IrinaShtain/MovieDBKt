@@ -116,4 +116,9 @@ abstract class TvShowsFragment : RefreshableFragment(), TvShowsContract.View, On
             else -> super.showPlaceholder(placeholderType)
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        hideProgress()
+    }
 }

@@ -5,10 +5,6 @@ import android.view.View
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreAdapter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.popular_movies.SearchPopularMovieFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.popular_movies.SearchPopularMoviePresenter
 import javax.inject.Inject
 
 /**

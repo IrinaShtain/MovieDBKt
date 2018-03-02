@@ -6,7 +6,7 @@ import ua.shtain.irina.moviedbkt.model.genre.GenresResponse
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableView
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter.GenreDH
 import java.util.ArrayList
 
 /**

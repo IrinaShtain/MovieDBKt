@@ -9,10 +9,10 @@ import com.jakewharton.rxbinding2.view.RxView
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.BaseActivity
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.latest_movies.SearchLatestMovieFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.popular_movies.SearchPopularMovieFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_genre.SearchMovieByGenreFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_title.SearchMovieByTitleFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.latest_movies.SearchLatestMovieFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.popular_movies.SearchPopularMovieFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.search_by_genre.SearchMovieByGenreFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.search_by_title.SearchMovieByTitleFragment
 import java.util.concurrent.TimeUnit
 
 /**
@@ -121,19 +121,19 @@ class FABManager constructor(activity: BaseActivity) {
 
 
     private fun openSearchByTitleScreen(listID: Int) {
-        mActivity.changeFragment(SearchMovieByTitleFragment.newInstance(listID, Constants.SEARCH_TYPE_MOVIES_BY_TITLE))
+        mActivity.changeFragment(SearchMovieByTitleFragment.newInstance(listID))
     }
 
     private fun openSearchByGenreScreen(listID: Int) {
-        mActivity.changeFragment(SearchMovieByGenreFragment.newInstance(listID, Constants.SEARCH_TYPE_MOVIES_BY_GENRE))
+        mActivity.changeFragment(SearchMovieByGenreFragment.newInstance(listID))
     }
 
     private fun openLatestSearchScreen(listID: Int) {
-        mActivity.changeFragment(SearchPopularMovieFragment.newInstance(listID, Constants.SEARCH_TYPE_LATEST_MOVIES))
+        mActivity.changeFragment(SearchPopularMovieFragment.newInstance(listID))
     }
 
     private fun openPopularSearchScreen(listID: Int) {
-        mActivity.changeFragment(SearchLatestMovieFragment.newInstance(listID, Constants.SEARCH_TYPE_POPULAR_MOVIES))
+        mActivity.changeFragment(SearchLatestMovieFragment.newInstance(listID))
     }
 
     fun closeFabMenu() {

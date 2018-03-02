@@ -50,7 +50,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun setupToolbar() {
-        toolbar_MA.setTitle(R.string.title_my_account)
+        toolbar_MA.setTitle(R.string.app_name)
         toolbar_MA.setTitleTextColor(Color.WHITE)
         supportFragmentManager.addOnBackStackChangedListener { enableViews(supportFragmentManager.backStackEntryCount > 1) }
     }

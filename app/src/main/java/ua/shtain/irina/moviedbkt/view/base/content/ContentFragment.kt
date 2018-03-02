@@ -72,7 +72,8 @@ abstract class ContentFragment : BaseFragment(), ContentView {
     override fun showProgressMain() {
         hideKeyboard()
         dismissUI()
-        pbMain_VC.visibility = View.VISIBLE
+        if (pbMain_VC.visibility != View.VISIBLE)
+            pbMain_VC.visibility = View.VISIBLE
     }
 
     override fun showProgressPagination() {

@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter
+package ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

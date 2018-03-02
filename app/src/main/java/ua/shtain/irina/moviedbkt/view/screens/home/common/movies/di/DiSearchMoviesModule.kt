@@ -11,11 +11,11 @@ import ua.shtain.irina.moviedbkt.view.screens.home.di.MainScope
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_movies.FavoriteMoviePresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.watchlist_movies.WatchListMoviePresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListContract
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreAdapter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.latest_movies.SearchLatestMoviePresenter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.popular_movies.SearchPopularMoviePresenter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_genre.SearchMovieByGenrePresenter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_title.SearchMovieByTitlePresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter.GenreAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.latest_movies.SearchLatestMoviePresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.popular_movies.SearchPopularMoviePresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.search_by_genre.SearchMovieByGenrePresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.search_by_title.SearchMovieByTitlePresenter
 
 /**
  * Created by Irina Shtain on 21.02.2018.

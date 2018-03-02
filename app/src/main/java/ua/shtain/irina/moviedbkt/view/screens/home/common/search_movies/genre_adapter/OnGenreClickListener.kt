@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter
+package ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter
 
 /**
  * Created by Irina Shtain on 20.02.2018.

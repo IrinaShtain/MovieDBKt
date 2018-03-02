@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.latest_movies
+package ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.popular_movies
 
 import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesContract
@@ -8,12 +8,12 @@ import javax.inject.Inject
 /**
  * Created by Irina Shtain on 21.02.2018.
  */
-class SearchLatestMoviePresenter @Inject constructor(compositeDisposable: CompositeDisposable,
-                                                     model: MoviesContract.Model) : MoviesPresenter() {
+class SearchPopularMoviePresenter @Inject constructor(compositeDisposable: CompositeDisposable,
+                                                      model: MoviesContract.Model) : MoviesPresenter() {
     init {
         mModel = model
         mCompositeDisposable = compositeDisposable
     }
 
-    override fun getMovies(page: Int) = mModel.searchLatestMovies(page)
+    override fun getMovies(page: Int) = mModel.searchPopularMovies(page)
 }

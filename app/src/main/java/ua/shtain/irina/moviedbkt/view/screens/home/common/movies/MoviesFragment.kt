@@ -18,9 +18,9 @@ import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreAdapter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreDH
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.OnGenreClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter.GenreAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter.GenreDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter.OnGenreClickListener
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -131,5 +131,10 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCa
             }
             else -> super.showPlaceholder(placeholderType)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        hideProgress()
     }
 }

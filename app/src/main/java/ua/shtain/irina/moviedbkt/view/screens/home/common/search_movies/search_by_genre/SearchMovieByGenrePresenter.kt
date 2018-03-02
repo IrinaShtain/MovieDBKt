@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.search_by_genre
+package ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.search_by_genre
 
 import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesContract
