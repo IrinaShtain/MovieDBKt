@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.rating_dialog
+package ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog
 
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
@@ -15,7 +15,8 @@ interface RatingDialogContract {
         fun hideProgress()
         fun showRatingError()
         fun hideRatingError()
-        fun getMovieID(): Int
+        fun getItemID(): Int
+        fun getMediaType(): String
     }
 
     interface Presenter : IBasePresenter<RatingDialogContract.View> {
@@ -24,6 +25,7 @@ interface RatingDialogContract {
 
     interface Model {
         fun rateMovie(rating: Float, movieID: Int): Observable<ResponseMessage>
+        fun rateTV(rating: Float, tvID: Int): Observable<ResponseMessage>
     }
 
 }

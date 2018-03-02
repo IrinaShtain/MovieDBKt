@@ -5,7 +5,6 @@ import retrofit2.http.*
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
 import ua.shtain.irina.moviedbkt.model.movie.*
 import ua.shtain.irina.moviedbkt.model.movie.genre.GenresResponse
-import ua.shtain.irina.moviedbkt.model.star.StarResponse
 
 /**
  * Created by Irina Shtain on 19.02.2018.
@@ -52,6 +51,11 @@ interface MovieService {
     @Headers("content-type: application/json;charset=utf-8")
     @POST("/3/movie/{movie_id}/rating")
     fun rateMovie(@Path("movie_id") movie_id: Int,
+                  @Body rateRequest: RateRequest): Observable<ResponseMessage>
+
+    @Headers("content-type: application/json;charset=utf-8")
+    @POST("/3/tv/{tv_id}/rating")
+    fun rateTv(@Path("tv_id") tv_id: Int,
                   @Body rateRequest: RateRequest): Observable<ResponseMessage>
 
     @Headers("content-type: application/json;charset=utf-8")

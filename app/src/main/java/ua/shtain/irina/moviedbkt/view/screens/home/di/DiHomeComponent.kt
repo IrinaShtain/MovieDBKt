@@ -5,9 +5,11 @@ import ua.shtain.irina.moviedbkt.root.DiRootComponent
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.di.DiMovieDetailsModule
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.rating_dialog.RatingDialogFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.rating_dialog.di.DiRatingMovieModule
+import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDialogFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.di.DiRatingMovieModule
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.di.DiSearchMoviesModule
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.TvDetailsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.di.DiTvModule
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_movies.FavoriteMovieFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.UserProfileFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.di.DiUserProfileModule
@@ -39,7 +41,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.di.DiStar
         DiSearchMoviesModule::class,
         DiRatingMovieModule::class,
         DiStarsModule::class,
-        DiStarsDetailsModule::class
+        DiStarsDetailsModule::class,
+        DiTvModule::class
 ),
         dependencies = arrayOf(DiRootComponent::class))
 interface DiHomeComponent {
@@ -60,4 +63,5 @@ interface DiHomeComponent {
     fun inject(fragment: RatingDialogFragment)
     fun inject(fragment: SearchStarFragment)
     fun inject(fragment: StarsDetailsFragment)
+    fun inject(fragment: TvDetailsFragment)
 }

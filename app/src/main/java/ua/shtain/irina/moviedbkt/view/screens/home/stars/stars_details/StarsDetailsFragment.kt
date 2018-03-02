@@ -17,6 +17,7 @@ import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.TvDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.adapter.FamousForAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.adapter.FamousForDH
 import javax.inject.Inject
@@ -145,7 +146,7 @@ class StarsDetailsFragment : ContentFragment(), StarsDetailsContract.View, OnCar
         if (famousForItem[position].mediaType != "tv")
             mActivity.changeFragment(MovieDetailsFragment.newInstance(itemID, 0))
         else
-            Toast.makeText(context, "It's TV!!!", Toast.LENGTH_SHORT).show()
+            mActivity.changeFragment(TvDetailsFragment.newInstance(itemID, 0))
     }
 
     override fun showProgressMain() {

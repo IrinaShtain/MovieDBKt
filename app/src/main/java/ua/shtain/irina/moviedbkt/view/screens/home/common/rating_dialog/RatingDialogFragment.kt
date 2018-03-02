@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.rating_dialog
+package ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog
 
 import android.app.Activity
 import android.content.Intent
@@ -21,14 +21,17 @@ import javax.inject.Inject
 class RatingDialogFragment : BaseDialog(), RatingDialogContract.View {
     @Inject
     lateinit var mPresenter: RatingDialogPresenter
-    private var movieID: Int = 0
+    private var itemID: Int = 0
+    private var mediaType: String = ""
 
     companion object {
         private val MOVIE_ID = "movie_id"
-        fun newInstance(movieID: Int): RatingDialogFragment {
+        private val MEDIA_TYPE = "media_type"
+        fun newInstance(movieID: Int, mediaType: String): RatingDialogFragment {
             val fragment = RatingDialogFragment()
             val bundle = Bundle()
             bundle.putInt(MOVIE_ID, movieID)
+            bundle.putString(MEDIA_TYPE, mediaType)
             fragment.arguments = bundle
             return fragment
         }
@@ -38,7 +41,8 @@ class RatingDialogFragment : BaseDialog(), RatingDialogContract.View {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        movieID = arguments.getInt(MOVIE_ID, 0)
+        itemID = arguments.getInt(MOVIE_ID, 0)
+        mediaType = arguments.getString(MEDIA_TYPE, "")
         mPresenter.mView = this
         mPresenter.subscribe()
         initUI()
@@ -96,6 +100,7 @@ class RatingDialogFragment : BaseDialog(), RatingDialogContract.View {
         tvError.visibility = View.GONE
     }
 
+    override fun getItemID() = itemID
 
-    override fun getMovieID() = movieID
+    override fun getMediaType() = mediaType
 }
