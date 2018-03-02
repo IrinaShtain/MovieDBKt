@@ -7,7 +7,7 @@ import ua.shtain.irina.moviedbkt.domain.TVRepository
 import ua.shtain.irina.moviedbkt.root.network.RetrofitHelper
 import ua.shtain.irina.moviedbkt.root.network.servises.TvService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
-import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.TvDetailsPresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.TvShowDetailsPresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.di.MainScope
 
 /**
@@ -17,7 +17,7 @@ import ua.shtain.irina.moviedbkt.view.screens.home.di.MainScope
 class DiTvModule {
     @Provides
     @MainScope
-    fun provideTvDetailsPresenter(compositeDisposable: CompositeDisposable, repository: TVRepository) = TvDetailsPresenter(compositeDisposable, repository)
+    fun provideTvDetailsPresenter(compositeDisposable: CompositeDisposable, repository: TVRepository) = TvShowDetailsPresenter(compositeDisposable, repository)
 
     @Provides
     @MainScope

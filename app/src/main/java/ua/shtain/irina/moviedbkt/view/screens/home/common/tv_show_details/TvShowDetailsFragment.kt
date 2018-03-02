@@ -11,7 +11,7 @@ import com.jakewharton.rxbinding2.view.RxView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import ua.shtain.irina.moviedbkt.R
-import ua.shtain.irina.moviedbkt.model.tv.TVShowItem
+import ua.shtain.irina.moviedbkt.model.tv.TvShowItem
 import ua.shtain.irina.moviedbkt.model.tv.getGenres
 import ua.shtain.irina.moviedbkt.model.tv.getPosterUrl
 import ua.shtain.irina.moviedbkt.other.Constants
@@ -26,13 +26,13 @@ import javax.inject.Inject
 /**
  * Created by Irina Shtain on 01.03.2018.
  */
-class TvDetailsFragment : ContentFragment(), TVDetailsContract.View {
+class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
 
     private var mTvID = 0
     private var dialogRating: RatingDialogFragment? = null
 
     @Inject
-    lateinit var mPresenter: TvDetailsPresenter
+    lateinit var mPresenter: TvShowDetailsPresenter
 
     override fun getLayoutRes() = R.layout.fragment_tv_details
 
@@ -43,9 +43,9 @@ class TvDetailsFragment : ContentFragment(), TVDetailsContract.View {
     }
 
     companion object {
-        private val TV_ID = "movie_id"
-        fun newInstance(movieID: Int, listID: Int): TvDetailsFragment {
-            val fragment = TvDetailsFragment()
+        private val TV_ID = "tv_id"
+        fun newInstance(movieID: Int): TvShowDetailsFragment {
+            val fragment = TvShowDetailsFragment()
             val bundle = Bundle()
             bundle.putInt(TV_ID, movieID)
             fragment.arguments = bundle
@@ -97,7 +97,7 @@ class TvDetailsFragment : ContentFragment(), TVDetailsContract.View {
         })
     }
 
-    override fun setupUI(movieItem: TVShowItem) {
+    override fun setupUI(movieItem: TvShowItem) {
         collapsingToolbar.title = movieItem.title
         collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE)
         tvDescription.text = movieItem.overview

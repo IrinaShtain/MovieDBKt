@@ -88,10 +88,10 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
 
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(context)
-        rvLists!!.layoutManager = layoutManager
+        rvItems!!.layoutManager = layoutManager
         listAdapter.setListener(this)
-        rvLists.adapter = listAdapter
-        rvLists.addOnScrollListener(EndlessScrollListener(layoutManager, object : OnNextPageListener {
+        rvItems.adapter = listAdapter
+        rvItems.addOnScrollListener(EndlessScrollListener(layoutManager, object : OnNextPageListener {
             override fun onLoadMore(): Boolean {
                 mPresenter.getNextPage()
                 return true
@@ -137,7 +137,7 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
             }
         }
         val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
-        itemTouchHelper.attachToRecyclerView(rvLists)
+        itemTouchHelper.attachToRecyclerView(rvItems)
     }
 
     private fun getVectorBitmap(@DrawableRes drawableId: Int): Bitmap {

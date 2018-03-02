@@ -71,8 +71,8 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
 
     private fun setupRecyclerView() {
         val layoutManager = GridLayoutManager(mActivity, 2)
-        rvLists.layoutManager = layoutManager
-        rvLists.adapter = movieAdapter
+        rvItems.layoutManager = layoutManager
+        rvItems.adapter = movieAdapter
         movieAdapter.setListener(this)
         movieAdapter.setDeleteItemListener(this)
     }
@@ -90,7 +90,7 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
 
     }
 
-    override fun onItemClick(itemID: Int, position: Int) {
+    override fun onDeleteItemClick(itemID: Int, position: Int) {
         mPresenter.deleteMovieAlert(itemID, position)
     }
 

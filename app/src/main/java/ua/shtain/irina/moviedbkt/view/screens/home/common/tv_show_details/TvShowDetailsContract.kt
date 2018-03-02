@@ -2,16 +2,16 @@ package ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details
 
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
-import ua.shtain.irina.moviedbkt.model.tv.TVShowItem
+import ua.shtain.irina.moviedbkt.model.tv.TvShowItem
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 
 /**
  * Created by Irina Shtain on 01.03.2018.
  */
-interface TVDetailsContract {
+interface TvShowDetailsContract {
     interface View : ContentView {
-        fun setupUI(movieItem: TVShowItem)
+        fun setupUI(movieItem: TvShowItem)
         fun showRatingDialog()
         fun getTvID(): Int
     }
@@ -24,8 +24,8 @@ interface TVDetailsContract {
     }
 
     interface Model {
-        fun getTvDetails(tvID: Int): Observable<TVShowItem>
-        fun addToFavoriteTV(movieID: Int): Observable<ResponseMessage>
-        fun addToWatchListTV(movieID: Int): Observable<ResponseMessage>
+        fun getTvDetails(tvID: Int): Observable<TvShowItem>
+        fun addToFavoriteTV(showID: Int): Observable<ResponseMessage>
+        fun addToWatchListTV(showID: Int): Observable<ResponseMessage>
     }
 }

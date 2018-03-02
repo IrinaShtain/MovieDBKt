@@ -1,13 +1,13 @@
 package ua.shtain.irina.moviedbkt.model.tv
 
 import com.google.gson.annotations.SerializedName
-import ua.shtain.irina.moviedbkt.model.movie.genre.GenreItem
+import ua.shtain.irina.moviedbkt.model.genre.GenreItem
 import java.util.ArrayList
 
 /**
  * Created by Irina Shtain on 01.03.2018.
  */
-data class TVShowItem(@SerializedName("name") val title: String,
+data class TvShowItem(@SerializedName("name") val title: String,
                       @SerializedName("first_air_date") val firstAirDate: String,
                       @SerializedName("overview") val overview: String,
                       @SerializedName("poster_path") val posterPath: String,

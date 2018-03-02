@@ -4,7 +4,10 @@ import io.reactivex.Observable
 import retrofit2.http.*
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
 import ua.shtain.irina.moviedbkt.model.movie.*
-import ua.shtain.irina.moviedbkt.model.movie.genre.GenresResponse
+import ua.shtain.irina.moviedbkt.model.genre.GenresResponse
+import ua.shtain.irina.moviedbkt.model.requests.FavoriteRequest
+import ua.shtain.irina.moviedbkt.model.requests.RateRequest
+import ua.shtain.irina.moviedbkt.model.requests.WatchRequest
 
 /**
  * Created by Irina Shtain on 19.02.2018.
@@ -60,9 +63,9 @@ interface MovieService {
 
     @Headers("content-type: application/json;charset=utf-8")
     @POST("/3/account/{account_id}/favorite")
-    fun addToFavoriteMovie(@Body favoriteRequest: FavoriteRequest): Observable<ResponseMessage>
+    fun markToFavoriteMovie(@Body favoriteRequest: FavoriteRequest): Observable<ResponseMessage>
 
     @Headers("content-type: application/json;charset=utf-8")
     @POST("/3/account/{account_id}/watchlist")
-    fun addToWatchListMovie(@Body watchRequest: WatchRequest): Observable<ResponseMessage>
+    fun markToWatchListMovie(@Body watchRequest: WatchRequest): Observable<ResponseMessage>
 }

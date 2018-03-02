@@ -102,7 +102,7 @@ class MoviesInListPresenter @Inject constructor(compositeDisposable: CompositeDi
                     mView.hideProgress()
                     when {
                         throwable.message.equals("HTTP 500 Internal Server Error") -> { // backend's bug :(
-                            mView.showMessage(Constants.MessageType.LIST_WAS_DELETED)
+                            mView.showMessage(Constants.MessageType.MOVIE_WAS_DELETED)
                             mView.updateMovies(position)
                             --totalResults
                             checkEmptyList()
@@ -117,34 +117,4 @@ class MoviesInListPresenter @Inject constructor(compositeDisposable: CompositeDi
         if (totalResults == 0)
             mView.showPlaceholder(Constants.PlaceholderType.EMPTY)
     }
-
-//    override fun onMainFABClick() {
-//        mIsFabOpen = if (mIsFabOpen) {
-//            mView.closeFabMenu()
-//            false
-//        } else {
-//            mView.openFabMenu()
-//            true
-//        }
-//    }
-//
-//    override fun onFabFindUsingTitleClick() {
-//        mIsFabOpen = false
-//        mView.openSearchByTitleScreen(listID)
-//    }
-//
-//    override fun onFabFindUsingGenreClick() {
-//        mIsFabOpen = false
-//        mView.openSearchByGenreScreen(listID)
-//    }
-//
-//    override fun onFabFindPopularClick() {
-//        mIsFabOpen = false
-//        mView.openPopularSearchScreen(listID)
-//    }
-//
-//    override fun onFabFindLatestClick() {
-//        mIsFabOpen = false
-//        mView.openLatestSearchScreen(listID)
-//    }
 }

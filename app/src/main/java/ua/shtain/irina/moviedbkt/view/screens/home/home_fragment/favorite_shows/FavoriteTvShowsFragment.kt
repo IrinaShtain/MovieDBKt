@@ -1,26 +1,22 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.watchlist_movies
+package ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_shows
 
 import android.os.Bundle
 import android.view.View
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.other.Constants
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.genre_adapter.GenreAdapter
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.popular_movies.SearchPopularMovieFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.search.popular_movies.SearchPopularMoviePresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_shows.TvShowsFragment
 import javax.inject.Inject
 
 /**
- * Created by Irina Shtain on 22.02.2018.
+ * Created by Irina Shtain on 02.03.2018.
  */
-class WatchListMovieFragment : MoviesFragment() {
+class FavoriteTvShowsFragment : TvShowsFragment() {
 
     @Inject
-    lateinit var mPresenter: WatchListMoviePresenter
+    lateinit var mPresenter: FavoriteTvShowsPresenter
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        mSearchType = Constants.TYPE_WATCHLIST_MOVIES
+        mShowsType = Constants.TYPE_FAVORITE_TV_SHOWS
         super.onViewCreated(view, savedInstanceState)
         setupFabMenu()
         mPresenter.mView = this
@@ -41,4 +37,6 @@ class WatchListMovieFragment : MoviesFragment() {
     override fun getSearchPresenter() = mPresenter
 
     override fun getToolbarTitle() = R.string.app_name
+
+    override fun getErrorEmptyText() = R.string.error_msg_no_tv_shows_added_to_favorite
 }

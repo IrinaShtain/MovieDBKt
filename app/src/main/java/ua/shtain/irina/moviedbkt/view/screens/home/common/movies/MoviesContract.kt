@@ -2,7 +2,7 @@ package ua.shtain.irina.moviedbkt.view.screens.home.common.movies
 
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.movie.SearchMovieResponse
-import ua.shtain.irina.moviedbkt.model.movie.genre.GenresResponse
+import ua.shtain.irina.moviedbkt.model.genre.GenresResponse
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableView
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH

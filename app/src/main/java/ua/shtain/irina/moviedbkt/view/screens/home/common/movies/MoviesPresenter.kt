@@ -6,7 +6,7 @@ import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
 import ua.shtain.irina.moviedbkt.model.movie.MovieItem
 import ua.shtain.irina.moviedbkt.model.movie.SearchMovieResponse
-import ua.shtain.irina.moviedbkt.model.movie.genre.GenreItem
+import ua.shtain.irina.moviedbkt.model.genre.GenreItem
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
@@ -30,6 +30,8 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
     private var genres: ArrayList<GenreDH> = ArrayList()
 
     private var mNeedRefresh = true
+
+    abstract fun getMovies(page: Int): Observable<SearchMovieResponse>
 
     override fun setView(view: ContentView) {
         mView = view as MoviesContract.View
@@ -173,8 +175,6 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
                     }
                 })
     }
-
-    abstract fun getMovies(page: Int): Observable<SearchMovieResponse>
 
     private fun prepareMovieList(items: ArrayList<MovieItem>) = items.mapTo(ArrayList()) { MovieItemDH(it) }
 }

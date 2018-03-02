@@ -2,6 +2,9 @@ package ua.shtain.irina.moviedbkt.domain
 
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.movie.*
+import ua.shtain.irina.moviedbkt.model.requests.FavoriteRequest
+import ua.shtain.irina.moviedbkt.model.requests.RateRequest
+import ua.shtain.irina.moviedbkt.model.requests.WatchRequest
 import ua.shtain.irina.moviedbkt.root.network.servises.MovieService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsContract
@@ -27,9 +30,9 @@ class MovieRepository @Inject constructor(movieService: MovieService, helper: Sc
 
     override fun getMovieDetails(movieID: Int) = mHelper.getNetworkObservable(mService.getMovieDetails(movieID))
 
-    override fun addToFavoriteMovie(movieID: Int) = mHelper.getNetworkObservable(mService.addToFavoriteMovie(FavoriteRequest("movie", movieID, true)))
+    override fun addToFavoriteMovie(movieID: Int) = mHelper.getNetworkObservable(mService.markToFavoriteMovie(FavoriteRequest("movie", movieID, true)))
 
-    override fun addToWatchListMovie(movieID: Int) = mHelper.getNetworkObservable(mService.addToWatchListMovie(WatchRequest("movie", movieID, true)))
+    override fun addToWatchListMovie(movieID: Int) = mHelper.getNetworkObservable(mService.markToWatchListMovie(WatchRequest("movie", movieID, true)))
 
     override fun getGenres() = mHelper.getNetworkObservable(mService.getGenres())
 

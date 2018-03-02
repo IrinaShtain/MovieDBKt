@@ -54,7 +54,8 @@
     <string name="msg_new_movie_removed_successfully">The movie is successfully removed</string>
     <string name="msg_no_famous_for_movies">No information about famous movies</string>
     <string name="msg_no_biography">No information about biography</string>
-    <string name="question_about_deleting_movie">Do you want to delete movie</string>
+    <string name="question_about_deleting_movie">Do you want to delete movie?</string>
+    <string name="question_about_deleting_tv_show">Do you want to delete tv show?</string>
     <string name="question_about_deleting_list">Do you want delete this list?</string>
     <string name="tos_pp">If you have no account,\nplease <a href="https://www.themoviedb.org/account/signup"><b>Sign Up</b></a> </string>
     <string name="question_about_adding">Do you want add this movie in the list?</string>
@@ -74,6 +75,7 @@
     <string name="err_msg_something_goes_wrong">Something went wrong</string>
     <string name="err_msg_list_was_deleted">List was successfully deleted</string>
     <string name="err_msg_movie_was_deleted">The movie was successfully deleted</string>
+    <string name="err_msg_tv_show_was_deleted">The TV show was successfully deleted</string>
     <string name="error_empty_user_name">Input user name!</string>
     <string name="error_empty_password">Input password!</string>
     <string name="error_not_valid_password">Not a valid password!</string>
@@ -81,6 +83,8 @@
     <string name="err_msg_no_lists">You have no created lists</string>
     <string name="error_msg_no_movies">No movies in this list</string>
     <string name="error_msg_no_movies_with_such_title">No movies with such title</string>
+    <string name="error_msg_no_tv_shows_added_to_favorite">No shows added to favorite</string>
+    <string name="error_msg_no_tv_shows_added_to_watchlist">No shows added to watchlist</string>
     <string name="error_msg_no_star_with_such_name">No star with such name</string>
     <string name="err_message_input_rating">Set Rating</string>
     <string name="err_movie_added">Movie already is on your list</string>

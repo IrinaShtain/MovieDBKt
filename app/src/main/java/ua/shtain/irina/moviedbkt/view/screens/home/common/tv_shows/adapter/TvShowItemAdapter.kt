@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter
+package ua.shtain.irina.moviedbkt.view.screens.home.common.tv_shows.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnDeleteClickListener
-import java.util.ArrayList
+import java.util.*
 
 /**
- * Created by Irina Shtain on 19.02.2018.
+ * Created by Irina Shtain on 02.03.2018.
  */
-class MovieItemAdapter : RecyclerView.Adapter<MovieItemVH>() {
-    private var items: MutableList<MovieItemDH>? = null
+class TvShowItemAdapter : RecyclerView.Adapter<TvShowItemVH>() {
+    private var items: MutableList<TvShowItemDH>? = null
     private var mListener: OnCardClickListener? = null
     private var mDeleteListener: OnDeleteClickListener? = null
 
@@ -20,12 +20,12 @@ class MovieItemAdapter : RecyclerView.Adapter<MovieItemVH>() {
         items = ArrayList()
     }
 
-    fun setListDH(listsDHs: MutableList<MovieItemDH>) {
+    fun setListDH(listsDHs: MutableList<TvShowItemDH>) {
         items = listsDHs
         notifyDataSetChanged()
     }
 
-    fun addListDH(listsDHs: List<MovieItemDH>) {
+    fun addListDH(listsDHs: List<TvShowItemDH>) {
         items!!.addAll(listsDHs)
         notifyDataSetChanged()
     }
@@ -43,17 +43,17 @@ class MovieItemAdapter : RecyclerView.Adapter<MovieItemVH>() {
         mDeleteListener = listener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieItemVH {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowItemVH {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.list_item_movie, parent, false)
-        return MovieItemVH(view)
+        return TvShowItemVH(view)
     }
 
-    override fun onBindViewHolder(holder: MovieItemVH, position: Int) {
+    override fun onBindViewHolder(holder: TvShowItemVH, position: Int) {
         if (mListener != null) {
             holder.itemView.setOnClickListener({ mListener!!.onCardClick(items!![position].id, position) })
         }
-        if (mDeleteListener!=null){
+        if (mDeleteListener != null) {
             holder.ivDelete.setOnClickListener({ mDeleteListener!!.onDeleteItemClick(items!![position].id, position) })
         }
         holder.bindData(items!![position])

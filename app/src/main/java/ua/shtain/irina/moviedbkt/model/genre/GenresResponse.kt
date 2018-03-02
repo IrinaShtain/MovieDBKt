@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.model.movie.genre
+package ua.shtain.irina.moviedbkt.model.genre
 
 import com.google.gson.annotations.SerializedName
 import java.util.ArrayList

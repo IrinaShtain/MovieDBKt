@@ -8,12 +8,15 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.di.DiMov
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDialogFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.di.DiRatingMovieModule
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.di.DiSearchMoviesModule
-import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.TvDetailsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.TvShowDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.di.DiTvModule
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_shows.di.DiSearchTvShowsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_movies.FavoriteMovieFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_shows.FavoriteTvShowsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.UserProfileFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.di.DiUserProfileModule
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.watchlist_movies.WatchListMovieFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.watchlist_shows.WatchListTvShowsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.MovieListsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.CreateNewListDialog
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.di.DiCreateNewListModule
@@ -42,7 +45,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.di.DiStar
         DiRatingMovieModule::class,
         DiStarsModule::class,
         DiStarsDetailsModule::class,
-        DiTvModule::class
+        DiTvModule::class,
+        DiSearchTvShowsModule::class
 ),
         dependencies = arrayOf(DiRootComponent::class))
 interface DiHomeComponent {
@@ -63,5 +67,7 @@ interface DiHomeComponent {
     fun inject(fragment: RatingDialogFragment)
     fun inject(fragment: SearchStarFragment)
     fun inject(fragment: StarsDetailsFragment)
-    fun inject(fragment: TvDetailsFragment)
+    fun inject(fragment: TvShowDetailsFragment)
+    fun inject(fragment: FavoriteTvShowsFragment)
+    fun inject(fragment: WatchListTvShowsFragment)
 }

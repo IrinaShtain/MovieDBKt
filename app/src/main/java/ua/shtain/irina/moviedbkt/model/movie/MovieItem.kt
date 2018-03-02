@@ -1,7 +1,7 @@
 package ua.shtain.irina.moviedbkt.model.movie
 
 import com.google.gson.annotations.SerializedName
-import ua.shtain.irina.moviedbkt.model.movie.genre.GenreItem
+import ua.shtain.irina.moviedbkt.model.genre.GenreItem
 import java.util.ArrayList
 
 /**

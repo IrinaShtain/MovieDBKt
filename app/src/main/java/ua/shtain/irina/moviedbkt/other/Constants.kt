@@ -36,6 +36,10 @@ object Constants {
     const val SEARCH_TYPE_MOVIES_BY_GENRE = 204
     const val TYPE_FAVORITE_MOVIES = 205
     const val TYPE_WATCHLIST_MOVIES = 206
+    const val TYPE_FAVORITE_TV_SHOWS = 207
+    const val TYPE_WATCHLIST_TV_SHOWS = 208
+    const val SEARCH_TYPE_TVSHOWS = 209
+
 
     /*----------------- Media type ------------------*/
     const val MEDIA_TYPE_TV = "MEDIA_TYPE_TV"
@@ -56,6 +60,7 @@ object Constants {
         USER_NOT_REGISTERED(R.string.err_msg_user_not_registered, true),
         LIST_WAS_DELETED(R.string.err_msg_list_was_deleted, true),
         MOVIE_WAS_DELETED(R.string.err_msg_movie_was_deleted, true),
+        TV_SHOW_WAS_DELETED(R.string.err_msg_tv_show_was_deleted, true),
         NEW_LIST_CREATED_SUCCESSFULLY(R.string.msg_new_list_created_successfully, false),
         NEW_MOVIE_ADDED_SUCCESSFULLY(R.string.msg_new_movie_added_successfully, false),
         MOVIE_RATED_SUCCESSFULLY(R.string.msg_movie_rated_successfully, false),

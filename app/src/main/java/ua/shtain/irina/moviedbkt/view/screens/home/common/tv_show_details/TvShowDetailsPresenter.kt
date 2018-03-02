@@ -2,23 +2,23 @@ package ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details
 
 import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
-import ua.shtain.irina.moviedbkt.model.tv.TVShowItem
+import ua.shtain.irina.moviedbkt.model.tv.TvShowItem
 import ua.shtain.irina.moviedbkt.other.Constants
 import javax.inject.Inject
 
 /**
  * Created by Irina Shtain on 01.03.2018.
  */
-class TvDetailsPresenter @Inject constructor(compositeDisposable: CompositeDisposable,
-                                             model: TVDetailsContract.Model) : TVDetailsContract.Presenter {
-    lateinit var mView: TVDetailsContract.View
+class TvShowDetailsPresenter @Inject constructor(compositeDisposable: CompositeDisposable,
+                                                 model: TvShowDetailsContract.Model) : TvShowDetailsContract.Presenter {
+    lateinit var mView: TvShowDetailsContract.View
     private var tvID = 0
 
     private var mCompositeDisposable = compositeDisposable
     private var mModel = model
-    private var tvShowItem: TVShowItem? = null
+    private var tvShowItem: TvShowItem? = null
 
-    override fun setView(view: TVDetailsContract.View) {
+    override fun setView(view: TvShowDetailsContract.View) {
         mView = view
     }
 
