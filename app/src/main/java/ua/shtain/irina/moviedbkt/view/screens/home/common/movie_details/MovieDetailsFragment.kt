@@ -107,10 +107,11 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     override fun setupUI(movieItem: MovieItem) {
         collapsingToolbar.title = movieItem.title
         collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE)
-        tv_description.text = movieItem.overview
+        tvType.text = resources.getString(R.string.type_movie)
+        tvDescription.text = movieItem.overview
         tvTitle.text = movieItem.title
-        tv_genre.text = resources.getString(R.string.genre, movieItem.getGenres())
-        tv_releaseDate.text = movieItem.releaseDate
+        tvGenre.text = resources.getString(R.string.genre, movieItem.getGenres())
+        tvReleaseDate.text = movieItem.releaseDate
         tvPopularity.text = movieItem.voteAverage.toString()
         Picasso.with(context)
                 .load(movieItem.getAvatarUrl())

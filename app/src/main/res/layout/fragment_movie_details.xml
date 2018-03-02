@@ -82,10 +82,22 @@
                 />
 
             <TextView
-                android:id="@+id/tv_genre"
+                android:id="@+id/tvType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvTitle"
+                android:layout_marginStart="@dimen/margin_half"
+                android:text="@string/type_movie"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_default"
+                android:textStyle="bold|italic"
+                />
+
+            <TextView
+                android:id="@+id/tvGenre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvType"
                 android:layout_marginStart="@dimen/margin_half"
                 android:text="@string/genre"
                 android:textColor="@color/colorPrimary"
@@ -94,10 +106,10 @@
                 />
 
             <TextView
-                android:id="@+id/tv_description"
+                android:id="@+id/tvDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_genre"
+                android:layout_below="@+id/tvGenre"
                 android:layout_marginStart="@dimen/margin_half"
                 android:layout_marginTop="@dimen/margin_half"
                 android:text="@string/description"
@@ -107,10 +119,10 @@
                 />
 
             <TextView
-                android:id="@+id/tv_releaseDate"
+                android:id="@+id/tvReleaseDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_description"
+                android:layout_below="@id/tvDescription"
                 android:layout_margin="@dimen/margin_half"
                 android:drawablePadding="@dimen/padding_quart"
                 android:drawableStart="@drawable/ic_release_date"
@@ -126,9 +138,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@id/tv_description"
+                android:layout_below="@id/tvDescription"
                 android:layout_margin="@dimen/margin_half"
-                android:layout_toEndOf="@id/tv_releaseDate"
+                android:layout_toEndOf="@id/tvReleaseDate"
                 android:drawableEnd="@drawable/ic_rating_green"
                 android:drawablePadding="@dimen/padding_quart"
                 android:gravity="end|center_vertical"

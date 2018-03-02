@@ -10,7 +10,7 @@ import ua.shtain.irina.moviedbkt.R
  */
 class CreatedListsVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val tvName: TextView = itemView.findViewById(R.id.tvName) as TextView
-    private val tvDesc: TextView = itemView.findViewById(R.id.tv_description) as TextView
+    private val tvDesc: TextView = itemView.findViewById(R.id.tvDescription) as TextView
     private val tvType: TextView = itemView.findViewById(R.id.tv_type) as TextView
 
 

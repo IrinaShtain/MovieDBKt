@@ -11,8 +11,10 @@
     <string name="name">Name: %s</string>
     <string name="include_adult">Include adult: %s</string>
 
-    /*Movie details*/
+    /*Details*/
     <string name="description">Description: %s</string>
+    <string name="type_movie">Type: Movie</string>
+    <string name="type_tv">Type: TV Show</string>
     <string name="type">Type: %s</string>
     <string name="genre">Genre: %s</string>
     <string name="title_rating" formatted="true">Movie rating %s</string>
