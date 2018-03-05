@@ -28,11 +28,11 @@ class HomeFragment : ContentTabsFragment() {
     }
 
     override fun addFragmentsToAdapter(adapter: TabPagerAdapter) {
-        adapter.addFragment(UserProfileFragment(), "User Profile")
-        adapter.addFragment(FavoriteMovieFragment(), "Favorite Movies")
-        adapter.addFragment(WatchListMovieFragment(), "Watchlist Movies")
-        adapter.addFragment(FavoriteTvShowsFragment(), "Favorite TV Show")
-        adapter.addFragment(WatchListTvShowsFragment(), "Watchlist TV Show")
+        adapter.addFragment(UserProfileFragment(), getString(R.string.tab_title_profile))
+        adapter.addFragment(FavoriteMovieFragment(), getString(R.string.tab_title_favorite_movies))
+        adapter.addFragment(WatchListMovieFragment(), getString(R.string.tab_title_watchlist_movies))
+        adapter.addFragment(FavoriteTvShowsFragment(), getString(R.string.tab_title_favorite_shows))
+        adapter.addFragment(WatchListTvShowsFragment(), getString(R.string.tab_title_watchlist_shows))
     }
 
     override fun getLayoutRes() = R.layout.fragment_content_tabs

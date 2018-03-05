@@ -35,8 +35,16 @@
     <string name="title_popular_movies">The popular movies</string>
     <string name="title_popular_shows">The popular shows</string>
     <string name="title_top_rated_shows">The top rated shows</string>
+    <string name="title_home">Movie database</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+
+    /* Tab's titles */
+    <string name="tab_title_profile">User Profile</string>
+    <string name="tab_title_favorite_movies">Favorite Movies</string>
+    <string name="tab_title_favorite_shows">Favorite TV Shows</string>
+    <string name="tab_title_watchlist_movies">Watchlist Movies</string>
+    <string name="tab_title_watchlist_shows">Watchlist TV Shows</string>
 
     /*Buttons titles*/
     <string name="btn_search">Search</string>
