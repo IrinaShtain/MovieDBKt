@@ -49,7 +49,7 @@ abstract class RefreshableFragment : ContentFragment() {
         }
     }
 
-    fun closeFabMenu(){
+    fun closeFabMenu() {
         if (fabManager?.isFabGroupOpen()!!) fabManager?.closeFabMenu()
     }
 
@@ -76,5 +76,6 @@ abstract class RefreshableFragment : ContentFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         fabAdd_VC!!.visibility = View.GONE
+        closeFabMenu()
     }
 }
