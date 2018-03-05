@@ -11,6 +11,7 @@ data class TvShowItem(@SerializedName("name") val title: String,
                       @SerializedName("first_air_date") val firstAirDate: String,
                       @SerializedName("overview") val overview: String,
                       @SerializedName("poster_path") val posterPath: String,
+                      @SerializedName("number_of_seasons") val numberOfSeasons: Int,
                       @SerializedName("genres") val genres: ArrayList<GenreItem>,
                       @SerializedName("id") val id: Int,
                       @SerializedName("vote_average") val voteAverage: Float

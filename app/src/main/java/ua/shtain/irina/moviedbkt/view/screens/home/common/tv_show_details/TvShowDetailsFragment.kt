@@ -9,7 +9,7 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import com.jakewharton.rxbinding2.view.RxView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_movie_details.*
+import kotlinx.android.synthetic.main.fragment_tv_details.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.model.tv.TvShowItem
 import ua.shtain.irina.moviedbkt.model.tv.getGenres
@@ -97,17 +97,18 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
         })
     }
 
-    override fun setupUI(movieItem: TvShowItem) {
-        collapsingToolbar.title = movieItem.title
+    override fun setupUI(tvShowItem: TvShowItem) {
+        collapsingToolbar.title = tvShowItem.title
         collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE)
-        tvDescription.text = movieItem.overview
+        tvDescription.text = tvShowItem.overview
+        tvNumberOfSeasons.text = resources.getString(R.string.number_of_seasons, tvShowItem.numberOfSeasons.toString())
         tvType.text = resources.getString(R.string.type_tv)
-        tvTitle.text = movieItem.title
-        tvGenre.text = resources.getString(R.string.genre, movieItem.getGenres())
-        tvReleaseDate.text = movieItem.firstAirDate
-        tvPopularity.text = movieItem.voteAverage.toString()
+        tvTitle.text = tvShowItem.title
+        tvGenre.text = resources.getString(R.string.genre, tvShowItem.getGenres())
+        tvReleaseDate.text = tvShowItem.firstAirDate
+        tvPopularity.text = tvShowItem.voteAverage.toString()
         Picasso.with(context)
-                .load(movieItem.getPosterUrl())
+                .load(tvShowItem.getPosterUrl())
                 .error(R.drawable.placeholder_movie)
                 .into(imageView)
 
@@ -116,7 +117,7 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
     override fun showRatingDialog() {
         dialogRating = RatingDialogFragment.newInstance(mTvID, Constants.MEDIA_TYPE_TV)
         dialogRating!!.setTargetFragment(this, Constants.REQUEST_CODE_RATE_MOVIE)
-        dialogRating!!.show(mActivity.supportFragmentManager, "rate_ movie")
+        dialogRating!!.show(mActivity.supportFragmentManager, "rate_ tv_show")
     }
 
     override fun getTvID() = mTvID

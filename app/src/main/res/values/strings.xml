@@ -17,6 +17,7 @@
     <string name="type_tv">Type: TV Show</string>
     <string name="type">Type: %s</string>
     <string name="genre">Genre: %s</string>
+    <string name="number_of_seasons">Number of seasons: %s</string>
     <string name="title_rating" formatted="true">Movie rating %s</string>
 
     /*Star details*/

@@ -106,10 +106,22 @@
                 />
 
             <TextView
+                android:id="@+id/tvNumberOfSeasons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvGenre"
+                android:layout_marginStart="@dimen/margin_half"
+                android:text="@string/genre"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_default"
+                android:textStyle="bold|italic"
+                />
+
+            <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvGenre"
+                android:layout_below="@+id/tvNumberOfSeasons"
                 android:layout_marginStart="@dimen/margin_half"
                 android:layout_marginTop="@dimen/margin_half"
                 android:text="@string/description"
@@ -154,9 +166,9 @@
                 android:id="@+id/fabRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@+id/tvPopularity"
                 android:layout_margin="@dimen/margin_half"
-                android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_rating_white"/>
 
 
@@ -164,18 +176,18 @@
                 android:id="@+id/fabAddToFavorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@+id/fabRating"
                 android:layout_below="@+id/tvPopularity"
                 android:layout_margin="@dimen/margin_half"
+                android:layout_toStartOf="@+id/fabRating"
                 android:src="@drawable/ic_favorite"/>
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fabAddToWatchList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@+id/fabAddToFavorite"
                 android:layout_below="@+id/tvPopularity"
                 android:layout_margin="@dimen/margin_half"
+                android:layout_toStartOf="@+id/fabAddToFavorite"
                 android:src="@drawable/ic_watch_list"/>
 
         </RelativeLayout>

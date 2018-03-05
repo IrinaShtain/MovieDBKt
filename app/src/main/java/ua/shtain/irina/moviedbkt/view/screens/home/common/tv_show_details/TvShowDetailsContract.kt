@@ -11,7 +11,7 @@ import ua.shtain.irina.moviedbkt.view.base.content.ContentView
  */
 interface TvShowDetailsContract {
     interface View : ContentView {
-        fun setupUI(movieItem: TvShowItem)
+        fun setupUI(tvShowItem: TvShowItem)
         fun showRatingDialog()
         fun getTvID(): Int
     }
