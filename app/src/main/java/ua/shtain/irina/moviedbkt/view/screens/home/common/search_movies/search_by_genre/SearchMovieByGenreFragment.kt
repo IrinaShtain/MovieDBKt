@@ -48,4 +48,6 @@ class SearchMovieByGenreFragment : MoviesFragment() {
     override fun getSearchPresenter() = mPresenter
 
     override fun getToolbarTitle()= R.string.menu_fab_find_by_genres
+
+    override fun getErrorEmptyText()= R.string.error_msg_no_movies_with_such_genre
 }

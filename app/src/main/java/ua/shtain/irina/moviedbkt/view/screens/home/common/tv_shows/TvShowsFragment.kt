@@ -93,7 +93,7 @@ abstract class TvShowsFragment : RefreshableFragment(), TvShowsContract.View, On
         builder.show()
     }
 
-    override fun updateMovies(position: Int) {
+    override fun updateTvShows(position: Int) {
         mAdapter?.deleteItem(position)
     }
 
@@ -115,10 +115,5 @@ abstract class TvShowsFragment : RefreshableFragment(), TvShowsContract.View, On
             }
             else -> super.showPlaceholder(placeholderType)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        hideProgress()
     }
 }

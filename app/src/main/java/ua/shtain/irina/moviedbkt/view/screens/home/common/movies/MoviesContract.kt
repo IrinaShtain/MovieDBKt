@@ -3,6 +3,7 @@ package ua.shtain.irina.moviedbkt.view.screens.home.common.movies
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.movie.SearchMovieResponse
 import ua.shtain.irina.moviedbkt.model.genre.GenresResponse
+import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableView
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
@@ -20,6 +21,8 @@ interface MoviesContract {
         fun setupSearchByTitle()
         fun setupGenresList()
         fun getSearchType(): Int
+        fun showAlert(itemId: Int, position: Int)
+        fun updateMovies(position: Int)
     }
 
     interface Presenter : RefreshablePresenter {
@@ -27,6 +30,8 @@ interface MoviesContract {
         fun getNextPage()
         fun searchByGenre(id: Int)
         fun updateNeedRefresh(needRefresh: Boolean)
+        fun deletionConfirmed(itemId: Int, position: Int)
+        fun deleteMovie(movieID: Int, position: Int)
     }
 
     interface Model {
@@ -37,5 +42,7 @@ interface MoviesContract {
         fun searchPopularMovies(page: Int): Observable<SearchMovieResponse>
         fun getFavoriteMovies(page: Int): Observable<SearchMovieResponse>
         fun getWatchlistMovies(page: Int): Observable<SearchMovieResponse>
+        fun deleteFromFavoriteMovies(movieID: Int): Observable<ResponseMessage>
+        fun deleteFromWatchListMovies(movieID: Int): Observable<ResponseMessage>
     }
 }

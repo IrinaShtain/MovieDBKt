@@ -37,4 +37,6 @@ class FavoriteMovieFragment  : MoviesFragment() {
     override fun getSearchPresenter() = mPresenter
 
     override fun getToolbarTitle()= R.string.app_name
+
+    override fun getErrorEmptyText() = R.string.error_msg_no_movies_added_to_favorite
 }

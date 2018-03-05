@@ -2,6 +2,7 @@ package ua.shtain.irina.moviedbkt.view.screens.home.common.movies
 
 import android.os.Bundle
 import android.support.annotation.StringRes
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
@@ -15,6 +16,7 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.EndlessScrol
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnNextPageListener
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnDeleteClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
@@ -27,7 +29,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by Irina Shtain on 20.02.2018.
  */
-abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCardClickListener, OnGenreClickListener {
+abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCardClickListener, OnGenreClickListener, OnDeleteClickListener {
 
     protected var mListID = 0
     protected var mSearchType = 0
@@ -38,6 +40,8 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCa
     abstract fun getSearchPresenter(): MoviesPresenter
     @StringRes
     abstract fun getToolbarTitle(): Int
+    @StringRes
+    abstract fun getErrorEmptyText(): Int
 
     override fun getLayoutRes() = R.layout.fragment_movies
 
@@ -57,6 +61,7 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCa
         if (mMovieAdapter == null)
             mMovieAdapter = MovieItemAdapter()
         mMovieAdapter!!.setListener(this)
+        mMovieAdapter!!.setDeleteItemListener(this)
         rvMovies.adapter = mMovieAdapter
         scrollListener = EndlessScrollListener(layoutManager, object : OnNextPageListener {
             override fun onLoadMore(): Boolean {
@@ -113,13 +118,17 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCa
         rvGenres.smoothScrollToPosition(position)
     }
 
+    override fun onDeleteItemClick(itemID: Int, position: Int) {
+       getSearchPresenter().deleteMovie(itemID, position)
+    }
+
     override fun showPlaceholder(placeholderType: Constants.PlaceholderType) {
         rlPlaceholder.visibility = View.VISIBLE
 
         when (placeholderType) {
             Constants.PlaceholderType.EMPTY -> {
                 ivPlaceholderImage.setImageResource(R.drawable.placeholder_empty)
-                tvPlaceholderMessage.setText(R.string.error_msg_no_movies_with_such_title)
+                tvPlaceholderMessage.setText(getErrorEmptyText())
             }
             Constants.PlaceholderType.NETWORK -> {
                 ivPlaceholderImage.setImageResource(R.drawable.ic_cloud_off)
@@ -133,8 +142,16 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCa
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        hideProgress()
+    override fun showAlert(itemId: Int, position: Int) {
+        val builder = AlertDialog.Builder(activity)
+        builder.setMessage(R.string.question_about_deleting_movie)
+        builder.setPositiveButton(R.string.answer_yes) { _, _ -> getSearchPresenter().deletionConfirmed(itemId, position) }
+        builder.setNegativeButton(R.string.answer_no, null)
+
+        builder.show()
+    }
+
+    override fun updateMovies(position: Int) {
+       mMovieAdapter?.deleteItem(position)
     }
 }

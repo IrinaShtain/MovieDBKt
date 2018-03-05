@@ -87,9 +87,13 @@
     <string name="err_msg_no_lists">You have no created lists</string>
     <string name="error_msg_no_movies">No movies in this list</string>
     <string name="error_msg_no_movies_with_such_title">No movies with such title</string>
+    <string name="error_msg_no_movies_with_such_genre">No movies in this genre</string>
     <string name="error_msg_no_tv_shows_added_to_favorite">No shows added to favorite</string>
+    <string name="error_msg_no_movies_added_to_favorite">No movies added to favorite</string>
     <string name="error_msg_no_tv_shows_added_to_watchlist">No shows added to watchlist</string>
+    <string name="error_msg_no_movies_added_to_watchlist">No movies added to watchlist</string>
     <string name="error_msg_no_tv_shows">No shows for presenting</string>
+    <string name="error_msg_no_movies_for_search">No movies for presenting</string>
     <string name="error_msg_no_star_with_such_name">No star with such name</string>
     <string name="err_message_input_rating">Set Rating</string>
     <string name="err_movie_added">Movie already is on your list</string>

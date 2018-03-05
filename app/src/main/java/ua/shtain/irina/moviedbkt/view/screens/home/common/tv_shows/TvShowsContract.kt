@@ -16,7 +16,7 @@ interface TvShowsContract {
         fun addList(showsDHs: MutableList<TvShowItemDH>)
         fun getShowsType(): Int
         fun showAlert(itemId: Int, position: Int)
-        fun updateMovies(position: Int)
+        fun updateTvShows(position: Int)
     }
 
     interface Presenter : RefreshablePresenter {

@@ -103,11 +103,11 @@ abstract class TvShowsPresenter : TvShowsContract.Presenter {
 
     override fun deletionConfirmed(itemId: Int, position: Int) {
         when (searchType) {
-            Constants.TYPE_FAVORITE_MOVIES -> mCompositeDisposable.add(mModel.deleteFromFavoriteTV(itemId)
+            Constants.TYPE_FAVORITE_TV_SHOWS -> mCompositeDisposable.add(mModel.deleteFromFavoriteTV(itemId)
                     .subscribe({ _ ->
                         mView.hideProgress()
                         mView.showMessage(Constants.MessageType.MOVIE_WAS_DELETED)
-                        mView.updateMovies(position)
+                        mView.updateTvShows(position)
                         --totalResults
                         checkEmptyList()
                     }, { throwable ->
@@ -116,7 +116,7 @@ abstract class TvShowsPresenter : TvShowsContract.Presenter {
                         when {
                             throwable.message.equals("HTTP 500 Internal Server Error") -> { // backend's bug :(
                                 mView.showMessage(Constants.MessageType.TV_SHOW_WAS_DELETED)
-                                mView.updateMovies(position)
+                                mView.updateTvShows(position)
                                 --totalResults
                                 checkEmptyList()
                             }
@@ -128,7 +128,7 @@ abstract class TvShowsPresenter : TvShowsContract.Presenter {
                     .subscribe({ _ ->
                         mView.hideProgress()
                         mView.showMessage(Constants.MessageType.TV_SHOW_WAS_DELETED)
-                        mView.updateMovies(position)
+                        mView.updateTvShows(position)
                         --totalResults
                         checkEmptyList()
                     }, { throwable ->
@@ -137,7 +137,7 @@ abstract class TvShowsPresenter : TvShowsContract.Presenter {
                         when {
                             throwable.message.equals("HTTP 500 Internal Server Error") -> { // backend's bug :(
                                 mView.showMessage(Constants.MessageType.LIST_WAS_DELETED)
-                                mView.updateMovies(position)
+                                mView.updateTvShows(position)
                                 --totalResults
                                 checkEmptyList()
                             }

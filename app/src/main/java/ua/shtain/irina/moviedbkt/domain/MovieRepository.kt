@@ -1,6 +1,7 @@
 package ua.shtain.irina.moviedbkt.domain
 
 import io.reactivex.Observable
+import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
 import ua.shtain.irina.moviedbkt.model.movie.*
 import ua.shtain.irina.moviedbkt.model.requests.FavoriteRequest
 import ua.shtain.irina.moviedbkt.model.requests.RateRequest
@@ -33,6 +34,10 @@ class MovieRepository @Inject constructor(movieService: MovieService, helper: Sc
     override fun addToFavoriteMovie(movieID: Int) = mHelper.getNetworkObservable(mService.markToFavoriteMovie(FavoriteRequest("movie", movieID, true)))
 
     override fun addToWatchListMovie(movieID: Int) = mHelper.getNetworkObservable(mService.markToWatchListMovie(WatchRequest("movie", movieID, true)))
+
+    override fun deleteFromFavoriteMovies(movieID: Int) = mHelper.getNetworkObservable(mService.markToFavoriteMovie(FavoriteRequest("movie", movieID, false)))
+
+    override fun deleteFromWatchListMovies(movieID: Int) = mHelper.getNetworkObservable(mService.markToWatchListMovie(WatchRequest("movie", movieID, false)))
 
     override fun getGenres() = mHelper.getNetworkObservable(mService.getGenres())
 

@@ -43,4 +43,6 @@ class SearchLatestMovieFragment : MoviesFragment() {
     override fun getSearchPresenter() = mPresenter
 
     override fun getToolbarTitle() = R.string.title_latest_movies
+
+    override fun getErrorEmptyText()= R.string.error_msg_no_movies_for_search
 }

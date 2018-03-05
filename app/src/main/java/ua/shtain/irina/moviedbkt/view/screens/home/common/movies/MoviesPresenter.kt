@@ -30,6 +30,7 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
     private var genres: ArrayList<GenreDH> = ArrayList()
 
     private var mNeedRefresh = true
+    private var totalResults: Int = 0
 
     abstract fun getMovies(page: Int): Observable<SearchMovieResponse>
 
@@ -154,6 +155,7 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
                     mView.hideProgress()
                     mCurrentPage = pageNumber
                     mTotalPages = response.totalPages
+                    totalResults = response.totalResults
                     if (mCurrentPage == 1)
                         if (!response.movies.isEmpty())
                             mView.setList(prepareMovieList(response.movies))
@@ -176,5 +178,67 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
                 })
     }
 
-    private fun prepareMovieList(items: ArrayList<MovieItem>) = items.mapTo(ArrayList()) { MovieItemDH(it) }
+    private fun prepareMovieList(items: ArrayList<MovieItem>): ArrayList<MovieItemDH> {
+        val dhs = items.mapTo(ArrayList()) { MovieItemDH(it) }
+        if (searchType == Constants.TYPE_FAVORITE_MOVIES || searchType == Constants.TYPE_WATCHLIST_MOVIES)
+            for (dh in dhs) dh.isInList = true
+        return dhs
+    }
+
+    override fun deletionConfirmed(itemId: Int, position: Int) {
+        when (searchType) {
+            Constants.TYPE_FAVORITE_MOVIES -> mCompositeDisposable.add(mModel.deleteFromFavoriteMovies(itemId)
+                    .subscribe({ _ ->
+                        mView.hideProgress()
+                        mView.showMessage(Constants.MessageType.MOVIE_WAS_DELETED)
+                        mView.updateMovies(position)
+                        --totalResults
+                        checkEmptyList()
+                    }, { throwable ->
+                        Log.e("myLog", "throwable " + throwable.localizedMessage)
+                        mView.hideProgress()
+                        when {
+                            throwable.message.equals("HTTP 500 Internal Server Error") -> { // backend's bug :(
+                                mView.showMessage(Constants.MessageType.TV_SHOW_WAS_DELETED)
+                                mView.updateMovies(position)
+                                --totalResults
+                                checkEmptyList()
+                            }
+                            throwable is ConnectionException -> mView.showMessage(Constants.MessageType.CONNECTION_PROBLEMS)
+                            else -> mView.showMessage(Constants.MessageType.UNKNOWN)
+                        }
+                    }))
+            Constants.TYPE_WATCHLIST_MOVIES -> mCompositeDisposable.add(mModel.deleteFromWatchListMovies(itemId)
+                    .subscribe({ _ ->
+                        mView.hideProgress()
+                        mView.showMessage(Constants.MessageType.TV_SHOW_WAS_DELETED)
+                        mView.updateMovies(position)
+                        --totalResults
+                        checkEmptyList()
+                    }, { throwable ->
+                        Log.e("myLog", "throwable " + throwable.localizedMessage)
+                        mView.hideProgress()
+                        when {
+                            throwable.message.equals("HTTP 500 Internal Server Error") -> { // backend's bug :(
+                                mView.showMessage(Constants.MessageType.LIST_WAS_DELETED)
+                                mView.updateMovies(position)
+                                --totalResults
+                                checkEmptyList()
+                            }
+                            throwable is ConnectionException -> mView.showMessage(Constants.MessageType.CONNECTION_PROBLEMS)
+                            else -> mView.showMessage(Constants.MessageType.UNKNOWN)
+                        }
+                    }))
+        }
+    }
+
+    private fun checkEmptyList() {
+        if (totalResults == 0)
+            mView.showPlaceholder(Constants.PlaceholderType.EMPTY)
+    }
+
+
+    override fun deleteMovie(movieID: Int, position: Int) {
+        mView.showAlert(movieID, position)
+    }
 }
