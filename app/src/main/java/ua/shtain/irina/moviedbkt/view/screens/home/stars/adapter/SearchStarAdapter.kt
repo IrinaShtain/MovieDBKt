@@ -45,7 +45,7 @@ class SearchStarAdapter : RecyclerView.Adapter<SearchStarVH>() {
 
     override fun onBindViewHolder(holder: SearchStarVH, position: Int) {
         if (mListener != null) {
-            holder.itemView.setOnClickListener({ mListener!!.onStarClick(items?.get(position)!!.model) })
+            holder.itemView.setOnClickListener({ mListener!!.onStarClick(holder.ivImage, items?.get(position)!!.model) })
         }
         holder.bindData(items!![position])
     }

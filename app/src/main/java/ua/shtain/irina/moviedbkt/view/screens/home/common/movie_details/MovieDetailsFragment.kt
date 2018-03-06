@@ -8,11 +8,11 @@ import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.view.View
 import com.jakewharton.rxbinding2.view.RxView
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.model.movie.MovieItem
-import ua.shtain.irina.moviedbkt.model.movie.getAvatarUrl
 import ua.shtain.irina.moviedbkt.model.movie.getGenres
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
@@ -30,6 +30,8 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
 
     private var mMovieID = 0
     private var mListID = 0
+    private lateinit var mTvTitle: String
+    private lateinit var mTvPosterPath: String
     private var dialogRating: RatingDialogFragment? = null
 
     @Inject
@@ -46,11 +48,15 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     companion object {
         private val MOVIE_ID = "movie_id"
         private val LIST_ID = "list_id"
-        fun newInstance(movieID: Int, listID: Int): MovieDetailsFragment {
+        private val MOVIE_TITLE = "movie_title"
+        private val MOVIE_POSTER = "movie_url"
+        fun newInstance(movieID: Int, listID: Int, posterPath: String, title: String): MovieDetailsFragment {
             val fragment = MovieDetailsFragment()
             val bundle = Bundle()
             bundle.putInt(MOVIE_ID, movieID)
             bundle.putInt(LIST_ID, listID)
+            bundle.putString(MOVIE_TITLE, title)
+            bundle.putString(MOVIE_POSTER, posterPath)
             fragment.arguments = bundle
             return fragment
         }
@@ -60,14 +66,39 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
         super.onViewCreated(view, savedInstanceState)
         mMovieID = arguments.getInt(MOVIE_ID)
         mListID = arguments.getInt(LIST_ID)
+        mTvTitle = arguments.getString(MOVIE_TITLE)
+        mTvPosterPath = arguments.getString(MOVIE_POSTER)
         initUI()
+        setupTransitionElements()
         if (mListID == 0) fabAddToList.visibility = View.GONE
         mPresenter.mView = this
         mPresenter.subscribe()
     }
 
+    private fun setupTransitionElements() {
+        imageView.transitionName = mTvTitle
+        Picasso.with(context)
+                .load(mTvPosterPath)
+                .fit()
+                .noFade()
+                .centerCrop()
+                .placeholder(R.drawable.bg_title_black_gradient)
+                .error(R.drawable.placeholder_movie)
+                .into(imageView, object : Callback {
+                    override fun onError() {
+                        mActivity.supportStartPostponedEnterTransition()
+                    }
+
+                    override fun onSuccess() {
+                        mActivity.supportStartPostponedEnterTransition()
+                    }
+                })
+        collapsingToolbar.title = mTvTitle
+        collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE)
+    }
+
     private fun initUI() {
-        toolbar.setNavigationOnClickListener {mActivity.onBackPressed() }
+        toolbar.setNavigationOnClickListener { mActivity.onBackPressed() }
         RxView.clicks(fabAddToList)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
                 .subscribe { _ -> mPresenter.fabAddToListClicked(mListID) }
@@ -105,19 +136,13 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     }
 
     override fun setupUI(movieItem: MovieItem) {
-        collapsingToolbar.title = movieItem.title
-        collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE)
+        nsvContainer.visibility = View.VISIBLE
         tvType.text = resources.getString(R.string.type_movie)
         tvDescription.text = movieItem.overview
         tvTitle.text = movieItem.title
         tvGenre.text = resources.getString(R.string.genre, movieItem.getGenres())
         tvReleaseDate.text = movieItem.releaseDate
         tvPopularity.text = movieItem.voteAverage.toString()
-        Picasso.with(context)
-                .load(movieItem.getAvatarUrl())
-                .error(R.drawable.placeholder_movie)
-                .into(imageView)
-
     }
 
     override fun showRatingDialog() {

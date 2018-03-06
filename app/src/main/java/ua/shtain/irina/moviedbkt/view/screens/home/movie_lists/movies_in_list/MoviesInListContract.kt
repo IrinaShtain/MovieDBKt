@@ -15,14 +15,13 @@ interface MoviesInListContract {
 
     interface View : RefreshableView {
         fun setLists(itemDHS: MutableList<MovieItemDH>)
-        fun openMovieDetails(movieID: Int)
         fun getListID(): Int
         fun showConfirmAlert(movieID: Int, position: Int)
         fun updateMovies(position: Int)
     }
 
     interface Presenter : RefreshablePresenter {
-        fun showDetails(movieID: Int)
+        fun showedDetails()
         fun deleteMovie(movieID: Int, position: Int)
         fun deleteMovieAlert(movieID: Int, position: Int)
     }

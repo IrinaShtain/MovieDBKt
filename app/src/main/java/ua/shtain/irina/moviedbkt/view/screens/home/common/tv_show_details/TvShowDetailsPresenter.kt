@@ -24,7 +24,7 @@ class TvShowDetailsPresenter @Inject constructor(compositeDisposable: CompositeD
 
     override fun subscribe() {
         tvID = mView.getTvID()
-        mView.showProgressMain()
+        mView.showProgressPagination()
         mCompositeDisposable.add(mModel.getTvDetails(tvID)
                 .subscribe({ response ->
                     tvShowItem = response
@@ -34,9 +34,9 @@ class TvShowDetailsPresenter @Inject constructor(compositeDisposable: CompositeD
                     mView.hideProgress()
                     throwable.printStackTrace()
                     if (throwable is ConnectionException) {
-                        mView.showPlaceholder(Constants.PlaceholderType.NETWORK)
+                        mView.showMessage(Constants.MessageType.CONNECTION_PROBLEMS)
                     } else {
-                        mView.showPlaceholder(Constants.PlaceholderType.UNKNOWN)
+                        mView.showMessage(Constants.MessageType.UNKNOWN)
                     }
                 }))
     }

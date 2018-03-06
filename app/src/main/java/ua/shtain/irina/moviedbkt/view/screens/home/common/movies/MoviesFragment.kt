@@ -7,29 +7,28 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.view.View
+import android.widget.ImageView
 import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.fragment_movies.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.EndlessScrollListener
-import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
-import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnNextPageListener
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
-import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnDeleteClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.*
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter.GenreAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter.GenreDH
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter.OnGenreClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.TvShowDetailsFragment
 import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
  * Created by Irina Shtain on 20.02.2018.
  */
-abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCardClickListener, OnGenreClickListener, OnDeleteClickListener {
+abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnItemClickListener, OnGenreClickListener, OnDeleteClickListener {
 
     protected var mListID = 0
     protected var mSearchType = 0
@@ -108,8 +107,8 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnCa
         rvGenres.adapter = mGenreAdapter
     }
 
-    override fun onCardClick(itemID: Int, position: Int) {
-        mActivity.changeFragment(MovieDetailsFragment.newInstance(itemID, mListID))
+    override fun onCardClick(imageView: ImageView, itemID: Int, title: String, posterUrl: String) {
+        mActivity.changeFragmentWithTransition(MovieDetailsFragment.newInstance(itemID, mListID, posterUrl, title), imageView)
         getSearchPresenter().updateNeedRefresh(false)
     }
 

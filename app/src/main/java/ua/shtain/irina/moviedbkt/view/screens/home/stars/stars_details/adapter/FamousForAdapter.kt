@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import ua.shtain.irina.moviedbkt.R
-import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnItemFamousForClickListener
 import java.util.*
 
 /**
@@ -12,7 +12,7 @@ import java.util.*
  */
 class FamousForAdapter : RecyclerView.Adapter<FamousForVH>() {
     private var items: List<FamousForDH>? = null
-    private var mListener: OnCardClickListener? = null
+    private var mListener: OnItemFamousForClickListener? = null
 
     init {
         items = ArrayList()
@@ -23,7 +23,7 @@ class FamousForAdapter : RecyclerView.Adapter<FamousForVH>() {
         notifyDataSetChanged()
     }
 
-    fun setListener(listener: OnCardClickListener) {
+    fun setListener(listener: OnItemFamousForClickListener) {
         mListener = listener
     }
 
@@ -37,7 +37,7 @@ class FamousForAdapter : RecyclerView.Adapter<FamousForVH>() {
 
     override fun onBindViewHolder(holder: FamousForVH, position: Int) {
         if (mListener != null) {
-            holder.itemView.setOnClickListener({ mListener!!.onCardClick(items!![position].id, position) })
+            holder.itemView.setOnClickListener({ mListener!!.onCardClick(position, holder.icon, items!![position].id, items!![position].title, items!![position].posterPath) })
         }
         holder.bindData(items!![position])
     }

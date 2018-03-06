@@ -5,23 +5,24 @@ import android.support.annotation.StringRes
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
+import android.widget.ImageView
 import kotlinx.android.synthetic.main.fragment_tv_shows.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.EndlessScrollListener
-import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnDeleteClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnNextPageListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.TvShowDetailsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnItemClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_shows.adapter.TvShowItemAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_shows.adapter.TvShowItemDH
 
 /**
  * Created by Irina Shtain on 02.03.2018.
  */
-abstract class TvShowsFragment : RefreshableFragment(), TvShowsContract.View, OnCardClickListener, OnDeleteClickListener {
+abstract class TvShowsFragment : RefreshableFragment(), TvShowsContract.View, OnItemClickListener, OnDeleteClickListener {
 
     protected var mShowsType = 0
     var mAdapter: TvShowItemAdapter? = null
@@ -63,9 +64,8 @@ abstract class TvShowsFragment : RefreshableFragment(), TvShowsContract.View, On
         rvShows.addOnScrollListener(scrollListener)
     }
 
-
-    override fun onCardClick(itemID: Int, position: Int) {
-        mActivity.changeFragment(TvShowDetailsFragment.newInstance(itemID))
+    override fun onCardClick(imageView: ImageView, itemID: Int, title: String, posterUrl: String) {
+        mActivity.changeFragmentWithTransition(TvShowDetailsFragment.newInstance(itemID, posterUrl, title), imageView)
         getSearchPresenter().updateNeedRefresh(false)
     }
 

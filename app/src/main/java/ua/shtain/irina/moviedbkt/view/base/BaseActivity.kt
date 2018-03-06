@@ -1,13 +1,17 @@
 package ua.shtain.irina.moviedbkt.view.base
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.support.annotation.IdRes
+import android.support.transition.TransitionInflater
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.root.ObjectGraph
 
@@ -24,11 +28,12 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportPostponeEnterTransition()
         mObjectGraph = ObjectGraph.getInstance(application)
         initGraph()
     }
 
-    fun changeFragment(f: Fragment, cleanStack: Boolean = false) {
+    fun changeFragment(f: BaseFragment, cleanStack: Boolean = false) {
         val ft = supportFragmentManager.beginTransaction()
         if (cleanStack) {
             clearBackStack()
@@ -36,6 +41,14 @@ abstract class BaseActivity : AppCompatActivity() {
         ft.setCustomAnimations(
                 R.anim.abc_fade_in, R.anim.abc_fade_out, R.anim.abc_popup_enter, R.anim.abc_popup_exit)
         ft.replace(getContainer(), f)
+        ft.addToBackStack(null)
+        ft.commit()
+    }
+
+    fun changeFragmentWithTransition(newFragment: BaseFragment, imageView: ImageView) {
+        val ft = supportFragmentManager.beginTransaction()
+        ft.addSharedElement(imageView, ViewCompat.getTransitionName(imageView))
+        ft.replace(getContainer(), newFragment)
         ft.addToBackStack(null)
         ft.commit()
     }

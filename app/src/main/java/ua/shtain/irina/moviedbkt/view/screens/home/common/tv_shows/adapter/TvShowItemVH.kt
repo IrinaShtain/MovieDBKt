@@ -1,5 +1,6 @@
 package ua.shtain.irina.moviedbkt.view.screens.home.common.tv_shows.adapter
 
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
@@ -12,11 +13,12 @@ import ua.shtain.irina.moviedbkt.R
  */
 class TvShowItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val tvTitle = itemView.findViewById(R.id.tvTitle) as TextView
-    private val ivImage = itemView.findViewById(R.id.ivImage) as ImageView
+    val ivImage = itemView.findViewById(R.id.ivImage) as ImageView
     val ivDelete = itemView.findViewById(R.id.ivDelete) as ImageView
 
 
     fun bindData(tvShowItemDH: TvShowItemDH) {
+        ViewCompat.setTransitionName(ivImage, tvShowItemDH.title)
         Picasso.with(itemView.context)
                 .load(tvShowItemDH.posterPath)
                 .error(R.drawable.placeholder_movie)

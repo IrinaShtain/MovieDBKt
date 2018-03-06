@@ -58,6 +58,8 @@
                     android:paddingTop="@dimen/padding_default"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/text_size_default"
+                    android:visibility="gone"
+                    tools:visibility="visible"
                     tools:text="Rating : 0.5254"/>
 
 
@@ -76,9 +78,12 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"

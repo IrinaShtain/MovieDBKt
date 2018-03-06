@@ -3,10 +3,12 @@ package ua.shtain.irina.moviedbkt.view.screens.home.stars
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
+import android.widget.ImageView
 import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.fragment_search_star.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.model.star.StarItem
+import ua.shtain.irina.moviedbkt.model.star.getAvatarUrl
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
@@ -70,8 +72,8 @@ class SearchStarFragment : RefreshableFragment(), SearchStarContract.View, StarL
         }))
     }
 
-    override fun onStarClick(starItem: StarItem) {
-       mActivity.changeFragment(StarsDetailsFragment.newInstance(starItem.id, starItem.knownFor))
+    override fun onStarClick(imageView: ImageView, starItem: StarItem) {
+        mActivity.changeFragmentWithTransition(StarsDetailsFragment.newInstance(starItem.id, starItem.knownFor, starItem.getAvatarUrl(), starItem.name), imageView)
     }
 
     override fun setList(starDHs: ArrayList<StarDH>) {

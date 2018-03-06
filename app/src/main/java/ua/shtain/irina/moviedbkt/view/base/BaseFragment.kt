@@ -1,10 +1,13 @@
 package ua.shtain.irina.moviedbkt.view.base
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.transition.TransitionInflater
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import ua.shtain.irina.moviedbkt.R
 
 /**
  * Created by Irina Shtain on 30.01.2018.
@@ -16,6 +19,12 @@ abstract class BaseFragment : Fragment() {
         super.onAttach(context)
         mActivity = context as BaseActivity
         setHasOptionsMenu(true)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        postponeEnterTransition()
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.default_transition)
     }
 
     override fun onStop() {

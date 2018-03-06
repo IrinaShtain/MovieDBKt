@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnDeleteClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnItemClickListener
 import java.util.ArrayList
 
 /**
@@ -13,7 +14,7 @@ import java.util.ArrayList
  */
 class MovieItemAdapter : RecyclerView.Adapter<MovieItemVH>() {
     private var items: MutableList<MovieItemDH>? = null
-    private var mListener: OnCardClickListener? = null
+    private var mListener: OnItemClickListener? = null
     private var mDeleteListener: OnDeleteClickListener? = null
 
     init {
@@ -35,7 +36,7 @@ class MovieItemAdapter : RecyclerView.Adapter<MovieItemVH>() {
         notifyDataSetChanged()
     }
 
-    fun setListener(listener: OnCardClickListener) {
+    fun setListener(listener: OnItemClickListener) {
         mListener = listener
     }
 
@@ -51,7 +52,7 @@ class MovieItemAdapter : RecyclerView.Adapter<MovieItemVH>() {
 
     override fun onBindViewHolder(holder: MovieItemVH, position: Int) {
         if (mListener != null) {
-            holder.itemView.setOnClickListener({ mListener!!.onCardClick(items!![position].id, position) })
+            holder.itemView.setOnClickListener({ mListener!!.onCardClick(holder.ivImage, items!![position].id, items!![position].title, items!![position].posterPath) })
         }
         if (mDeleteListener!=null){
             holder.ivDelete.setOnClickListener({ mDeleteListener!!.onDeleteItemClick(items!![position].id, position) })

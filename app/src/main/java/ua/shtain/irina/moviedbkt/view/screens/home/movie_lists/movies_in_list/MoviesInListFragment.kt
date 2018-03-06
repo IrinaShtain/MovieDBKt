@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
+import android.widget.ImageView
 import kotlinx.android.synthetic.main.fragment_recycler_view.*
 import kotlinx.android.synthetic.main.view_placeholder.*
 import ua.shtain.irina.moviedbkt.R
@@ -12,6 +13,7 @@ import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragme
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnDeleteClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnItemClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieItemDH
@@ -20,7 +22,7 @@ import javax.inject.Inject
 /**
  * Created by Irina Shtain on 19.02.2018.
  */
-class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, OnCardClickListener, OnDeleteClickListener {
+class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, OnItemClickListener, OnDeleteClickListener {
 
 
     @Inject
@@ -85,9 +87,9 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
 
     override fun getPresenter() = mPresenter
 
-    override fun onCardClick(itemID: Int, position: Int) {
-        mPresenter.showDetails(itemID)
-
+    override fun onCardClick(imageView: ImageView, itemID: Int, title: String, posterUrl: String) {
+        mActivity.changeFragmentWithTransition(MovieDetailsFragment.newInstance(itemID, mListID, posterUrl, title), imageView)
+        mPresenter.showedDetails()
     }
 
     override fun onDeleteItemClick(itemID: Int, position: Int) {
@@ -96,10 +98,6 @@ class MoviesInListFragment : RefreshableFragment(), MoviesInListContract.View, O
 
     override fun setLists(itemDHS: MutableList<MovieItemDH>) {
         movieAdapter.setListDH(itemDHS)
-    }
-
-    override fun openMovieDetails(movieID: Int) {
-        mActivity.changeFragment(MovieDetailsFragment.newInstance(movieID, mListID))
     }
 
     override fun updateMovies(position: Int) {

@@ -24,7 +24,7 @@ class MovieDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
 
     override fun subscribe() {
         movieID = mView.getMovieID()
-        mView.showProgressMain()
+        mView.showProgressPagination()
         mCompositeDisposable.add(mModel.getMovieDetails(movieID)
                 .subscribe({ response ->
                     movieItem = response
@@ -34,9 +34,9 @@ class MovieDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
                     mView.hideProgress()
                     throwable.printStackTrace()
                     if (throwable is ConnectionException) {
-                        mView.showPlaceholder(Constants.PlaceholderType.NETWORK)
+                        mView.showMessage(Constants.MessageType.CONNECTION_PROBLEMS)
                     } else {
-                        mView.showPlaceholder(Constants.PlaceholderType.UNKNOWN)
+                        mView.showMessage(Constants.MessageType.UNKNOWN)
                     }
                 }))
     }

@@ -8,12 +8,12 @@ import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.view.View
 import com.jakewharton.rxbinding2.view.RxView
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_tv_details.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.model.tv.TvShowItem
 import ua.shtain.irina.moviedbkt.model.tv.getGenres
-import ua.shtain.irina.moviedbkt.model.tv.getPosterUrl
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentFragment
@@ -23,12 +23,15 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDi
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+
 /**
  * Created by Irina Shtain on 01.03.2018.
  */
 class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
 
     private var mTvID = 0
+    private lateinit var mTvTitle: String
+    private lateinit var mTvPosterPath: String
     private var dialogRating: RatingDialogFragment? = null
 
     @Inject
@@ -44,10 +47,14 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
 
     companion object {
         private val TV_ID = "tv_id"
-        fun newInstance(movieID: Int): TvShowDetailsFragment {
+        private val TV_TITLE = "tv_title"
+        private val TV_POSTER = "tv_url"
+        fun newInstance(movieID: Int, posterPath: String, title: String): TvShowDetailsFragment {
             val fragment = TvShowDetailsFragment()
             val bundle = Bundle()
             bundle.putInt(TV_ID, movieID)
+            bundle.putString(TV_TITLE, title)
+            bundle.putString(TV_POSTER, posterPath)
             fragment.arguments = bundle
             return fragment
         }
@@ -56,9 +63,33 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mTvID = arguments.getInt(TV_ID)
+        mTvTitle = arguments.getString(TV_TITLE)
+        mTvPosterPath = arguments.getString(TV_POSTER)
         initUI()
+        setupTransitionElements()
         mPresenter.mView = this
         mPresenter.subscribe()
+    }
+
+    private fun setupTransitionElements() {
+        imageView.transitionName = mTvTitle
+        Picasso.with(context)
+                .load(mTvPosterPath)
+                .fit()
+                .noFade()
+                .centerCrop()
+                .placeholder(R.drawable.bg_title_black_gradient)
+                .error(R.drawable.placeholder_movie)
+                .into(imageView, object : Callback {
+                    override fun onError() {
+                        mActivity.supportStartPostponedEnterTransition()
+                    }
+                    override fun onSuccess() {
+                        mActivity.supportStartPostponedEnterTransition()
+                    }
+                })
+        collapsingToolbar.title = mTvTitle
+        collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE)
     }
 
     private fun initUI() {
@@ -98,8 +129,7 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
     }
 
     override fun setupUI(tvShowItem: TvShowItem) {
-        collapsingToolbar.title = tvShowItem.title
-        collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE)
+        nsvInfoContainer.visibility = View.VISIBLE
         tvDescription.text = tvShowItem.overview
         tvNumberOfSeasons.text = resources.getString(R.string.number_of_seasons, tvShowItem.numberOfSeasons.toString())
         tvType.text = resources.getString(R.string.type_tv)
@@ -107,11 +137,6 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
         tvGenre.text = resources.getString(R.string.genre, tvShowItem.getGenres())
         tvReleaseDate.text = tvShowItem.firstAirDate
         tvPopularity.text = tvShowItem.voteAverage.toString()
-        Picasso.with(context)
-                .load(tvShowItem.getPosterUrl())
-                .error(R.drawable.placeholder_movie)
-                .into(imageView)
-
     }
 
     override fun showRatingDialog() {

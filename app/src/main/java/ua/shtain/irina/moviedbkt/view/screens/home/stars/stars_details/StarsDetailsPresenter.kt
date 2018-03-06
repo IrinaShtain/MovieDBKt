@@ -2,6 +2,7 @@ package ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details
 
 import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
+import ua.shtain.irina.moviedbkt.model.star.StarDetails
 import ua.shtain.irina.moviedbkt.model.star.getPosterUrl
 import ua.shtain.irina.moviedbkt.other.Constants
 import javax.inject.Inject
@@ -16,6 +17,7 @@ class StarsDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
 
     private var mCompositeDisposable = compositeDisposable
     private var mModel = model
+    private var star: StarDetails? = null
 
 
     override fun setView(view: StarsDetailsContract.View) {
@@ -23,25 +25,31 @@ class StarsDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
     }
 
     override fun subscribe() {
-        personID = mView.getPersonID()
-        mView.showProgressMain()
-        mCompositeDisposable.add(mModel.getStarDetails(personID)
-                .subscribe({ response ->
-                    mView.hideProgress()
-                    mView.setupFamousFor()
-                    mView.setStarName(response.name)
-                    mView.setStarRating(response.popularity.toString())
-                    mView.setStarBiography(response.biography)
-                    mView.setStarImage(response.getPosterUrl())
-                }, { throwable ->
-                    mView.hideProgress()
-                    throwable.printStackTrace()
-                    if (throwable is ConnectionException) {
-                        mView.showPlaceholder(Constants.PlaceholderType.NETWORK)
-                    } else {
-                        mView.showPlaceholder(Constants.PlaceholderType.UNKNOWN)
-                    }
-                }))
+        if (star == null) {
+            personID = mView.getPersonID()
+            mView.showProgressPagination()
+            mCompositeDisposable.add(mModel.getStarDetails(personID)
+                    .subscribe({ response ->
+                        star = response
+                        mView.hideProgress()
+                        mView.setupFamousFor()
+                        mView.setStarRating(response.popularity.toString())
+                        mView.setStarBiography(response.biography)
+                    }, { throwable ->
+                        mView.hideProgress()
+                        throwable.printStackTrace()
+                        if (throwable is ConnectionException) {
+                            mView.showMessage(Constants.MessageType.CONNECTION_PROBLEMS)
+                        } else {
+                            mView.showMessage(Constants.MessageType.UNKNOWN)
+                        }
+                    }))
+        } else {
+            mView.setupFamousFor()
+            mView.setStarRating(star!!.popularity.toString())
+            mView.setStarBiography(star!!.biography)
+        }
+
     }
 
     override fun unsubscribe() {

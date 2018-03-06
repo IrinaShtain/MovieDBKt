@@ -4,8 +4,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import ua.shtain.irina.moviedbkt.R
-import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnDeleteClickListener
+import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnItemClickListener
 import java.util.*
 
 /**
@@ -13,7 +13,7 @@ import java.util.*
  */
 class TvShowItemAdapter : RecyclerView.Adapter<TvShowItemVH>() {
     private var items: MutableList<TvShowItemDH>? = null
-    private var mListener: OnCardClickListener? = null
+    private var mListener: OnItemClickListener? = null
     private var mDeleteListener: OnDeleteClickListener? = null
 
     init {
@@ -35,7 +35,7 @@ class TvShowItemAdapter : RecyclerView.Adapter<TvShowItemVH>() {
         notifyDataSetChanged()
     }
 
-    fun setListener(listener: OnCardClickListener) {
+    fun setListener(listener: OnItemClickListener) {
         mListener = listener
     }
 
@@ -51,7 +51,7 @@ class TvShowItemAdapter : RecyclerView.Adapter<TvShowItemVH>() {
 
     override fun onBindViewHolder(holder: TvShowItemVH, position: Int) {
         if (mListener != null) {
-            holder.itemView.setOnClickListener({ mListener!!.onCardClick(items!![position].id, position) })
+            holder.itemView.setOnClickListener({ mListener!!.onCardClick(holder.ivImage, items!![position].id, items!![position].title, items!![position].posterPath) })
         }
         if (mDeleteListener != null) {
             holder.ivDelete.setOnClickListener({ mDeleteListener!!.onDeleteItemClick(items!![position].id, position) })

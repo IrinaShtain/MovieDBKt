@@ -11,15 +11,14 @@ import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 interface StarsDetailsContract {
     interface View : ContentView {
         fun setupFamousFor()
-        fun setStarName(starName: String)
         fun setStarRating(starRating: String)
         fun setStarBiography(biography: String)
-        fun setStarImage(imageUrl: String)
         fun getPersonID(): Int
 
     }
 
     interface Presenter : IBasePresenter<StarsDetailsContract.View> {
+
     }
 
     interface Model {

@@ -79,9 +79,8 @@ class MoviesInListPresenter @Inject constructor(compositeDisposable: CompositeDi
         loadMovies()
     }
 
-    override fun showDetails(movieID: Int) {
+    override fun showedDetails() {
         mIsFabOpen = false
-        mView.openMovieDetails(movieID)
     }
 
     override fun deleteMovieAlert(movieID: Int, position: Int) {

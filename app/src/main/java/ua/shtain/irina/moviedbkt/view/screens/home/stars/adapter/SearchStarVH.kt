@@ -1,5 +1,6 @@
 package ua.shtain.irina.moviedbkt.view.screens.home.stars.adapter
 
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
@@ -13,9 +14,10 @@ import ua.shtain.irina.moviedbkt.R
  */
 class SearchStarVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val tvTitle = itemView.findViewById(R.id.tvTitle) as TextView
-    private val ivImage = itemView.findViewById(R.id.ivImage) as ImageView
+    val ivImage = itemView.findViewById(R.id.ivImage) as ImageView
 
     fun bindData(starDH: StarDH) {
+        ViewCompat.setTransitionName(ivImage, starDH.name)
         Picasso.with(itemView.context)
                 .load(starDH.posterPath)
                 .error(R.drawable.placeholder_star)
