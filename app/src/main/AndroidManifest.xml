@@ -16,7 +16,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".view.screens.splash.SplashActivity"
-            android:noHistory="true">
+            android:configChanges="screenSize|orientation"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -26,9 +28,14 @@
 
         <activity
             android:name=".view.screens.login.LoginActivity"
-            android:noHistory="true"/>
+            android:configChanges="screenSize|orientation"
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".view.screens.home.MainActivity"/>
+        <activity
+            android:name=".view.screens.home.MainActivity"
+            android:configChanges="screenSize|orientation"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
