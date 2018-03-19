@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/llFindByTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginEnd="@dimen/margin_default"
         android:layout_marginStart="@dimen/margin_default"
         android:orientation="horizontal"
@@ -51,9 +51,12 @@
         android:id="@+id/rvGenres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_half"
-        android:layout_marginRight="@dimen/margin_half"
-        android:layout_marginTop="@dimen/margin_half"
+        android:clipToPadding="false"
+        android:paddingEnd="@dimen/padding_half"
+        android:paddingStart="@dimen/padding_half"
+        android:paddingTop="@dimen/padding_half"
+        android:visibility="gone"
+        tools:visibility="visible"
         />
 
 
@@ -63,7 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_half"
         android:layout_marginRight="@dimen/margin_half"
-        android:layout_marginTop="@dimen/margin_half"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/padding_half"
         />
 
     <RelativeLayout

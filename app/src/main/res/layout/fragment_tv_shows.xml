@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_half"
         android:layout_marginRight="@dimen/margin_half"
-        android:layout_marginTop="@dimen/margin_half"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/margin_half"
         />
 
     <RelativeLayout
