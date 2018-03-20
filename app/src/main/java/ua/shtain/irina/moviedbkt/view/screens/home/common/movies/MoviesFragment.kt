@@ -129,14 +129,6 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnIt
                 ivPlaceholderImage.setImageResource(R.drawable.placeholder_empty)
                 tvPlaceholderMessage.setText(getErrorEmptyText())
             }
-            Constants.PlaceholderType.NETWORK -> {
-                ivPlaceholderImage.setImageResource(R.drawable.ic_cloud_off)
-                tvPlaceholderMessage.setText(R.string.err_msg_connection_problem)
-            }
-            Constants.MessageType.UNKNOWN -> {
-                ivPlaceholderImage.setImageResource(R.drawable.ic_sentiment_dissatisfied)
-                tvPlaceholderMessage.setText(R.string.err_msg_something_goes_wrong)
-            }
             else -> super.showPlaceholder(placeholderType)
         }
     }

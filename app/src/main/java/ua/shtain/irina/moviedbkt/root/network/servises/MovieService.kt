@@ -5,6 +5,7 @@ import retrofit2.http.*
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
 import ua.shtain.irina.moviedbkt.model.movie.*
 import ua.shtain.irina.moviedbkt.model.genre.GenresResponse
+import ua.shtain.irina.moviedbkt.model.movie.review.ReviewResponse
 import ua.shtain.irina.moviedbkt.model.requests.FavoriteRequest
 import ua.shtain.irina.moviedbkt.model.requests.RateRequest
 import ua.shtain.irina.moviedbkt.model.requests.WatchRequest
@@ -68,4 +69,8 @@ interface MovieService {
     @Headers("content-type: application/json;charset=utf-8")
     @POST("/3/account/{account_id}/watchlist")
     fun markToWatchListMovie(@Body watchRequest: WatchRequest): Observable<ResponseMessage>
+
+    @GET("/3/movie/{movie_id}/reviews")
+    fun getReviews(@Path("movie_id") movie_id: Int, @Query("page") page: Int): Observable<ReviewResponse>
+
 }

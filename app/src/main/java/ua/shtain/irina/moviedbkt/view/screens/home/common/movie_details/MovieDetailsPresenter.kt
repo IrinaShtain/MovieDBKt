@@ -90,6 +90,10 @@ class MovieDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
         }
     }
 
+    override fun menuReviewsPressed() {
+        mView.showReviews()
+    }
+
     private val throwableConsumer = { throwable: Throwable ->
         throwable.printStackTrace()
         mView.hideProgress()

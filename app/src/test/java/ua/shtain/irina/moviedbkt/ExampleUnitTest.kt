@@ -14,4 +14,10 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun addition_isNotCorrect() {
+        assertEquals("Numbers isn't equals!", 5, 2 + 2)
+    }
 }

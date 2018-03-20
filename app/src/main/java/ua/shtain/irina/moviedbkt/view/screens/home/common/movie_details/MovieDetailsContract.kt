@@ -12,6 +12,7 @@ import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 interface MovieDetailsContract {
     interface View : ContentView {
         fun setupUI(movieItem: MovieItem)
+        fun showReviews()
         fun showRatingDialog()
         fun getMovieID(): Int
     }
@@ -22,6 +23,7 @@ interface MovieDetailsContract {
         fun fabAddToWatchListClicked()
         fun fabAddToListClicked(listID: Int)
         fun showResult(errorCode: Int)
+        fun menuReviewsPressed()
     }
 
     interface Model {

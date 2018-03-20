@@ -89,7 +89,6 @@ class MovieListsPresenter @Inject constructor(sessionManager: ISessionManager,
     }
 
     override fun onRefresh() {
-        mView.showProgressMain()
         loadPage(1)
     }
 

@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.view.View
+import android.widget.Toast
+import com.jakewharton.rxbinding2.view.RxMenuItem
 import com.jakewharton.rxbinding2.view.RxView
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -19,6 +21,7 @@ import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentFragment
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.ReviewsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDialogFragment
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -30,8 +33,8 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
 
     private var mMovieID = 0
     private var mListID = 0
-    private lateinit var mTvTitle: String
-    private lateinit var mTvPosterPath: String
+    private lateinit var mMovieTitle: String
+    private lateinit var mMoviePosterPath: String
     private var dialogRating: RatingDialogFragment? = null
 
     @Inject
@@ -66,8 +69,8 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
         super.onViewCreated(view, savedInstanceState)
         mMovieID = arguments.getInt(MOVIE_ID)
         mListID = arguments.getInt(LIST_ID)
-        mTvTitle = arguments.getString(MOVIE_TITLE)
-        mTvPosterPath = arguments.getString(MOVIE_POSTER)
+        mMovieTitle = arguments.getString(MOVIE_TITLE)
+        mMoviePosterPath = arguments.getString(MOVIE_POSTER)
         initUI()
         setupTransitionElements()
         if (mListID == 0) fabAddToList.visibility = View.GONE
@@ -76,9 +79,9 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     }
 
     private fun setupTransitionElements() {
-        imageView.transitionName = mTvTitle
+        imageView.transitionName = mMovieTitle
         Picasso.with(context)
-                .load(mTvPosterPath)
+                .load(mMoviePosterPath)
                 .fit()
                 .noFade()
                 .centerCrop()
@@ -93,24 +96,35 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
                         mActivity.supportStartPostponedEnterTransition()
                     }
                 })
-        collapsingToolbar.title = mTvTitle
+        collapsingToolbar.title = mMovieTitle
         collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE)
     }
 
     private fun initUI() {
         toolbar.setNavigationOnClickListener { mActivity.onBackPressed() }
+        toolbar.inflateMenu(R.menu.menu_movie_details)
         RxView.clicks(fabAddToList)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { _ -> mPresenter.fabAddToListClicked(mListID) }
+                .subscribe { mPresenter.fabAddToListClicked(mListID) }
         RxView.clicks(fabRating)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { _ -> mPresenter.fabRatingClicked() }
+                .subscribe { mPresenter.fabRatingClicked() }
         RxView.clicks(fabAddToFavorite)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { _ -> mPresenter.fabAddToFavoriteClicked() }
+                .subscribe { mPresenter.fabAddToFavoriteClicked() }
         RxView.clicks(fabAddToWatchList)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { _ -> mPresenter.fabAddToWatchListClicked() }
+                .subscribe { mPresenter.fabAddToWatchListClicked() }
+
+        RxMenuItem.clicks(toolbar.menu.getItem(0))
+                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
+                .subscribe { mPresenter.menuReviewsPressed() }
+        RxMenuItem.clicks(toolbar.menu.getItem(1))
+                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
+                .subscribe { o -> Toast.makeText(context, "recommendations", Toast.LENGTH_LONG).show() }
+        RxMenuItem.clicks(toolbar.menu.getItem(2))
+                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
+                .subscribe { o -> Toast.makeText(context, "videos", Toast.LENGTH_LONG).show() }
         setupCollapsingToolbar()
     }
 
@@ -152,6 +166,10 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     }
 
     override fun getMovieID() = mMovieID
+
+    override fun showReviews() {
+        mActivity.changeFragment(ReviewsFragment.newInstance(mMovieID, mMovieTitle))
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == Constants.REQUEST_CODE_RATE_MOVIE) {

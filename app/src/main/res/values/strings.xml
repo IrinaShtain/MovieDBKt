@@ -105,11 +105,15 @@
     <string name="error_msg_no_movies_for_search">No movies for presenting</string>
     <string name="error_msg_no_star_with_such_name">No star with such name</string>
     <string name="err_message_input_rating">Set Rating</string>
-    <string name="err_movie_added">Movie already is on your list</string>
+    <string name="err_msg_movie_added">Movie already is on your list</string>
+    <string name="err_msg_no_reviews">No reviews yet…</string>
 
     /*Menu*/
     <string name="menu_delete">Delete</string>
     <string name="menu_logout">Logout</string>
+    <string name="menu_videos">Videos</string>
+    <string name="menu_recommendations">Recommendations</string>
+    <string name="menu_reviews">Reviews</string>
     <string name="menu_fab_latest_movies">Find the latest movies</string>
     <string name="menu_fab_latest_shows">Find the latest TV shows</string>
     <string name="menu_fab_popular_movies">Find the popular movies</string>

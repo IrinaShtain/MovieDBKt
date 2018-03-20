@@ -41,9 +41,8 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
     @Inject
     lateinit var listAdapter: CreatedListsAdapter
 
-    override fun getLayoutRes(): Int {
-        return R.layout.fragment_recycler_view
-    }
+    override fun getLayoutRes() = R.layout.fragment_recycler_view
+
 
     override fun initGraph() {
         mActivity.mObjectGraph.getHomeComponent().inject(this)
@@ -67,7 +66,7 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
     }
 
     override fun openListDetails(lisID: Int, listsName: String) {
-         mActivity.changeFragment(MoviesInListFragment.newInstance(lisID, listsName))
+        mActivity.changeFragment(MoviesInListFragment.newInstance(lisID, listsName))
     }
 
 
