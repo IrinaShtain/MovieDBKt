@@ -21,6 +21,7 @@ interface MoviesContract {
         fun setupSearchByTitle()
         fun setupGenresList()
         fun getSearchType(): Int
+        fun getMovieID(): Int
         fun showAlert(itemId: Int, position: Int)
         fun updateMovies(position: Int)
     }
@@ -44,5 +45,6 @@ interface MoviesContract {
         fun getWatchlistMovies(page: Int): Observable<SearchMovieResponse>
         fun deleteFromFavoriteMovies(movieID: Int): Observable<ResponseMessage>
         fun deleteFromWatchListMovies(movieID: Int): Observable<ResponseMessage>
+        fun getRecommendedMovies(movieId: Int, page: Int): Observable<SearchMovieResponse>
     }
 }

@@ -7,6 +7,7 @@ import ua.shtain.irina.moviedbkt.domain.MovieRepository
 import ua.shtain.irina.moviedbkt.root.network.RetrofitHelper
 import ua.shtain.irina.moviedbkt.root.network.servises.MovieService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.recommendations.RecommendedMoviesPresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.di.MainScope
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_movies.FavoriteMoviePresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.watchlist_movies.WatchListMoviePresenter
@@ -53,4 +54,9 @@ class DiSearchMoviesModule {
     @Provides
     @MainScope
     fun provideGenreAdapter() = GenreAdapter()
+
+    @Provides
+    @MainScope
+    fun provideRecommendedMoviePresenter(compositeDisposable: CompositeDisposable, repository: MovieRepository) = RecommendedMoviesPresenter(compositeDisposable, repository)
+
 }

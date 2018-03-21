@@ -36,6 +36,7 @@
     <string name="title_popular_movies">The popular movies</string>
     <string name="title_popular_shows">The popular shows</string>
     <string name="title_top_rated_shows">The top rated shows</string>
+    <string name="title_recommended_movies">Recommended Movies</string>
     <string name="title_home">Movie database</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
@@ -104,6 +105,7 @@
     <string name="error_msg_no_tv_shows">No shows for presenting</string>
     <string name="error_msg_no_movies_for_search">No movies for presenting</string>
     <string name="error_msg_no_star_with_such_name">No star with such name</string>
+    <string name="error_msg_no_recommended_movies">No recommended movies</string>
     <string name="err_message_input_rating">Set Rating</string>
     <string name="err_msg_movie_added">Movie already is on your list</string>
     <string name="err_msg_no_reviews">No reviews yet…</string>

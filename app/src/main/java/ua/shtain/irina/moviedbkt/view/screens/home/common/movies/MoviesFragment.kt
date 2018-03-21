@@ -32,6 +32,7 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnIt
 
     protected var mListID = 0
     protected var mSearchType = 0
+    protected var mMovieID = 0
     var mMovieAdapter: MovieItemAdapter? = null
     lateinit var mGenreAdapter: GenreAdapter
     protected lateinit var scrollListener: EndlessScrollListener
@@ -72,6 +73,8 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnIt
     }
 
     override fun getSearchType() = mSearchType
+
+    override fun getMovieID() = mMovieID
 
     override fun setList(movieDHs: MutableList<MovieItemDH>) {
         scrollListener.reset()

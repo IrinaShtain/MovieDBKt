@@ -21,6 +21,7 @@ import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentFragment
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.recommendations.RecommendedMoviesFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.ReviewsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDialogFragment
 import java.util.concurrent.TimeUnit
@@ -121,7 +122,7 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
                 .subscribe { mPresenter.menuReviewsPressed() }
         RxMenuItem.clicks(toolbar.menu.getItem(1))
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
-                .subscribe { o -> Toast.makeText(context, "recommendations", Toast.LENGTH_LONG).show() }
+                .subscribe { mPresenter.menuRecommendedMoviesPressed() }
         RxMenuItem.clicks(toolbar.menu.getItem(2))
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
                 .subscribe { o -> Toast.makeText(context, "videos", Toast.LENGTH_LONG).show() }
@@ -169,6 +170,10 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
 
     override fun showReviews() {
         mActivity.changeFragment(ReviewsFragment.newInstance(mMovieID, mMovieTitle))
+    }
+
+    override fun showRecommendedMovies() {
+        mActivity.changeFragment(RecommendedMoviesFragment.newInstance(mMovieID))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

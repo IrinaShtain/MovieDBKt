@@ -7,7 +7,7 @@ import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableView
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.adapter.ReviewItemDH
 
 /**
- * Created by Alex Shtain on 20.03.2018.
+ * Created by Irina Shtain on 20.03.2018.
  */
 interface ReviewsContract {
     interface View : RefreshableView {

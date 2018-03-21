@@ -7,7 +7,7 @@ import ua.shtain.irina.moviedbkt.R
 import java.util.*
 
 /**
- * Created by Alex Shtain on 20.03.2018.
+ * Created by Irina Shtain on 20.03.2018.
  */
 class ReviewItemAdapter : RecyclerView.Adapter<ReviewItemVH>() {
     private var items: MutableList<ReviewItemDH>? = null

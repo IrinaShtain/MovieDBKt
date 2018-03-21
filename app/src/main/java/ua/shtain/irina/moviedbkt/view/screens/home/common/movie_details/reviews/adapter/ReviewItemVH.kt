@@ -6,7 +6,7 @@ import android.widget.TextView
 import ua.shtain.irina.moviedbkt.R
 
 /**
- * Created by Alex Shtain on 20.03.2018.
+ * Created by Irina Shtain on 20.03.2018.
  */
 class ReviewItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val tvContent = itemView.findViewById(R.id.tvContent) as TextView

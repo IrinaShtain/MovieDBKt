@@ -24,6 +24,7 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
     protected var searchType: Int = 0
     protected var movieTitle: String = ""
     protected var genreId: Int = 0
+    protected var movieId: Int = 0
 
     private var mCurrentPage: Int = 0
     private var mTotalPages = Integer.MAX_VALUE
@@ -58,6 +59,11 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
                 Constants.SEARCH_TYPE_MOVIES_BY_TITLE -> {
                     mView.setupSearchByTitle()
                 }
+
+                Constants.TYPE_RECOMMENDED_MOVIES ->{
+                    movieId = mView.getMovieID()
+                    loadMovies()
+                }
             }
         } else {
             mNeedRefresh = true
@@ -66,8 +72,14 @@ abstract class MoviesPresenter : MoviesContract.Presenter {
                     mView.setupGenresList()
                     loadGenres()
                 }
+
                 Constants.SEARCH_TYPE_MOVIES_BY_TITLE -> {
                     mView.setupSearchByTitle()
+                }
+
+                Constants.TYPE_RECOMMENDED_MOVIES ->{
+                    movieId = mView.getMovieID()
+                    loadMovies()
                 }
             }
         }

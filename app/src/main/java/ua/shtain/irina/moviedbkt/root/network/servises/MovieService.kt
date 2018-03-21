@@ -73,4 +73,7 @@ interface MovieService {
     @GET("/3/movie/{movie_id}/reviews")
     fun getReviews(@Path("movie_id") movie_id: Int, @Query("page") page: Int): Observable<ReviewResponse>
 
+    @GET("/3/movie/{movie_id}/recommendations")
+    fun getRecomendations(@Path("movie_id") movie_id: Int, @Query("page") page: Int): Observable<SearchMovieResponse>
+
 }

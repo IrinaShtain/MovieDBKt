@@ -11,7 +11,7 @@ import java.util.ArrayList
 import javax.inject.Inject
 
 /**
- * Created by Alex Shtain on 20.03.2018.
+ * Created by Irina Shtain on 20.03.2018.
  */
 class ReviewsPresenter @Inject constructor(compositeDisposable: CompositeDisposable,
                                            model: ReviewsContract.Model) : ReviewsContract.Presenter {

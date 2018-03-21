@@ -17,7 +17,7 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.
 import javax.inject.Inject
 
 /**
- * Created by Alex Shtain on 20.03.2018.
+ * Created by Irina Shtain on 20.03.2018.
  */
 class ReviewsFragment : RefreshableFragment(), ReviewsContract.View {
 

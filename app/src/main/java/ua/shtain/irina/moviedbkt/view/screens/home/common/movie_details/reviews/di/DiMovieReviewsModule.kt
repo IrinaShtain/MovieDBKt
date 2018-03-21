@@ -12,15 +12,17 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.
 import ua.shtain.irina.moviedbkt.view.screens.home.di.MainScope
 
 /**
- * Created by Alex Shtain on 20.03.2018.
+ * Created by Irina Shtain on 20.03.2018.
  */
 @Module
 class DiMovieReviewsModule {
     @Provides
     @MainScope
-    fun provideMovieReviewsPresenter(compositeDisposable: CompositeDisposable, repository: MovieRepository) = ReviewsPresenter(compositeDisposable, repository)
+    fun provideMovieReviewsPresenter(compositeDisposable: CompositeDisposable, repository: MovieRepository)
+            = ReviewsPresenter(compositeDisposable, repository)
 
     @Provides
     @MainScope
-    fun provideDataRepository(helper: RetrofitHelper, schedulerHelper: SchedulerHelper): ReviewsContract.Model = MovieRepository(helper.createService(MovieService::class.java), schedulerHelper)
+    fun provideDataRepository(helper: RetrofitHelper, schedulerHelper: SchedulerHelper): ReviewsContract.Model
+            = MovieRepository(helper.createService(MovieService::class.java), schedulerHelper)
 }

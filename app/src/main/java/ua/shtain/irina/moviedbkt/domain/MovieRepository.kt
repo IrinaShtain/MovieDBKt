@@ -60,4 +60,6 @@ class MovieRepository @Inject constructor(movieService: MovieService, helper: Sc
     override fun rateTV(rating: Float, tvID: Int) = mHelper.getNetworkObservable(mService.rateTv(tvID, RateRequest(rating)))
 
     override fun getReviews(movieID: Int, page: Int) = mHelper.getNetworkObservable(mService.getReviews(movieID, page))
+
+    override fun getRecommendedMovies(movieId: Int, page: Int) = mHelper.getNetworkObservable(mService.getRecomendations(movieId, page))
 }
