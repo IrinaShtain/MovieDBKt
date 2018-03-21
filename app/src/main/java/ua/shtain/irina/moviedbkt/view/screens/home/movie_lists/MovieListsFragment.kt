@@ -53,6 +53,7 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setMenuChecked(true)
         setupRecyclerView()
         setupSwipeToRemove()
         setupFab()
@@ -175,6 +176,16 @@ class MovieListsFragment : RefreshableFragment(), MovieListsContract.View, OnCar
                     data.getStringExtra(Constants.KEY_TITLE), data.getStringExtra(Constants.KEY_DESCRIPTION))
 
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        setMenuChecked(false)
+    }
+
+    private fun setMenuChecked(isChecked: Boolean) {
+        if (mActivity is MainActivity)
+            (mActivity as MainActivity).updateNavigationItem(R.id.menuLists, isChecked)
     }
 
 

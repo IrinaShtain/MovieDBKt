@@ -8,6 +8,7 @@ import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 import ua.shtain.irina.moviedbkt.view.base.tabs.ContentTabsFragment
 import ua.shtain.irina.moviedbkt.view.base.tabs.TabPagerAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_movies.FavoriteMovieFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_shows.FavoriteTvShowsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.user_profile.UserProfileFragment
@@ -20,6 +21,7 @@ import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.watchlist_shows
 class HomeFragment : ContentTabsFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setMenuChecked(true)
         tlTabs_FCT.getTabAt(0)?.setIcon(R.drawable.ic_user_white)
         tlTabs_FCT.getTabAt(1)?.setIcon(R.drawable.ic_favorite)
         tlTabs_FCT.getTabAt(2)?.setIcon(R.drawable.ic_watch_list)
@@ -43,5 +45,15 @@ class HomeFragment : ContentTabsFragment() {
 
     override fun initGraph() {
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        setMenuChecked(false)
+    }
+
+    private fun setMenuChecked(isChecked: Boolean) {
+        if (mActivity is MainActivity)
+            (mActivity as MainActivity).updateNavigationItem(R.id.menuMyProfile, isChecked)
     }
 }

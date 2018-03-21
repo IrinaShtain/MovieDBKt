@@ -42,6 +42,7 @@ class SearchStarFragment : RefreshableFragment(), SearchStarContract.View, StarL
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setMenuChecked(true)
         initUI()
         mPresenter.mView = this
         mPresenter.subscribe()
@@ -103,5 +104,16 @@ class SearchStarFragment : RefreshableFragment(), SearchStarContract.View, StarL
             }
             else -> super.showPlaceholder(placeholderType)
         }
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        setMenuChecked(false)
+    }
+
+    private fun setMenuChecked(isChecked: Boolean) {
+        if (mActivity is MainActivity)
+            (mActivity as MainActivity).updateNavigationItem(R.id.menuReadAboutStar, isChecked)
     }
 }
