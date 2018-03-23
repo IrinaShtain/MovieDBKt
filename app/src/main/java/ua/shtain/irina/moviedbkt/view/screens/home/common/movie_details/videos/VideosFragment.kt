@@ -76,9 +76,6 @@ class VideosFragment : RefreshableFragment(), VideosContract.View, OnVideoClickL
     override fun onStart() {
         super.onStart()
         (mActivity as MainActivity).getToolbarMan()?.setTitle(mMovieTitle)
-        (mActivity as MainActivity).enableViews(true)
-
-        Log.e("My Log", " onStart " + (mActivity as MainActivity).getToolbarMan())
     }
 
     override fun onVideoClick(videoUrl: String) {
