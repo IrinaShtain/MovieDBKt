@@ -15,6 +15,7 @@ interface TvShowsContract {
         fun setList(showsDHs: MutableList<TvShowItemDH>)
         fun addList(showsDHs: MutableList<TvShowItemDH>)
         fun getShowsType(): Int
+        fun getShowID(): Int
         fun showAlert(itemId: Int, position: Int)
         fun updateTvShows(position: Int)
     }
@@ -33,6 +34,7 @@ interface TvShowsContract {
         fun searchPopularShows(page: Int): Observable<SearchTvShowResponse>
         fun getFavoriteShows(page: Int): Observable<SearchTvShowResponse>
         fun getWatchlistShows(page: Int): Observable<SearchTvShowResponse>
+        fun getRecommendedShows(showID: Int, page: Int): Observable<SearchTvShowResponse>
         fun deleteFromFavoriteTV(showID: Int): Observable<ResponseMessage>
         fun deleteFromWatchListTV(showID: Int): Observable<ResponseMessage>
     }

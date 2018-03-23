@@ -1,7 +1,9 @@
 package ua.shtain.irina.moviedbkt.domain
 
+import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.requests.FavoriteRequest
 import ua.shtain.irina.moviedbkt.model.requests.WatchRequest
+import ua.shtain.irina.moviedbkt.model.tv.SearchTvShowResponse
 import ua.shtain.irina.moviedbkt.root.network.servises.TvService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.TvShowDetailsContract
@@ -33,7 +35,10 @@ class TVRepository @Inject constructor(tvService: TvService, helper: SchedulerHe
 
     override fun getWatchlistShows(page: Int) = mHelper.getNetworkObservable(mService.getWatchlistShows(page))
 
-    override fun deleteFromFavoriteTV(showID: Int)= mHelper.getNetworkObservable(mService.markToFavoriteMovie(FavoriteRequest("tv", showID, false)))
+    override fun deleteFromFavoriteTV(showID: Int) = mHelper.getNetworkObservable(mService.markToFavoriteMovie(FavoriteRequest("tv", showID, false)))
 
-    override fun deleteFromWatchListTV(showID: Int)= mHelper.getNetworkObservable(mService.markToWatchListMovie(WatchRequest("tv", showID, false)))
+    override fun deleteFromWatchListTV(showID: Int) = mHelper.getNetworkObservable(mService.markToWatchListMovie(WatchRequest("tv", showID, false)))
+
+    override fun getRecommendedShows(showID: Int, page: Int) = mHelper.getNetworkObservable(mService.getTvShowRecommendations(showID, page))
+
 }

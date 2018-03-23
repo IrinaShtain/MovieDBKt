@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.view.View
+import com.jakewharton.rxbinding2.view.RxMenuItem
 import com.jakewharton.rxbinding2.view.RxView
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -19,7 +20,11 @@ import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentFragment
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.recommendations.RecommendedMoviesFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.ReviewsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.VideosFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDialogFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.recommendations.RecommendedTvShowsFragment
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -94,7 +99,7 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
 
     private fun initUI() {
         toolbar.setNavigationOnClickListener { mActivity.onBackPressed() }
-
+        toolbar.inflateMenu(R.menu.menu_movie_details)
         RxView.clicks(fabRating)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
                 .subscribe { _ -> mPresenter.fabRatingClicked() }
@@ -104,6 +109,16 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
         RxView.clicks(fabAddToWatchList)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
                 .subscribe { _ -> mPresenter.fabAddToWatchListClicked() }
+
+        RxMenuItem.clicks(toolbar.menu.getItem(0))
+                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
+                .subscribe { mPresenter.menuReviewsPressed() }
+        RxMenuItem.clicks(toolbar.menu.getItem(1))
+                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
+                .subscribe { mPresenter.menuRecommendedMoviesPressed() }
+        RxMenuItem.clicks(toolbar.menu.getItem(2))
+                .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
+                .subscribe { mPresenter.menuVideosMoviesPressed() }
         setupCollapsingToolbar()
     }
 
@@ -146,6 +161,18 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
     }
 
     override fun getTvID() = mTvID
+
+    override fun showReviews() {
+      //  mActivity.changeFragment(ReviewsFragment.newInstance(mTvID, mTvTitle))
+    }
+
+    override fun showRecommendedMovies() {
+        mActivity.changeFragment(RecommendedTvShowsFragment.newInstance(mTvID))
+    }
+
+    override fun showVideos() {
+       // mActivity.changeFragment(VideosFragment.newInstance(mTvID, mTvTitle))
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == Constants.REQUEST_CODE_RATE_MOVIE) {

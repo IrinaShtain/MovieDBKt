@@ -40,6 +40,7 @@ object Constants {
     const val TYPE_WATCHLIST_TV_SHOWS = 208
     const val SEARCH_TYPE_TVSHOWS = 209
     const val TYPE_RECOMMENDED_MOVIES = 210
+    const val TYPE_RECOMMENDED_SHOWS = 211
 
 
     /*----------------- Media type ------------------*/

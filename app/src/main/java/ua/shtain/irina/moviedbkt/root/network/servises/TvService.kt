@@ -40,4 +40,7 @@ interface TvService {
 
     @GET("/3/tv/on_the_air")
     fun searchTvOnTheAir(@Query("page") page: Int): Observable<SearchTvShowResponse>
+
+    @GET("/3/tv/{tv_id}/recommendations")
+    fun getTvShowRecommendations(@Path("tv_id") tv_id: Int, @Query("page") page: Int): Observable<SearchTvShowResponse>
 }

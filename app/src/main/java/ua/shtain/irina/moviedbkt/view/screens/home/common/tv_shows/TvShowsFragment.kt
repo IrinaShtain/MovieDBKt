@@ -25,6 +25,7 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_shows.adapter.TvSho
 abstract class TvShowsFragment : RefreshableFragment(), TvShowsContract.View, OnItemClickListener, OnDeleteClickListener {
 
     protected var mShowsType = 0
+    protected var mShowsID = 0
     var mAdapter: TvShowItemAdapter? = null
     protected lateinit var scrollListener: EndlessScrollListener
 
@@ -79,6 +80,8 @@ abstract class TvShowsFragment : RefreshableFragment(), TvShowsContract.View, On
     }
 
     override fun getShowsType() = mShowsType
+
+    override fun getShowID()= mShowsID
 
     override fun onDeleteItemClick(itemID: Int, position: Int) {
         getSearchPresenter().deleteTvShow(itemID, position)

@@ -22,7 +22,8 @@ abstract class TvShowsPresenter : TvShowsContract.Presenter {
     private var mCurrentPage: Int = 0
     private var mTotalPages = Integer.MAX_VALUE
     private var mNeedRefresh = true
-    protected var searchType: Int = 0
+    protected var mSearchType: Int = 0
+    protected var mTvShowID: Int = 0
     private var totalResults: Int = 0
 
     abstract fun getShows(page: Int): Observable<SearchTvShowResponse>
@@ -32,7 +33,9 @@ abstract class TvShowsPresenter : TvShowsContract.Presenter {
     }
 
     override fun subscribe() {
-        searchType = mView.getShowsType()
+        mSearchType = mView.getShowsType()
+        if (mSearchType == Constants.TYPE_RECOMMENDED_SHOWS)
+            mTvShowID = mView.getShowID()
         if (mNeedRefresh) {
             loadTvShows()
         } else
@@ -96,13 +99,13 @@ abstract class TvShowsPresenter : TvShowsContract.Presenter {
 
     private fun prepareTvShowList(items: ArrayList<TvShowItem>): ArrayList<TvShowItemDH> {
         val dhs = items.mapTo(ArrayList()) { TvShowItemDH(it) }
-        if (searchType == Constants.TYPE_FAVORITE_TV_SHOWS || searchType == Constants.TYPE_WATCHLIST_TV_SHOWS)
+        if (mSearchType == Constants.TYPE_FAVORITE_TV_SHOWS || mSearchType == Constants.TYPE_WATCHLIST_TV_SHOWS)
             for (dh in dhs) dh.isInList = true
         return dhs
     }
 
     override fun deletionConfirmed(itemId: Int, position: Int) {
-        when (searchType) {
+        when (mSearchType) {
             Constants.TYPE_FAVORITE_TV_SHOWS -> mCompositeDisposable.add(mModel.deleteFromFavoriteTV(itemId)
                     .subscribe({ _ ->
                         mView.hideProgress()

@@ -14,6 +14,9 @@ interface TvShowDetailsContract {
         fun setupUI(tvShowItem: TvShowItem)
         fun showRatingDialog()
         fun getTvID(): Int
+        fun showReviews()
+        fun showRecommendedMovies()
+        fun showVideos()
     }
 
     interface Presenter : IBasePresenter<View> {
@@ -21,6 +24,9 @@ interface TvShowDetailsContract {
         fun fabAddToFavoriteClicked()
         fun fabAddToWatchListClicked()
         fun showResult(errorCode: Int)
+        fun menuReviewsPressed()
+        fun menuRecommendedMoviesPressed()
+        fun menuVideosMoviesPressed()
     }
 
     interface Model {

@@ -36,6 +36,7 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.latest_sh
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.on_air_shows.SearchOnAirTvShowsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.popular_shows.SearchPopularTvShowsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.top_rated_shows.SearchTopRatedTvShowsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.recommendations.RecommendedTvShowsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.SearchStarFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.di.DiStarsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.StarsDetailsFragment
@@ -88,4 +89,5 @@ interface DiHomeComponent {
     fun inject(fragment: ReviewsFragment)
     fun inject(fragment: RecommendedMoviesFragment)
     fun inject(fragment: VideosFragment)
+    fun inject(fragment: RecommendedTvShowsFragment)
 }

@@ -11,6 +11,7 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.latest_sh
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.on_air_shows.SearchOnAirTvShowsPresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.popular_shows.SearchPopularTvShowsPresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_shows.top_rated_shows.SearchTopRatedTvShowsPresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.recommendations.RecommendedTvShowsPresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_shows.TvShowsContract
 import ua.shtain.irina.moviedbkt.view.screens.home.di.MainScope
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_shows.FavoriteTvShowsPresenter
@@ -45,6 +46,10 @@ class DiSearchTvShowsModule {
     @Provides
     @MainScope
     fun provideTopRatedTvShowsPresenter(compositeDisposable: CompositeDisposable, repository: TVRepository) = SearchTopRatedTvShowsPresenter(compositeDisposable, repository)
+
+    @Provides
+    @MainScope
+    fun provideRecommendedTvShowsPresenter(compositeDisposable: CompositeDisposable, repository: TVRepository) = RecommendedTvShowsPresenter(compositeDisposable, repository)
 
     @Provides
     @MainScope
