@@ -3,17 +3,17 @@ package ua.shtain.irina.moviedbkt.view.screens.home
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.base.BaseActivity
 import ua.shtain.irina.moviedbkt.view.base.managers.ToolbarManager
-import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.MovieListsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.HomeFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.MovieListsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.SearchStarFragment
 
 
@@ -21,7 +21,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private var drawerToggle: ActionBarDrawerToggle? = null
     private var mToolBarNavigationListenerIsRegistered = false
-    protected  var toolbarManager: ToolbarManager? = null
+    protected var toolbarManager: ToolbarManager? = null
     override fun getToolbar(): Toolbar {
         return toolbar_MA
     }
@@ -34,7 +34,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return R.id.content_MA
     }
 
-    fun getToolbarMan()= toolbarManager
+    fun getToolbarMan() = toolbarManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +50,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun setupToolbar() {
-        toolbar_MA.setTitle(R.string.app_name)
         toolbar_MA.setTitleTextColor(Color.WHITE)
         supportFragmentManager.addOnBackStackChangedListener { enableViews(supportFragmentManager.backStackEntryCount > 1) }
     }

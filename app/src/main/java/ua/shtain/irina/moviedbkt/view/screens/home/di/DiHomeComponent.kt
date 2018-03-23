@@ -8,6 +8,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.di.DiMov
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.recommendations.RecommendedMoviesFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.ReviewsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.di.DiMovieReviewsModule
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.VideosFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.di.DiMovieVideosModule
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDialogFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.di.DiRatingMovieModule
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.di.DiSearchMoviesModule
@@ -54,7 +56,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.di.DiStar
         DiStarsDetailsModule::class,
         DiTvModule::class,
         DiSearchTvShowsModule::class,
-        DiMovieReviewsModule::class
+        DiMovieReviewsModule::class,
+        DiMovieVideosModule::class
 ),
         dependencies = arrayOf(DiRootComponent::class))
 interface DiHomeComponent {
@@ -84,4 +87,5 @@ interface DiHomeComponent {
     fun inject(fragment: SearchOnAirTvShowsFragment)
     fun inject(fragment: ReviewsFragment)
     fun inject(fragment: RecommendedMoviesFragment)
+    fun inject(fragment: VideosFragment)
 }

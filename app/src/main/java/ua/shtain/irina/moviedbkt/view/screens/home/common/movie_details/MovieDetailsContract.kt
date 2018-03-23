@@ -14,6 +14,7 @@ interface MovieDetailsContract {
         fun setupUI(movieItem: MovieItem)
         fun showReviews()
         fun showRecommendedMovies()
+        fun showVideos()
         fun showRatingDialog()
         fun getMovieID(): Int
     }
@@ -26,6 +27,7 @@ interface MovieDetailsContract {
         fun showResult(errorCode: Int)
         fun menuReviewsPressed()
         fun menuRecommendedMoviesPressed()
+        fun menuVideosMoviesPressed()
     }
 
     interface Model {

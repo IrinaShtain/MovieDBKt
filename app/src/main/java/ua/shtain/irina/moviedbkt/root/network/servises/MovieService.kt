@@ -6,6 +6,7 @@ import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
 import ua.shtain.irina.moviedbkt.model.movie.*
 import ua.shtain.irina.moviedbkt.model.genre.GenresResponse
 import ua.shtain.irina.moviedbkt.model.movie.review.ReviewResponse
+import ua.shtain.irina.moviedbkt.model.movie.videos.VideosResponse
 import ua.shtain.irina.moviedbkt.model.requests.FavoriteRequest
 import ua.shtain.irina.moviedbkt.model.requests.RateRequest
 import ua.shtain.irina.moviedbkt.model.requests.WatchRequest
@@ -60,7 +61,7 @@ interface MovieService {
     @Headers("content-type: application/json;charset=utf-8")
     @POST("/3/tv/{tv_id}/rating")
     fun rateTv(@Path("tv_id") tv_id: Int,
-                  @Body rateRequest: RateRequest): Observable<ResponseMessage>
+               @Body rateRequest: RateRequest): Observable<ResponseMessage>
 
     @Headers("content-type: application/json;charset=utf-8")
     @POST("/3/account/{account_id}/favorite")
@@ -74,6 +75,9 @@ interface MovieService {
     fun getReviews(@Path("movie_id") movie_id: Int, @Query("page") page: Int): Observable<ReviewResponse>
 
     @GET("/3/movie/{movie_id}/recommendations")
-    fun getRecomendations(@Path("movie_id") movie_id: Int, @Query("page") page: Int): Observable<SearchMovieResponse>
+    fun getRecommendations(@Path("movie_id") movie_id: Int, @Query("page") page: Int): Observable<SearchMovieResponse>
+
+    @GET("/3/movie/{movie_id}/videos")
+    fun getVideos(@Path("movie_id") movie_id: Int): Observable<VideosResponse>
 
 }

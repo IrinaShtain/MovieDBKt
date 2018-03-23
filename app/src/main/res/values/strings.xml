@@ -109,6 +109,7 @@
     <string name="err_message_input_rating">Set Rating</string>
     <string name="err_msg_movie_added">Movie already is on your list</string>
     <string name="err_msg_no_reviews">No reviews yet…</string>
+    <string name="err_msg_no_videos">No available videos…</string>
 
     /*Menu*/
     <string name="menu_delete">Delete</string>

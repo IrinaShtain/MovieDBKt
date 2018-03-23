@@ -2,6 +2,7 @@ package ua.shtain.irina.moviedbkt.view.screens.home.home_fragment
 
 import android.os.Bundle
 import android.view.View
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_content_tabs.*
 import ua.shtain.irina.moviedbkt.R
 import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
