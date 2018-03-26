@@ -1,25 +1,27 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews
+package ua.shtain.irina.moviedbkt.view.screens.home.common.reviews
 
 import android.util.Log
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
+import ua.shtain.irina.moviedbkt.model.movie.SearchMovieResponse
 import ua.shtain.irina.moviedbkt.model.movie.review.ReviewItem
+import ua.shtain.irina.moviedbkt.model.movie.review.ReviewResponse
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.adapter.ReviewItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.reviews.adapter.ReviewItemDH
 import java.util.ArrayList
 import javax.inject.Inject
 
 /**
  * Created by Irina Shtain on 20.03.2018.
  */
-class ReviewsPresenter @Inject constructor(compositeDisposable: CompositeDisposable,
-                                           model: ReviewsContract.Model) : ReviewsContract.Presenter {
+abstract class ReviewsPresenter  : ReviewsContract.Presenter {
 
     lateinit var mView: ReviewsContract.View
-    private var mCompositeDisposable = compositeDisposable
-    private var mModel = model
-    private var movieID = 0
+    protected lateinit var mCompositeDisposable :CompositeDisposable
+    protected lateinit var mModel : ReviewsContract.Model
+    protected var mID = 0
 
     private var mTotalPages = Integer.MAX_VALUE
     private var mCurrentPage: Int = 0
@@ -46,7 +48,7 @@ class ReviewsPresenter @Inject constructor(compositeDisposable: CompositeDisposa
     }
 
     override fun subscribe() {
-        movieID = mView.getMovieID()
+        mID = mView.getID()
         mView.showProgressMain()
         loadPage(1)
     }
@@ -68,7 +70,7 @@ class ReviewsPresenter @Inject constructor(compositeDisposable: CompositeDisposa
 
     private fun loadPage(pageNumber: Int) {
         mCompositeDisposable.add(
-                mModel.getReviews(movieID, pageNumber)
+                getReviews(mID, pageNumber)
                         .subscribe({ response ->
                             mView.hideProgress()
                             mCurrentPage = response.page
@@ -87,4 +89,6 @@ class ReviewsPresenter @Inject constructor(compositeDisposable: CompositeDisposa
     private fun prepareList(items: ArrayList<ReviewItem>): ArrayList<ReviewItemDH> {
         return items.mapTo(ArrayList()) { ReviewItemDH(it) }
     }
+
+    abstract fun getReviews(mID: Int, pageNumber: Int): Observable<ReviewResponse>
 }

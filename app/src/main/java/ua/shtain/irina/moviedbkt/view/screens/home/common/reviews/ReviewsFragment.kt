@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews
+package ua.shtain.irina.moviedbkt.view.screens.home.common.reviews
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -12,50 +12,30 @@ import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresen
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.EndlessScrollListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnNextPageListener
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.adapter.ReviewItemAdapter
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.adapter.ReviewItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesPresenter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.reviews.adapter.ReviewItemAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.reviews.adapter.ReviewItemDH
 import javax.inject.Inject
 
 /**
  * Created by Irina Shtain on 20.03.2018.
  */
-class ReviewsFragment : RefreshableFragment(), ReviewsContract.View {
+abstract class ReviewsFragment : RefreshableFragment(), ReviewsContract.View {
 
-    @Inject
-    lateinit var mPresenter: ReviewsPresenter
     var mAdapter: ReviewItemAdapter = ReviewItemAdapter()
 
-    private var mMovieID = 0
-    private var mMovieTitle = ""
+    protected var mID = 0
+    protected var mTitle = ""
 
     override fun getLayoutRes() = R.layout.fragment_recycler_view
 
-    companion object {
-        private val MOVIE_ID = "movie_id"
-        private val MOVIE_TITLE = "movie_title"
-        fun newInstance(movieID: Int, title: String): ReviewsFragment {
-            val fragment = ReviewsFragment()
-            val bundle = Bundle()
-            bundle.putInt(MOVIE_ID, movieID)
-            bundle.putString(MOVIE_TITLE, title)
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
+    override fun getPresenter() = getReviewsPresenter() as RefreshablePresenter
 
-    override fun initGraph() {
-        mActivity.mObjectGraph.getHomeComponent().inject(this)
-    }
-
-    override fun getPresenter() = mPresenter as RefreshablePresenter
+    abstract fun getReviewsPresenter(): ReviewsPresenter
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mMovieID = arguments.getInt(MOVIE_ID)
-        mMovieTitle = arguments.getString(MOVIE_TITLE)
         setupRecyclerView()
-        mPresenter.mView = this
-        mPresenter.subscribe()
     }
 
     private fun setupRecyclerView() {
@@ -64,7 +44,7 @@ class ReviewsFragment : RefreshableFragment(), ReviewsContract.View {
         rvItems.adapter = mAdapter
         rvItems.addOnScrollListener(EndlessScrollListener(layoutManager, object : OnNextPageListener {
             override fun onLoadMore(): Boolean {
-                mPresenter.getNextPage()
+                getReviewsPresenter().getNextPage()
                 return true
             }
         }))
@@ -72,7 +52,7 @@ class ReviewsFragment : RefreshableFragment(), ReviewsContract.View {
 
     override fun onStart() {
         super.onStart()
-        (mActivity as MainActivity).getToolbarMan()?.setTitle(mMovieTitle)
+        (mActivity as MainActivity).getToolbarMan()?.setTitle(mTitle)
     }
 
     override fun setList(reviewItemDHs: MutableList<ReviewItemDH>) {
@@ -83,7 +63,7 @@ class ReviewsFragment : RefreshableFragment(), ReviewsContract.View {
         mAdapter.addListDH(reviewItemDHs)
     }
 
-    override fun getMovieID() = mMovieID
+    override fun getID() = mID
 
     override fun showPlaceholder(placeholderType: Constants.PlaceholderType) {
         super.showPlaceholder(placeholderType)

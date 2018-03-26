@@ -20,11 +20,9 @@ import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentFragment
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.recommendations.RecommendedMoviesFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.ReviewsFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.VideosFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDialogFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.recommendations.RecommendedTvShowsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.tv_show_reviews.TvShowReviewsFragment
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -163,7 +161,7 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
     override fun getTvID() = mTvID
 
     override fun showReviews() {
-      //  mActivity.changeFragment(ReviewsFragment.newInstance(mTvID, mTvTitle))
+        mActivity.changeFragment(TvShowReviewsFragment.newInstance(mTvID, mTvTitle))
     }
 
     override fun showRecommendedMovies() {

@@ -1,11 +1,13 @@
 package ua.shtain.irina.moviedbkt.domain
 
 import io.reactivex.Observable
+import ua.shtain.irina.moviedbkt.model.movie.review.ReviewResponse
 import ua.shtain.irina.moviedbkt.model.requests.FavoriteRequest
 import ua.shtain.irina.moviedbkt.model.requests.WatchRequest
 import ua.shtain.irina.moviedbkt.model.tv.SearchTvShowResponse
 import ua.shtain.irina.moviedbkt.root.network.servises.TvService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
+import ua.shtain.irina.moviedbkt.view.screens.home.common.reviews.ReviewsContract
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.TvShowDetailsContract
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_shows.TvShowsContract
 import javax.inject.Inject
@@ -13,7 +15,7 @@ import javax.inject.Inject
 /**
  * Created by Irina Shtain on 01.03.2018.
  */
-class TVRepository @Inject constructor(tvService: TvService, helper: SchedulerHelper) : TvShowDetailsContract.Model, TvShowsContract.Model {
+class TVRepository @Inject constructor(tvService: TvService, helper: SchedulerHelper) : TvShowDetailsContract.Model, TvShowsContract.Model, ReviewsContract.Model {
     val mService = tvService
     val mHelper = helper
 
@@ -41,4 +43,9 @@ class TVRepository @Inject constructor(tvService: TvService, helper: SchedulerHe
 
     override fun getRecommendedShows(showID: Int, page: Int) = mHelper.getNetworkObservable(mService.getTvShowRecommendations(showID, page))
 
+    override fun getMovieReviews(movieID: Int, page: Int): Observable<ReviewResponse> {
+        return Observable.empty() //ignored
+    }
+
+    override fun getTvShowsReviews(showID: Int, page: Int)= mHelper.getNetworkObservable(mService.getTvShowReviews(showID, page))
 }

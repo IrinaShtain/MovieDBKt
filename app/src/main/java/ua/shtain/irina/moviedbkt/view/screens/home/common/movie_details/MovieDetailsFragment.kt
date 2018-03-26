@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.view.View
-import android.widget.Toast
 import com.jakewharton.rxbinding2.view.RxMenuItem
 import com.jakewharton.rxbinding2.view.RxView
 import com.squareup.picasso.Callback
@@ -21,8 +20,9 @@ import ua.shtain.irina.moviedbkt.view.base.IBasePresenter
 import ua.shtain.irina.moviedbkt.view.base.content.ContentFragment
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.movie_reviews.MovieReviewsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.recommendations.RecommendedMoviesFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.ReviewsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.reviews.ReviewsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.VideosFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDialogFragment
 import java.util.concurrent.TimeUnit
@@ -170,7 +170,7 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     override fun getMovieID() = mMovieID
 
     override fun showReviews() {
-        mActivity.changeFragment(ReviewsFragment.newInstance(mMovieID, mMovieTitle))
+        mActivity.changeFragment(MovieReviewsFragment.newInstance(mMovieID, mMovieTitle))
     }
 
     override fun showRecommendedMovies() {

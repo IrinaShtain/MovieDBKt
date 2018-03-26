@@ -1,10 +1,10 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews
+package ua.shtain.irina.moviedbkt.view.screens.home.common.reviews
 
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.movie.review.ReviewResponse
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableView
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.adapter.ReviewItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.reviews.adapter.ReviewItemDH
 
 /**
  * Created by Irina Shtain on 20.03.2018.
@@ -13,7 +13,7 @@ interface ReviewsContract {
     interface View : RefreshableView {
         fun setList(reviewItemDHs: MutableList<ReviewItemDH>)
         fun addList(reviewItemDHs: MutableList<ReviewItemDH>)
-        fun getMovieID(): Int
+        fun getID(): Int
     }
 
     interface Presenter : RefreshablePresenter {
@@ -21,6 +21,7 @@ interface ReviewsContract {
     }
 
     interface Model {
-        fun getReviews(movieID: Int, page: Int): Observable<ReviewResponse>
+        fun getMovieReviews(movieID: Int, page: Int): Observable<ReviewResponse>
+        fun getTvShowsReviews(showID: Int, page: Int): Observable<ReviewResponse>
     }
 }

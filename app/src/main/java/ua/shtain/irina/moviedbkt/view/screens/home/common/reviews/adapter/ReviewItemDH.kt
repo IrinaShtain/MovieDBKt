@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.reviews.adapter
+package ua.shtain.irina.moviedbkt.view.screens.home.common.reviews.adapter
 
 import ua.shtain.irina.moviedbkt.model.movie.review.ReviewItem
 
