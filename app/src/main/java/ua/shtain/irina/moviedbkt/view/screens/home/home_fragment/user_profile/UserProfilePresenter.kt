@@ -60,13 +60,4 @@ class UserProfilePresenter @Inject constructor(sessionManager: ISessionManager,
     override fun unsubscribe() {
         mCompositeDisposable.clear()
     }
-
-    override fun menuPressed() {
-        mView.showAlertAboutLogout()
-    }
-
-    override fun clearUser() {
-        mSessionManager.deleteUserData()
-        mView.openLogin()
-    }
 }

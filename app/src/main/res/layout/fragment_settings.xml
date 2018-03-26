@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:paddingTop="@dimen/padding_half"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_logout"
+        android:drawablePadding="@dimen/padding_default"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/padding_default"
+        android:textSize="@dimen/text_size_default"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/menu_logout" />
+
+</LinearLayout>

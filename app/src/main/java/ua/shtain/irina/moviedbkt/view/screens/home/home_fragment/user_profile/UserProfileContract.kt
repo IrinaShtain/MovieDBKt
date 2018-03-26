@@ -14,13 +14,11 @@ interface UserProfileContract {
         fun setUserNick(name: String)
         fun setUserName(name: String)
         fun setAdultPermission(hasPermission: Boolean)
-        fun showAlertAboutLogout()
-        fun openLogin()
+
     }
 
     interface Presenter : IBasePresenter<View> {
-        fun menuPressed()
-        fun clearUser()
+
     }
 
     interface Model {

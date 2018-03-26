@@ -13,6 +13,10 @@
             android:id="@+id/menuReadAboutStar"
             android:icon="@drawable/ic_rating_white"
             android:title="@string/title_read_about_star" />
+        <item
+            android:id="@+id/menuSettings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/title_settings" />
 
     </group>
 </menu>

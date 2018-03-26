@@ -39,6 +39,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.add_list.di.DiCre
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.di.DiMovieListsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.di.DiMovieInListModule
+import ua.shtain.irina.moviedbkt.view.screens.home.settings.SettingsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.settings.di.DiSettingsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.SearchStarFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.di.DiStarsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.StarsDetailsFragment
@@ -57,6 +59,7 @@ import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.di.DiStar
         DiRatingMovieModule::class,
         DiStarsModule::class,
         DiStarsDetailsModule::class,
+        DiSettingsModule::class,
         DiTvModule::class,
         DiSearchTvShowsModule::class,
         DiMovieReviewsModule::class,
@@ -94,4 +97,5 @@ interface DiHomeComponent {
     fun inject(fragment: RecommendedMoviesFragment)
     fun inject(fragment: VideosFragment)
     fun inject(fragment: RecommendedTvShowsFragment)
+    fun inject(fragment: SettingsFragment)
 }

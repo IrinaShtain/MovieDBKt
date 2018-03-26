@@ -3,7 +3,6 @@ package ua.shtain.irina.moviedbkt.view.screens.home
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
@@ -14,6 +13,7 @@ import ua.shtain.irina.moviedbkt.view.base.BaseActivity
 import ua.shtain.irina.moviedbkt.view.base.managers.ToolbarManager
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.HomeFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.MovieListsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.settings.SettingsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.SearchStarFragment
 
 
@@ -103,6 +103,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.menuMyProfile -> changeFragment(HomeFragment(), true)
             R.id.menuLists -> changeFragment(MovieListsFragment(), true)
             R.id.menuReadAboutStar -> changeFragment(SearchStarFragment(), true)
+            R.id.menuSettings -> changeFragment(SettingsFragment(), true)
         }
         return true
     }
