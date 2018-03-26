@@ -45,6 +45,8 @@ abstract class MoviesFragment : RefreshableFragment(), MoviesContract.View, OnIt
 
     override fun getLayoutRes() = R.layout.fragment_movies
 
+    override fun getPresenter() = getSearchPresenter()
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()

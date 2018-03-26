@@ -38,6 +38,8 @@ abstract class TvShowsFragment : RefreshableFragment(), TvShowsContract.View, On
 
     override fun getLayoutRes() = R.layout.fragment_tv_shows
 
+    override fun getPresenter() = getSearchPresenter()
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
@@ -81,7 +83,7 @@ abstract class TvShowsFragment : RefreshableFragment(), TvShowsContract.View, On
 
     override fun getShowsType() = mShowsType
 
-    override fun getShowID()= mShowsID
+    override fun getShowID() = mShowsID
 
     override fun onDeleteItemClick(itemID: Int, position: Int) {
         getSearchPresenter().deleteTvShow(itemID, position)

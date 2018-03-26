@@ -28,8 +28,6 @@ class WatchListTvShowsFragment : TvShowsFragment() {
         fabManager?.showFabMenu(true, false)
     }
 
-    override fun getPresenter() = mPresenter
-
     override fun initGraph() {
         mActivity.mObjectGraph.getHomeComponent().inject(this)
     }

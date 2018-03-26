@@ -39,8 +39,6 @@ class SearchMovieByGenreFragment : MoviesFragment() {
         mPresenter.subscribe()
     }
 
-    override fun getPresenter() = mPresenter
-
     override fun initGraph() {
         mActivity.mObjectGraph.getHomeComponent().inject(this)
     }
