@@ -1,24 +1,24 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos
+package ua.shtain.irina.moviedbkt.view.screens.home.common.videos
 
 import android.util.Log
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import ua.shtain.irina.moviedbkt.model.exceptions.ConnectionException
 import ua.shtain.irina.moviedbkt.model.movie.videos.VideosItem
+import ua.shtain.irina.moviedbkt.model.movie.videos.VideosResponse
 import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.adapter.VideoItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.videos.adapter.VideoItemDH
 import java.util.*
-import javax.inject.Inject
 
 /**
  * Created by Irina Shtain on 22.03.2018.
  */
-class VideosPresenter @Inject constructor(compositeDisposable: CompositeDisposable,
-                                          model: VideosContract.Model) : VideosContract.Presenter {
+abstract class VideosPresenter : VideosContract.Presenter {
     lateinit var mView: VideosContract.View
-    private var mCompositeDisposable = compositeDisposable
-    private var mModel = model
-    private var movieID = 0
+    protected lateinit var mCompositeDisposable: CompositeDisposable
+    protected lateinit var mModel: VideosContract.Model
+    protected var mID = 0
     private var hasData = false
 
     private val throwableConsumer = { throwable: Throwable ->
@@ -38,12 +38,14 @@ class VideosPresenter @Inject constructor(compositeDisposable: CompositeDisposab
         }
     }
 
+    abstract fun getVideos(mID: Int): Observable<VideosResponse>
+
     override fun setView(view: ContentView) {
         mView = view as VideosContract.View
     }
 
     override fun subscribe() {
-        movieID = mView.getMovieID()
+        mID = mView.getMovieID()
         mView.showProgressMain()
         loadVideosInfo()
     }
@@ -61,17 +63,16 @@ class VideosPresenter @Inject constructor(compositeDisposable: CompositeDisposab
     }
 
     private fun loadVideosInfo() {
-        mCompositeDisposable.add(
-                mModel.getVideos(movieID)
-                        .subscribe({ response ->
-                            mView.hideProgress()
-                            hasData = true
-                            if (response.videos.isEmpty())
-                                mView.showPlaceholder(Constants.PlaceholderType.EMPTY)
-                            else
-                                mView.setList(prepareList(response.videos))
+        mCompositeDisposable.add(getVideos(mID)
+                .subscribe({ response ->
+                    mView.hideProgress()
+                    hasData = true
+                    if (response.videos.isEmpty())
+                        mView.showPlaceholder(Constants.PlaceholderType.EMPTY)
+                    else
+                        mView.setList(prepareList(response.videos))
 
-                        }, throwableConsumer))
+                }, throwableConsumer))
     }
 
     private fun prepareList(items: ArrayList<VideosItem>): ArrayList<VideoItemDH> {

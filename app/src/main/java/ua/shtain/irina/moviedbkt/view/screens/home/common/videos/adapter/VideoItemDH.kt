@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.adapter
+package ua.shtain.irina.moviedbkt.view.screens.home.common.videos.adapter
 
 import ua.shtain.irina.moviedbkt.model.movie.videos.VideosItem
 

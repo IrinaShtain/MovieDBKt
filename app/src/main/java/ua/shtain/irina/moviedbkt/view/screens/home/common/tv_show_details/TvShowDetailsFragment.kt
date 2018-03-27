@@ -23,6 +23,7 @@ import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDialogFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.recommendations.RecommendedTvShowsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.tv_show_reviews.TvShowReviewsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.tv_show_videos.TvShowVideosFragment
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -87,6 +88,7 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
                     override fun onError() {
                         mActivity.supportStartPostponedEnterTransition()
                     }
+
                     override fun onSuccess() {
                         mActivity.supportStartPostponedEnterTransition()
                     }
@@ -169,7 +171,7 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
     }
 
     override fun showVideos() {
-       // mActivity.changeFragment(VideosFragment.newInstance(mTvID, mTvTitle))
+        mActivity.changeFragment(TvShowVideosFragment.newInstance(mTvID, mTvTitle))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

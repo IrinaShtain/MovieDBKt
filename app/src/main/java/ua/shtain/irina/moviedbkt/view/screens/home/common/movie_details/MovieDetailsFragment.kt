@@ -21,9 +21,8 @@ import ua.shtain.irina.moviedbkt.view.base.content.ContentFragment
 import ua.shtain.irina.moviedbkt.view.base.content.ContentView
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.movie_reviews.MovieReviewsFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.movie_videos.MovieVideosFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.recommendations.RecommendedMoviesFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.common.reviews.ReviewsFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.VideosFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDialogFragment
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -178,7 +177,7 @@ class MovieDetailsFragment : ContentFragment(), MovieDetailsContract.View {
     }
 
     override fun showVideos() {
-        mActivity.changeFragment(VideosFragment.newInstance(mMovieID, mMovieTitle))
+        mActivity.changeFragment(MovieVideosFragment.newInstance(mMovieID, mMovieTitle))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

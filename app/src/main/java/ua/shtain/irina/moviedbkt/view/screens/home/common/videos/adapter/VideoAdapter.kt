@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.adapter
+package ua.shtain.irina.moviedbkt.view.screens.home.common.videos.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

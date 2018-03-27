@@ -1,10 +1,10 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos
+package ua.shtain.irina.moviedbkt.view.screens.home.common.videos
 
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.movie.videos.VideosResponse
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableView
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.adapter.VideoItemDH
+import ua.shtain.irina.moviedbkt.view.screens.home.common.videos.adapter.VideoItemDH
 
 /**
  * Created by Irina Shtain on 22.03.2018.
@@ -21,6 +21,7 @@ interface VideosContract {
     }
 
     interface Model {
-        fun getVideos(movieID: Int): Observable<VideosResponse>
+        fun getMovieVideos(movieID: Int): Observable<VideosResponse>
+        fun getTvshowVideos(tvShowID: Int): Observable<VideosResponse>
     }
 }

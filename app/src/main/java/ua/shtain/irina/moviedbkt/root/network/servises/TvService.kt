@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import retrofit2.http.*
 import ua.shtain.irina.moviedbkt.model.lists.ResponseMessage
 import ua.shtain.irina.moviedbkt.model.movie.review.ReviewResponse
+import ua.shtain.irina.moviedbkt.model.movie.videos.VideosResponse
 import ua.shtain.irina.moviedbkt.model.requests.FavoriteRequest
 import ua.shtain.irina.moviedbkt.model.requests.WatchRequest
 import ua.shtain.irina.moviedbkt.model.tv.SearchTvShowResponse
@@ -47,4 +48,7 @@ interface TvService {
 
     @GET("/3/tv/{tv_id}/reviews")
     fun getTvShowReviews(@Path("tv_id") tv_id: Int, @Query("page") page: Int): Observable<ReviewResponse>
+
+    @GET("/3/tv/{tv_id}/videos")
+    fun getTvShowVideos(@Path("tv_id") tv_id: Int): Observable<VideosResponse>
 }

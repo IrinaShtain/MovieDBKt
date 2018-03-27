@@ -88,7 +88,7 @@ class MoviesInListPresenter @Inject constructor(compositeDisposable: CompositeDi
     }
 
     override fun deleteMovie(movieID: Int, position: Int) {
-        Log.e("myLog", "deleteItem movieID = " + movieID)
+        Log.e("myLog", "deleteItem mID = " + movieID)
         mCompositeDisposable.add(mModel.deleteMovie(listID, movieID)
                 .subscribe({ _ ->
                     mView.hideProgress()

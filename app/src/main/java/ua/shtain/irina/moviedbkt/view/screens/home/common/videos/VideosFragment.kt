@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos
+package ua.shtain.irina.moviedbkt.view.screens.home.common.videos
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -11,59 +11,32 @@ import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragme
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnVideoClickListener
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.adapter.VideoAdapter
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.adapter.VideoItemDH
-import javax.inject.Inject
-import android.support.v4.content.ContextCompat.startActivity
+import ua.shtain.irina.moviedbkt.view.screens.home.common.videos.adapter.VideoAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.common.videos.adapter.VideoItemDH
 import android.content.ActivityNotFoundException
-import android.R.id
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 
 
 /**
  * Created by Irina Shtain on 22.03.2018.
  */
-class VideosFragment : RefreshableFragment(), VideosContract.View, OnVideoClickListener {
+abstract class VideosFragment : RefreshableFragment(), VideosContract.View, OnVideoClickListener {
 
-
-    @Inject
-    lateinit var mPresenter: VideosPresenter
     var mAdapter: VideoAdapter = VideoAdapter()
 
-    private var mMovieID = 0
-    private var mMovieTitle = ""
+    protected var mID = 0
+    protected var mTitle = ""
 
     override fun getLayoutRes() = R.layout.fragment_recycler_view
 
-    companion object {
-        private val MOVIE_ID = "movie_id"
-        private val MOVIE_TITLE = "movie_title"
-        fun newInstance(movieID: Int, title: String): VideosFragment {
-            val fragment = VideosFragment()
-            val bundle = Bundle()
-            bundle.putInt(MOVIE_ID, movieID)
-            bundle.putString(MOVIE_TITLE, title)
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
+    abstract fun getVideosPresenter(): VideosPresenter
 
-    override fun initGraph() {
-        mActivity.mObjectGraph.getHomeComponent().inject(this)
-    }
-
-    override fun getPresenter() = mPresenter as RefreshablePresenter
+    override fun getPresenter() = getVideosPresenter() as RefreshablePresenter
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mMovieID = arguments.getInt(MOVIE_ID)
-        mMovieTitle = arguments.getString(MOVIE_TITLE)
         setupRecyclerView()
-        Log.e("My Log", " onViewCreated")
-        mPresenter.mView = this
-        mPresenter.subscribe()
     }
 
     private fun setupRecyclerView() {
@@ -75,11 +48,11 @@ class VideosFragment : RefreshableFragment(), VideosContract.View, OnVideoClickL
 
     override fun onStart() {
         super.onStart()
-        (mActivity as MainActivity).getToolbarMan()?.setTitle(mMovieTitle)
+        (mActivity as MainActivity).getToolbarMan()?.setTitle(mTitle)
     }
 
     override fun onVideoClick(videoUrl: String) {
-        mPresenter.videoItemPressed(videoUrl)
+        getVideosPresenter().videoItemPressed(videoUrl)
     }
 
     override fun setList(itemDHs: MutableList<VideoItemDH>) {
@@ -98,7 +71,7 @@ class VideosFragment : RefreshableFragment(), VideosContract.View, OnVideoClickL
 
     }
 
-    override fun getMovieID() = mMovieID
+    override fun getMovieID() = mID
 
     override fun showPlaceholder(placeholderType: Constants.PlaceholderType) {
         super.showPlaceholder(placeholderType)

@@ -7,9 +7,9 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDet
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.di.DiMovieDetailsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.movie_reviews.MovieReviewsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.movie_reviews.di.DiMovieReviewsModule
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.movie_videos.MovieVideosFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.movie_videos.di.DiMovieVideosModule
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.recommendations.RecommendedMoviesFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.VideosFragment
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.di.DiMovieVideosModule
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.di.DiSearchMoviesModule
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDialogFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.di.DiRatingMovieModule
@@ -26,6 +26,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.di.DiT
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.recommendations.RecommendedTvShowsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.tv_show_reviews.TvShowReviewsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.tv_show_reviews.di.DiTvShowReviewsModule
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.tv_show_videos.TvShowVideosFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.tv_show_videos.di.DiTvShowVideosModule
 import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_shows.di.DiSearchTvShowsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_movies.FavoriteMovieFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.home_fragment.favorite_shows.FavoriteTvShowsFragment
@@ -64,7 +66,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.di.DiStar
         DiSearchTvShowsModule::class,
         DiMovieReviewsModule::class,
         DiTvShowReviewsModule::class,
-        DiMovieVideosModule::class
+        DiMovieVideosModule::class,
+        DiTvShowVideosModule::class
 ),
         dependencies = arrayOf(DiRootComponent::class))
 interface DiHomeComponent {
@@ -95,7 +98,8 @@ interface DiHomeComponent {
     fun inject(fragment: MovieReviewsFragment)
     fun inject(fragment: TvShowReviewsFragment)
     fun inject(fragment: RecommendedMoviesFragment)
-    fun inject(fragment: VideosFragment)
+    fun inject(fragment: MovieVideosFragment)
+    fun inject(fragment: TvShowVideosFragment)
     fun inject(fragment: RecommendedTvShowsFragment)
     fun inject(fragment: SettingsFragment)
 }

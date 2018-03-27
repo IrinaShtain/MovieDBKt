@@ -3,6 +3,7 @@ package ua.shtain.irina.moviedbkt.domain
 import io.reactivex.Observable
 import ua.shtain.irina.moviedbkt.model.movie.*
 import ua.shtain.irina.moviedbkt.model.movie.review.ReviewResponse
+import ua.shtain.irina.moviedbkt.model.movie.videos.VideosResponse
 import ua.shtain.irina.moviedbkt.model.requests.FavoriteRequest
 import ua.shtain.irina.moviedbkt.model.requests.RateRequest
 import ua.shtain.irina.moviedbkt.model.requests.WatchRequest
@@ -10,7 +11,7 @@ import ua.shtain.irina.moviedbkt.root.network.servises.MovieService
 import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.MovieDetailsContract
 import ua.shtain.irina.moviedbkt.view.screens.home.common.reviews.ReviewsContract
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movie_details.videos.VideosContract
+import ua.shtain.irina.moviedbkt.view.screens.home.common.videos.VideosContract
 import ua.shtain.irina.moviedbkt.view.screens.home.common.rating_dialog.RatingDialogContract
 import ua.shtain.irina.moviedbkt.view.screens.home.movie_lists.movies_in_list.MoviesInListContract
 import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesContract
@@ -61,11 +62,15 @@ class MovieRepository @Inject constructor(movieService: MovieService, helper: Sc
 
     override fun getMovieReviews(movieID: Int, page: Int) = mHelper.getNetworkObservable(mService.getReviews(movieID, page))
 
-    override fun getRecommendedMovies(movieID: Int, page: Int) = mHelper.getNetworkObservable(mService.getRecommendations(movieID, page))
+    override fun getRecommendedMovies(movieId: Int, page: Int) = mHelper.getNetworkObservable(mService.getRecommendations(movieId, page))
 
-    override fun getVideos(movieID: Int) = mHelper.getNetworkObservable(mService.getVideos(movieID))
+    override fun getMovieVideos(movieID: Int) = mHelper.getNetworkObservable(mService.getVideos(movieID))
 
     override fun getTvShowsReviews(showID: Int, page: Int): Observable<ReviewResponse> {
+        return Observable.empty() //ignored
+    }
+
+    override fun getTvshowVideos(tvShowID: Int): Observable<VideosResponse> {
         return Observable.empty() //ignored
     }
 }
