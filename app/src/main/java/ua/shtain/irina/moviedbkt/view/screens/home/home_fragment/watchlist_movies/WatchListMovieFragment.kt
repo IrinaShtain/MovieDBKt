@@ -14,9 +14,12 @@ class WatchListMovieFragment : MoviesFragment() {
 
     @Inject
     lateinit var mPresenter: WatchListMoviePresenter
+    private var mNeedRefresh = true
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         mSearchType = Constants.TYPE_WATCHLIST_MOVIES
+        mPresenter.updateNeedRefresh(mNeedRefresh)
+        mNeedRefresh = false
         super.onViewCreated(view, savedInstanceState)
         setupFabMenu()
         mPresenter.mView = this

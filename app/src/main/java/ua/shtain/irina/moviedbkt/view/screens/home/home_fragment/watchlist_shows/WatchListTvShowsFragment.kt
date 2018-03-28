@@ -14,9 +14,12 @@ class WatchListTvShowsFragment : TvShowsFragment() {
 
     @Inject
     lateinit var mPresenter: WatchListTvShowsPresenter
+    private var mNeedRefresh = true
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         mShowsType = Constants.TYPE_WATCHLIST_TV_SHOWS
+        mPresenter.updateNeedRefresh(mNeedRefresh)
+        mNeedRefresh = false
         super.onViewCreated(view, savedInstanceState)
         setupFabMenu()
         mPresenter.mView = this
