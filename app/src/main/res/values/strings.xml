@@ -113,6 +113,7 @@
     <string name="err_msg_movie_added">Movie already is on your list</string>
     <string name="err_msg_no_reviews">No reviews yet…</string>
     <string name="err_msg_no_videos">No available videos…</string>
+    <string name="err_msg_no_images">No available images…</string>
 
     /*Menu*/
     <string name="menu_delete">Delete</string>
@@ -120,6 +121,7 @@
     <string name="menu_videos">Videos</string>
     <string name="menu_recommendations">Recommendations</string>
     <string name="menu_reviews">Reviews</string>
+    <string name="menu_images">More Images</string>
     <string name="menu_fab_latest_movies">Find the latest movies</string>
     <string name="menu_fab_latest_shows">Find the latest TV shows</string>
     <string name="menu_fab_popular_movies">Find the popular movies</string>

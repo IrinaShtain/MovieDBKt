@@ -14,10 +14,12 @@ interface StarsDetailsContract {
         fun setStarRating(starRating: String)
         fun setStarBiography(biography: String)
         fun getPersonID(): Int
+        fun openMoreImagesFragment()
 
     }
 
     interface Presenter : IBasePresenter<StarsDetailsContract.View> {
+        fun menuMoreImagesPressed()
 
     }
 

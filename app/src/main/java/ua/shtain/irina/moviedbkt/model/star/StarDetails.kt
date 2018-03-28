@@ -12,5 +12,6 @@ data class StarDetails(@SerializedName("profile_path") val profilePath: String,
                        @SerializedName("deathday") val deathday: String?,
                        @SerializedName("place_of_birth") val placeOfBirth: String?,
                        @SerializedName("popularity") val popularity: Float,
+                       @SerializedName("images") val images: StarImageResponse,
                        @SerializedName("id") val id: Int
 )

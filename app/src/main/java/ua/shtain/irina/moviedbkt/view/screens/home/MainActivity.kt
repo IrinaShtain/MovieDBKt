@@ -21,7 +21,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private var drawerToggle: ActionBarDrawerToggle? = null
     private var mToolBarNavigationListenerIsRegistered = false
-    protected var toolbarManager: ToolbarManager? = null
+    private var toolbarManager: ToolbarManager? = null
     override fun getToolbar(): Toolbar {
         return toolbar_MA
     }

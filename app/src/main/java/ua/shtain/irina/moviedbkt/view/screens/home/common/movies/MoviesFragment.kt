@@ -21,7 +21,6 @@ import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.adapter.MovieIt
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter.GenreAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter.GenreDH
 import ua.shtain.irina.moviedbkt.view.screens.home.common.search_movies.genre_adapter.OnGenreClickListener
-import ua.shtain.irina.moviedbkt.view.screens.home.common.tv_show_details.TvShowDetailsFragment
 import java.util.*
 import java.util.concurrent.TimeUnit
 

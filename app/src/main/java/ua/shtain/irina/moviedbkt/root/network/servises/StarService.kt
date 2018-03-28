@@ -6,6 +6,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import ua.shtain.irina.moviedbkt.model.movie.MovieItem
 import ua.shtain.irina.moviedbkt.model.star.StarDetails
+import ua.shtain.irina.moviedbkt.model.star.StarImageResponse
 import ua.shtain.irina.moviedbkt.model.star.StarResponse
 
 /**
@@ -18,4 +19,8 @@ interface StarService {
 
     @GET("/3/person/{person_id}")
     fun getStarDetails(@Path("person_id") person_id: Int): Observable<StarDetails>
+
+    @GET("/3/person/{person_id}/images")
+    fun getStarImages(@Path("person_id") person_id: Int): Observable<StarImageResponse>
+
 }

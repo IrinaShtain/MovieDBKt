@@ -13,7 +13,6 @@ import ua.shtain.irina.moviedbkt.other.Constants
 import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshableFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.EndlessScrollListener
-import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnCardClickListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnNextPageListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.StarListener
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.adapter.SearchStarAdapter
@@ -29,8 +28,7 @@ import javax.inject.Inject
 class SearchStarFragment : RefreshableFragment(), SearchStarContract.View, StarListener {
     @Inject
     lateinit var mPresenter: SearchStarPresenter
-    @Inject
-    lateinit var mAdapter: SearchStarAdapter
+    var mAdapter = SearchStarAdapter()
 
     override fun getLayoutRes() = R.layout.fragment_search_star
 

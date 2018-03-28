@@ -12,10 +12,8 @@ import ua.shtain.irina.moviedbkt.view.base.refresheble_content.RefreshablePresen
 import ua.shtain.irina.moviedbkt.view.screens.home.MainActivity
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.EndlessScrollListener
 import ua.shtain.irina.moviedbkt.view.screens.home.common.listeners.OnNextPageListener
-import ua.shtain.irina.moviedbkt.view.screens.home.common.movies.MoviesPresenter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.reviews.adapter.ReviewItemAdapter
 import ua.shtain.irina.moviedbkt.view.screens.home.common.reviews.adapter.ReviewItemDH
-import javax.inject.Inject
 
 /**
  * Created by Irina Shtain on 20.03.2018.

@@ -55,4 +55,8 @@ class StarsDetailsPresenter @Inject constructor(compositeDisposable: CompositeDi
     override fun unsubscribe() {
         mCompositeDisposable.clear()
     }
+
+    override fun menuMoreImagesPressed() {
+        mView.openMoreImagesFragment()
+    }
 }

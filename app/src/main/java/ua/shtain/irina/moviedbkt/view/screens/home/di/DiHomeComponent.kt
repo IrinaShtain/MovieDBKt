@@ -47,6 +47,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.stars.SearchStarFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.di.DiStarsModule
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.StarsDetailsFragment
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.di.DiStarsDetailsModule
+import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.images.ImagesFragment
+import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.images.di.DiImagesModule
 
 /**
  * Created by Irina Shtain on 13.02.2018.
@@ -67,7 +69,8 @@ import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.di.DiStar
         DiMovieReviewsModule::class,
         DiTvShowReviewsModule::class,
         DiMovieVideosModule::class,
-        DiTvShowVideosModule::class
+        DiTvShowVideosModule::class,
+        DiImagesModule::class
 ),
         dependencies = arrayOf(DiRootComponent::class))
 interface DiHomeComponent {
@@ -102,4 +105,5 @@ interface DiHomeComponent {
     fun inject(fragment: TvShowVideosFragment)
     fun inject(fragment: RecommendedTvShowsFragment)
     fun inject(fragment: SettingsFragment)
+    fun inject(fragment: ImagesFragment)
 }

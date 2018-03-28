@@ -99,7 +99,7 @@ class TvShowDetailsFragment : ContentFragment(), TvShowDetailsContract.View {
 
     private fun initUI() {
         toolbar.setNavigationOnClickListener { mActivity.onBackPressed() }
-        toolbar.inflateMenu(R.menu.menu_movie_details)
+        toolbar.inflateMenu(R.menu.menu_details)
         RxView.clicks(fabRating)
                 .throttleFirst(Constants.CLICK_DELAY, TimeUnit.MILLISECONDS)
                 .subscribe { _ -> mPresenter.fabRatingClicked() }

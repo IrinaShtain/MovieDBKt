@@ -1,4 +1,4 @@
-package ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.adapter
+package ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.adapters
 
 import android.support.v4.view.ViewCompat
 import android.support.v7.widget.RecyclerView

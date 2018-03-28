@@ -10,7 +10,7 @@ import ua.shtain.irina.moviedbkt.root.rx.SchedulerHelper
 import ua.shtain.irina.moviedbkt.view.screens.home.di.MainScope
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.SearchStarContract
 import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.StarsDetailsPresenter
-import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.adapter.FamousForAdapter
+import ua.shtain.irina.moviedbkt.view.screens.home.stars.stars_details.adapters.FamousForAdapter
 
 /**
  * Created by Irina Shtain on 01.03.2018.
